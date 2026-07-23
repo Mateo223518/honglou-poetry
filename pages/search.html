@@ -743,11 +743,14 @@ body {
               </div>
               <p class="hl-range-note">范围：第一回 ~ 第一百二十回</p>
               <div class="hl-chip-row" style="margin-top:0.625rem;">
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第十四回">第十四回</button>
+                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第一回">第一回</button>
+                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第五回">第五回</button>
+                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第二十三回">第二十三回</button>
                 <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第二十七回">第二十七回</button>
                 <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第三十八回">第三十八回</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第四十五回">第四十五回</button>
+                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第五十一回">第五十一回</button>
                 <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第七十回">第七十回</button>
+                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第七十八回">第七十八回</button>
               </div>
             </div>
 
@@ -755,12 +758,13 @@ body {
             <div class="hl-filter-group">
               <h2 class="hl-filter-group-title">按类型</h2>
               <div class="hl-chip-row">
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="诗">诗</button>
+                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="诗">诗（各体）</button>
                 <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="词">词</button>
                 <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="曲">曲</button>
                 <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="判词">判词</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="酒令">酒令</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="灯谜">灯谜</button>
+                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="俗谚">俗谚</button>
+                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="联句">联句</button>
+                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="诔文">诔文</button>
               </div>
             </div>
 
@@ -1270,6 +1274,11 @@ body {
       var currentPage = 1;
       var pageSize = 8;
 
+      // 类型分类映射：「诗」涵盖七律、七绝、歌行等各体
+      var typeCategories = {
+        '诗': ['七律', '七绝', '歌行', '五律', '五绝', '五言']
+      };
+
       function loadPoems() {
         fetch('../data/poems.json')
           .then(function (response) { return response.json(); })
@@ -1303,8 +1312,13 @@ body {
           if (currentFilters.chapter && poem.chapter !== currentFilters.chapter) {
             return false;
           }
-          if (currentFilters.type && poem.type !== currentFilters.type) {
-            return false;
+          if (currentFilters.type) {
+            var category = typeCategories[currentFilters.type];
+            if (category) {
+              if (category.indexOf(poem.type) === -1) return false;
+            } else if (poem.type !== currentFilters.type) {
+              return false;
+            }
           }
           if (currentFilters.theme && poem.theme !== currentFilters.theme) {
             return false;

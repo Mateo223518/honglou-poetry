@@ -5,7 +5,7 @@
   {"id": "hongdouqu", "title": "红豆曲", "author": "贾宝玉", "chapter": "第二十八回", "chapterNum": 28, "type": "曲", "theme": "抒怀", "firstLine": "滴不尽相思血泪抛红豆"},
   {"id": "haolege", "title": "好了歌", "author": "跛足道人", "chapter": "第一回", "chapterNum": 1, "type": "俗谚", "theme": "谶语", "firstLine": "世人都晓神仙好，惟有功名忘不了"},
   {"id": "taohuaxing", "title": "桃花行", "author": "林黛玉", "chapter": "第七十回", "chapterNum": 70, "type": "歌行", "theme": "咏物", "firstLine": "桃花帘外东风软，桃花帘内晨妆懒"},
-  {"id": "wenti", "title": "菊花诗·问菊", "author": "潇湘妃子", "chapter": "第三十八回", "chapterNum": 38, "type": "七律", "theme": "咏物", "firstLine": "欲讯秋情众莫知，漫将幽意叩东篱"},
+  {"id": "wenti", "title": "菊花诗·问菊", "author": "潇湘妃子(黛玉)", "chapter": "第三十八回", "chapterNum": 38, "type": "七律", "theme": "咏物", "firstLine": "欲讯秋情众莫知，漫将幽意叩东篱"},
   {"id": "linjiangxian", "title": "临江仙·柳絮", "author": "薛宝钗", "chapter": "第七十回", "chapterNum": 70, "type": "词", "theme": "咏物", "firstLine": "白玉堂前春解舞，东风卷得均匀"},
   {"id": "furuongnverlei", "title": "芙蓉女儿诔", "author": "贾宝玉", "chapter": "第七十八回", "chapterNum": 78, "type": "诔文", "theme": "抒怀", "firstLine": "红绡帐里，公子情深；黄土垄中，女儿命薄"},
   {"id": "tippasan", "title": "题帕三绝", "author": "林黛玉", "chapter": "第三十四回", "chapterNum": 34, "type": "七绝", "theme": "抒怀", "firstLine": "眼空蓄泪泪空垂，暗洒闲抛却为谁？"},
