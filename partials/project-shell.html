@@ -1,0 +1,413 @@
+<!-- ================================================================ -->
+<!-- 红楼梦诗词检索站 · 共享项目外壳片段 (partials/project-shell.html)     -->
+<!-- 本文件为 HTML 片段（partial），不含 <!DOCTYPE>/<html>/<head>/<body>。  -->
+<!-- 叶子页面将其嵌入 <body> 中，以获得统一的顶部导航栏与页脚。            -->
+<!-- 依赖：叶子页面 <head> 已由 fill-html-head.mjs 注入：                -->
+<!--   1) <style id="theme-vars"> — colors_and_type.css 品牌变量         -->
+<!--   2) Tailwind CSS v4 Browser CDN                                   -->
+<!--   3) Lucide Icons CDN（本片段使用内联 SVG，不依赖 Lucide）           -->
+<!-- ================================================================ -->
+
+<!-- ================================================================ -->
+<!-- 共享样式约定（供叶子页面遵循）                                      -->
+<!-- ================================================================ -->
+<!-- 1. 内容容器：max-width 1140px，居中，左右内边距 1.5rem（.hl-container） -->
+<!-- 2. 卡片：宣纸深底 hsl(var(--card)) + 淡线描边 1px solid hsl(var(--border)) -->
+<!--    + 圆角 var(--hl-radius-md)；hover 时黛蓝描边 var(--hl-daiblue)       -->
+<!--    + 轻微浮起投影（alpha <= 0.06，可用 var(--shadow-md)）              -->
+<!-- 3. 朱砂印章式标签：朱砂底 var(--hl-cinnabar) + 宣纸色字 var(--hl-paper) -->
+<!--    + 微圆角 var(--hl-radius-sm)，用于类型/人物标记                      -->
+<!-- 4. 分隔线：赭石点 var(--hl-ochre) + 淡线 var(--hl-line)               -->
+<!-- 5. 标题：var(--font-serif)（思源宋体 / 楷体加粗）                      -->
+<!--    正文：var(--font-sans)（思源宋体 / 宋体）                           -->
+<!-- 6. 色彩体系（勿额外发明色相）：                                       -->
+<!--    主色 黛蓝 var(--hl-daiblue) — 标题/链接/描边/选中                   -->
+<!--    强调 朱砂 var(--hl-cinnabar) — CTA/印章标签                         -->
+<!--    次强调 赭石 var(--hl-ochre) — 分隔点/点缀                           -->
+<!--    底色 宣纸 var(--hl-paper) / 宣纸深 var(--hl-paper-2)               -->
+<!--    墨字 var(--hl-ink) — 正文                                          -->
+<!--    淡线 var(--hl-line) — 描边/分隔                                    -->
+<!-- 7. 静态表面以描边为主；hover 浮起投影 alpha <= 0.06                    -->
+<!-- 8. 图标：避免 emoji；偏好书法/印章标记或极简内联 SVG                    -->
+<!-- ================================================================ -->
+
+<style>
+  /* ================================================================
+     红楼梦诗词检索站 · 共享外壳样式
+     作用域：.hl-header / .hl-footer 内元素，前缀 hl- 避免与叶子页面冲突
+     ================================================================ */
+
+  /* --- 内容容器（叶子页面可复用此类） --- */
+  .hl-container {
+    max-width: 1140px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  /* ===== 顶部导航栏 ===== */
+  .hl-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    /* 半透明宣纸底 + 毛玻璃模糊 */
+    background-color: hsl(var(--background) / 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    /* 底部淡线分隔 */
+    border-bottom: 1px solid var(--hl-line);
+  }
+
+  .hl-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 64px;
+  }
+
+  /* --- 印章式站名 logo --- */
+  .hl-seal-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+  }
+
+  .hl-seal-stamp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    /* 朱砂底 */
+    background-color: var(--hl-cinnabar);
+    /* 宣纸色字 */
+    color: var(--hl-paper);
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+    /* 微圆角方块 */
+    border-radius: var(--hl-radius-sm);
+    /* 印章质感：内阴影模拟印泥边缘不匀 */
+    box-shadow:
+      inset 0 0 0 1px hsl(var(--accent) / 0.25),
+      inset 0 1px 3px hsl(var(--primary) / 0.08);
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .hl-seal-name {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    /* 黛蓝站名 */
+    color: var(--hl-daiblue);
+    letter-spacing: var(--tracking-normal);
+    white-space: nowrap;
+  }
+
+  /* --- 桌面导航链接 --- */
+  .hl-nav-desktop {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .hl-nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: hsl(var(--muted-foreground));
+    text-decoration: none;
+    border-radius: var(--hl-radius-sm);
+    transition: color 0.2s ease;
+  }
+
+  .hl-nav-link:hover {
+    color: var(--hl-daiblue);
+  }
+
+  .hl-nav-link:focus-visible {
+    outline: 2px solid var(--hl-daiblue);
+    outline-offset: 2px;
+    border-radius: var(--hl-radius-sm);
+  }
+
+  /* 激活态：黛蓝下划线 + 朱砂点标记 */
+  .hl-nav-link[data-active="true"] {
+    color: var(--hl-daiblue);
+    font-weight: 600;
+  }
+
+  /* 黛蓝下划线 */
+  .hl-nav-link[data-active="true"]::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 1rem;
+    right: 1rem;
+    height: 2px;
+    background-color: var(--hl-daiblue);
+    border-radius: 1px;
+  }
+
+  /* 朱砂点标记（顶部居中） */
+  .hl-nav-link[data-active="true"]::before {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--hl-cinnabar);
+  }
+
+  /* --- 移动端汉堡菜单（<details> 纯 CSS 折叠，无需 JS） --- */
+  .hl-mobile-menu {
+    position: relative;
+  }
+
+  .hl-mobile-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: var(--hl-radius-sm);
+    list-style: none;
+    transition: background-color 0.2s ease;
+  }
+
+  /* 隐藏 <details> 默认三角标记 */
+  .hl-mobile-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .hl-mobile-trigger:hover {
+    background-color: hsl(var(--secondary));
+  }
+
+  .hl-mobile-trigger:focus-visible {
+    outline: 2px solid var(--hl-daiblue);
+    outline-offset: 2px;
+  }
+
+  .hl-mobile-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--hl-daiblue);
+  }
+
+  /* 折叠态：移动端下拉面板 */
+  .hl-nav-mobile {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.5rem;
+    background-color: var(--hl-paper);
+    border: 1px solid var(--hl-line);
+    border-radius: var(--hl-radius-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hl-mobile-link {
+    display: block;
+    padding: 0.625rem 0.875rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: hsl(var(--muted-foreground));
+    text-decoration: none;
+    border-radius: var(--hl-radius-sm);
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .hl-mobile-link:hover {
+    color: var(--hl-daiblue);
+    background-color: hsl(var(--secondary));
+  }
+
+  .hl-mobile-link:focus-visible {
+    outline: 2px solid var(--hl-daiblue);
+    outline-offset: 2px;
+  }
+
+  /* 移动端激活态 */
+  .hl-mobile-link[data-active="true"] {
+    color: var(--hl-daiblue);
+    font-weight: 600;
+    background-color: hsl(var(--secondary));
+  }
+
+  /* 响应式断点：>= 768px 显示桌面导航，隐藏汉堡菜单 */
+  @media (min-width: 768px) {
+    .hl-nav-desktop {
+      display: flex;
+    }
+    .hl-mobile-menu {
+      display: none;
+    }
+  }
+
+  /* ===== 页脚 ===== */
+  .hl-footer {
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+    /* 顶部淡线分隔 */
+    border-top: 1px solid var(--hl-line);
+  }
+
+  .hl-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .hl-footer-title {
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--hl-daiblue);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .hl-footer-text {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    /* 淡墨小字 */
+    color: hsl(var(--muted-foreground));
+    margin: 0;
+  }
+
+  /* 底部版权行 */
+  .hl-footer-bottom {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    /* 赭石淡线分隔 */
+    border-top: 1px solid var(--hl-line);
+  }
+
+  /* 赭石点装饰 */
+  .hl-footer-dot {
+    flex-shrink: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--hl-ochre);
+  }
+
+  .hl-footer-copy {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: hsl(var(--muted-foreground));
+    letter-spacing: var(--tracking-normal);
+    margin: 0;
+  }
+
+  /* 页脚三栏：>= 768px 横向排列 */
+  @media (min-width: 768px) {
+    .hl-footer-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  /* --- 减弱动画（无障碍） --- */
+  @media (prefers-reduced-motion: reduce) {
+    .hl-nav-link,
+    .hl-mobile-trigger,
+    .hl-mobile-link {
+      transition: none;
+    }
+  }
+</style>
+
+<!-- ====== 顶部导航栏 ====== -->
+<header class="hl-header">
+  <div class="hl-container hl-nav-bar">
+    <!-- 印章式站名 logo：朱砂底 + 宣纸色「梦」字 + 黛蓝站名 -->
+    <a href="#" class="hl-seal-logo" data-dom-id="nav-logo" aria-label="红楼梦诗词检索站 · 首页">
+      <span class="hl-seal-stamp" aria-hidden="true">梦</span>
+      <span class="hl-seal-name">红楼梦诗词检索站</span>
+    </a>
+
+    <!-- 桌面导航（>= 768px 显示） -->
+    <nav class="hl-nav-desktop" aria-label="主导航">
+      <!-- SLOT: activeNavItem — 叶子页面在对应 data-nav-key 的导航项上添加 data-active="true" 以标记当前页。
+           示例：当前为「检索」页时，在 data-nav-key="search" 的链接上添加 data-active="true"。
+           注意：桌面端与移动端均需同步设置激活态。 -->
+      <a href="#" class="hl-nav-link" data-nav-key="home" data-dom-id="nav-home">
+        <span class="hl-nav-label">首页</span>
+      </a>
+      <a href="#" class="hl-nav-link" data-nav-key="search" data-dom-id="nav-search">
+        <span class="hl-nav-label">检索</span>
+      </a>
+      <a href="#" class="hl-nav-link" data-nav-key="about" data-dom-id="nav-about">
+        <span class="hl-nav-label">说明</span>
+      </a>
+    </nav>
+
+    <!-- 移动端汉堡菜单（< 768px 显示，纯 CSS <details> 折叠，无需 JS） -->
+    <details class="hl-mobile-menu">
+      <summary class="hl-mobile-trigger" aria-label="展开 / 收起导航菜单">
+        <svg class="hl-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+      </summary>
+      <nav class="hl-nav-mobile" aria-label="移动端主导航">
+        <!-- SLOT: activeNavItem (mobile) — 叶子页面同步在移动端导航项上添加 data-active="true" -->
+        <a href="#" class="hl-mobile-link" data-nav-key="home" data-dom-id="nav-home">首页</a>
+        <a href="#" class="hl-mobile-link" data-nav-key="search" data-dom-id="nav-search">检索</a>
+        <a href="#" class="hl-mobile-link" data-nav-key="about" data-dom-id="nav-about">说明</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<!-- SLOT: pageTitle — 叶子页面在此处插入页面标题与主体内容。
+     建议结构：<main class="hl-container" style="padding-top: 2rem; padding-bottom: 2rem;"> ... </main> -->
+
+<!-- ====== 页脚 ====== -->
+<footer class="hl-footer">
+  <div class="hl-container hl-footer-inner">
+    <!-- 三栏信息 -->
+    <div class="hl-footer-grid">
+      <div class="hl-footer-col">
+        <h3 class="hl-footer-title">收录范围</h3>
+        <p class="hl-footer-text">36 首核心经典</p>
+      </div>
+      <div class="hl-footer-col">
+        <h3 class="hl-footer-title">所依版本</h3>
+        <p class="hl-footer-text">庚辰本 · 程高本</p>
+      </div>
+      <div class="hl-footer-col">
+        <h3 class="hl-footer-title">免责声明</h3>
+        <p class="hl-footer-text">原文公有领域，注释赏析原创</p>
+      </div>
+    </div>
+    <!-- 底部版权行：赭石点 + 淡墨小字 -->
+    <div class="hl-footer-bottom">
+      <span class="hl-footer-dot" aria-hidden="true"></span>
+      <p class="hl-footer-copy">&#169; 红楼梦诗词检索站 · 仅供学习研究</p>
+    </div>
+  </div>
+</footer>

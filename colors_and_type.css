@@ -1,0 +1,127 @@
+/* Source: structured-spec — 红楼梦诗词检索站 · 水墨宣纸 · 黛蓝 + 朱砂 */
+:root {
+  /* === 语义化色彩（HSL，供画布主题映射 / Tailwind 使用） === */
+  /* 背景 */
+  --background: 42 50% 92%;          /* 宣纸底 #F5EFE1 */
+  --card: 41 47% 88%;                /* 宣纸深一档 #EFE6D3 */
+  --card-foreground: 0 0% 17%;
+  --popover: 42 50% 92%;
+  --popover-foreground: 0 0% 17%;
+
+  /* 文字 */
+  --foreground: 0 0% 17%;            /* 墨字 #2B2B2B */
+  --muted-foreground: 30 10% 42%;    /* 淡墨，副文本 */
+
+  /* 主色：黛蓝 */
+  --primary: 208 36% 28%;            /* 黛蓝 #2E4A62 */
+  --primary-foreground: 42 50% 92%;
+  --secondary: 208 18% 90%;          /* 黛蓝淡晕，次级表面 */
+  --secondary-foreground: 208 36% 28%;
+  --muted: 42 26% 90%;               /* 宣纸淡面 */
+  --accent: 8 59% 45%;               /* 朱砂 #B5402F（CTA / 印章） */
+  --accent-foreground: 42 50% 92%;
+
+  /* 状态 */
+  --destructive: 8 59% 45%;
+  --destructive-foreground: 42 50% 92%;
+
+  /* 描边 */
+  --border: 39 29% 78%;              /* 淡线 #D8CDB8 */
+  --input: 39 29% 78%;
+  --ring: 208 36% 28%;
+
+  /* 图表色（黛蓝 / 朱砂 / 赭石系，备用） */
+  --chart-1: 208 36% 28%;
+  --chart-2: 8 59% 45%;
+  --chart-3: 39 44% 42%;
+  --chart-4: 205 42% 21%;
+  --chart-5: 208 18% 60%;
+
+  /* 侧栏（与卡片同系） */
+  --sidebar: 41 47% 88%;
+  --sidebar-foreground: 0 0% 17%;
+  --sidebar-primary: 208 36% 28%;
+  --sidebar-primary-foreground: 42 50% 92%;
+  --sidebar-accent: 8 59% 45%;
+  --sidebar-accent-foreground: 42 50% 92%;
+  --sidebar-border: 39 29% 78%;
+  --sidebar-ring: 208 36% 28%;
+
+  /* === 品牌命名色（hex，供水墨 / 印章 / 点缀直接引用） === */
+  --hl-paper: #F5EFE1;               /* 宣纸底 */
+  --hl-paper-2: #EFE6D3;             /* 宣纸深一档 */
+  --hl-ink: #2B2B2B;                 /* 墨字 */
+  --hl-daiblue: #2E4A62;             /* 黛蓝 */
+  --hl-daiblue-d: #1F3A4D;           /* 黛蓝加深 */
+  --hl-cinnabar: #B5402F;            /* 朱砂 */
+  --hl-ochre: #9C7A3C;               /* 赭石淡金 */
+  --hl-line: #D8CDB8;                /* 淡线 */
+
+  /* 字体 */
+  --font-sans: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --font-serif: "Noto Serif SC", "KaiTi", "STKaiti", "STSong", serif;
+  --font-mono: ui-monospace, "SFMono-Regular", monospace;
+
+  /* 圆角（克制，贴合古典版面） */
+  --radius: 4px;
+  --hl-radius-sm: 4px;
+  --hl-radius-md: 8px;
+  --hl-radius-lg: 12px;
+  --hl-radius-full: 9999px;
+
+  /* 间距 */
+  --spacing: 0.25rem;
+  --tracking-normal: 0.02em;
+
+  /* 阴影：静态表面以描边为主；浮起层轻微投影 */
+  --shadow-color: hsl(208 36% 28%);
+  --shadow-2xs: 0 1px 2px 0 hsl(208 36% 28% / 0.03);
+  --shadow-xs: 0 1px 2px 0 hsl(208 36% 28% / 0.04);
+  --shadow-sm: 0 1px 3px 0 hsl(208 36% 28% / 0.04), 0 1px 2px -1px hsl(208 36% 28% / 0.03);
+  --shadow: 0 2px 6px -1px hsl(208 36% 28% / 0.05), 0 1px 3px -1px hsl(208 36% 28% / 0.04);
+  --shadow-md: 0 4px 10px -2px hsl(208 36% 28% / 0.06), 0 2px 4px -1px hsl(208 36% 28% / 0.04);
+  --shadow-lg: 0 8px 18px -4px hsl(208 36% 28% / 0.08), 0 3px 6px -2px hsl(208 36% 28% / 0.04);
+  --shadow-xl: 0 14px 28px -6px hsl(208 36% 28% / 0.10), 0 6px 10px -4px hsl(208 36% 28% / 0.05);
+  --shadow-2xl: 0 18px 36px -8px hsl(208 36% 28% / 0.12);
+}
+
+/* 暗色：夜读墨色模式 */
+.dark {
+  --background: 205 30% 10%;
+  --card: 205 26% 13%;
+  --card-foreground: 42 24% 88%;
+  --popover: 205 28% 11%;
+  --popover-foreground: 42 24% 88%;
+  --foreground: 42 24% 88%;
+  --muted-foreground: 39 14% 62%;
+  --primary: 205 34% 58%;
+  --primary-foreground: 205 30% 10%;
+  --secondary: 205 20% 20%;
+  --secondary-foreground: 42 24% 88%;
+  --muted: 205 20% 18%;
+  --accent: 8 64% 58%;
+  --accent-foreground: 205 30% 10%;
+  --destructive: 8 64% 58%;
+  --destructive-foreground: 42 24% 88%;
+  --border: 205 14% 22%;
+  --input: 205 14% 22%;
+  --ring: 205 34% 58%;
+  --sidebar: 205 26% 13%;
+  --sidebar-foreground: 42 24% 88%;
+  --sidebar-primary: 205 34% 58%;
+  --sidebar-primary-foreground: 205 30% 10%;
+  --sidebar-accent: 8 64% 58%;
+  --sidebar-accent-foreground: 205 30% 10%;
+  --sidebar-border: 205 14% 22%;
+  --sidebar-ring: 205 34% 58%;
+}
+
+body {
+  letter-spacing: var(--tracking-normal);
+  /* 宣纸纹理：多层径向渐变模拟纸纤维 + 微噪点 */
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(circle at 18% 22%, hsl(39 44% 42% / 0.035) 0, transparent 38%),
+    radial-gradient(circle at 82% 78%, hsl(208 36% 28% / 0.04) 0, transparent 42%),
+    radial-gradient(circle at 50% 50%, hsl(0 0% 100% / 0.25) 0, transparent 60%);
+}

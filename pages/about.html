@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>说明 · 红楼梦诗词检索站</title>
+    <style id="theme-vars">
+/* Source: structured-spec — 红楼梦诗词检索站 · 水墨宣纸 · 黛蓝 + 朱砂 */
+:root {
+  /* === 语义化色彩（HSL，供画布主题映射 / Tailwind 使用） === */
+  /* 背景 */
+  --background: 42 50% 92%;          /* 宣纸底 #F5EFE1 */
+  --card: 41 47% 88%;                /* 宣纸深一档 #EFE6D3 */
+  --card-foreground: 0 0% 17%;
+  --popover: 42 50% 92%;
+  --popover-foreground: 0 0% 17%;
+
+  /* 文字 */
+  --foreground: 0 0% 17%;            /* 墨字 #2B2B2B */
+  --muted-foreground: 30 10% 42%;    /* 淡墨，副文本 */
+
+  /* 主色：黛蓝 */
+  --primary: 208 36% 28%;            /* 黛蓝 #2E4A62 */
+  --primary-foreground: 42 50% 92%;
+  --secondary: 208 18% 90%;          /* 黛蓝淡晕，次级表面 */
+  --secondary-foreground: 208 36% 28%;
+  --muted: 42 26% 90%;               /* 宣纸淡面 */
+  --accent: 8 59% 45%;               /* 朱砂 #B5402F（CTA / 印章） */
+  --accent-foreground: 42 50% 92%;
+
+  /* 状态 */
+  --destructive: 8 59% 45%;
+  --destructive-foreground: 42 50% 92%;
+
+  /* 描边 */
+  --border: 39 29% 78%;              /* 淡线 #D8CDB8 */
+  --input: 39 29% 78%;
+  --ring: 208 36% 28%;
+
+  /* 图表色（黛蓝 / 朱砂 / 赭石系，备用） */
+  --chart-1: 208 36% 28%;
+  --chart-2: 8 59% 45%;
+  --chart-3: 39 44% 42%;
+  --chart-4: 205 42% 21%;
+  --chart-5: 208 18% 60%;
+
+  /* 侧栏（与卡片同系） */
+  --sidebar: 41 47% 88%;
+  --sidebar-foreground: 0 0% 17%;
+  --sidebar-primary: 208 36% 28%;
+  --sidebar-primary-foreground: 42 50% 92%;
+  --sidebar-accent: 8 59% 45%;
+  --sidebar-accent-foreground: 42 50% 92%;
+  --sidebar-border: 39 29% 78%;
+  --sidebar-ring: 208 36% 28%;
+
+  /* === 品牌命名色（hex，供水墨 / 印章 / 点缀直接引用） === */
+  --hl-paper: #F5EFE1;               /* 宣纸底 */
+  --hl-paper-2: #EFE6D3;             /* 宣纸深一档 */
+  --hl-ink: #2B2B2B;                 /* 墨字 */
+  --hl-daiblue: #2E4A62;             /* 黛蓝 */
+  --hl-daiblue-d: #1F3A4D;           /* 黛蓝加深 */
+  --hl-cinnabar: #B5402F;            /* 朱砂 */
+  --hl-ochre: #9C7A3C;               /* 赭石淡金 */
+  --hl-line: #D8CDB8;                /* 淡线 */
+
+  /* 字体 */
+  --font-sans: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --font-serif: "Noto Serif SC", "KaiTi", "STKaiti", "STSong", serif;
+  --font-mono: ui-monospace, "SFMono-Regular", monospace;
+
+  /* 圆角（克制，贴合古典版面） */
+  --radius: 4px;
+  --hl-radius-sm: 4px;
+  --hl-radius-md: 8px;
+  --hl-radius-lg: 12px;
+  --hl-radius-full: 9999px;
+
+  /* 间距 */
+  --spacing: 0.25rem;
+  --tracking-normal: 0.02em;
+
+  /* 阴影：静态表面以描边为主；浮起层轻微投影 */
+  --shadow-color: hsl(208 36% 28%);
+  --shadow-2xs: 0 1px 2px 0 hsl(208 36% 28% / 0.03);
+  --shadow-xs: 0 1px 2px 0 hsl(208 36% 28% / 0.04);
+  --shadow-sm: 0 1px 3px 0 hsl(208 36% 28% / 0.04), 0 1px 2px -1px hsl(208 36% 28% / 0.03);
+  --shadow: 0 2px 6px -1px hsl(208 36% 28% / 0.05), 0 1px 3px -1px hsl(208 36% 28% / 0.04);
+  --shadow-md: 0 4px 10px -2px hsl(208 36% 28% / 0.06), 0 2px 4px -1px hsl(208 36% 28% / 0.04);
+  --shadow-lg: 0 8px 18px -4px hsl(208 36% 28% / 0.08), 0 3px 6px -2px hsl(208 36% 28% / 0.04);
+  --shadow-xl: 0 14px 28px -6px hsl(208 36% 28% / 0.10), 0 6px 10px -4px hsl(208 36% 28% / 0.05);
+  --shadow-2xl: 0 18px 36px -8px hsl(208 36% 28% / 0.12);
+}
+
+/* 暗色：夜读墨色模式 */
+.dark {
+  --background: 205 30% 10%;
+  --card: 205 26% 13%;
+  --card-foreground: 42 24% 88%;
+  --popover: 205 28% 11%;
+  --popover-foreground: 42 24% 88%;
+  --foreground: 42 24% 88%;
+  --muted-foreground: 39 14% 62%;
+  --primary: 205 34% 58%;
+  --primary-foreground: 205 30% 10%;
+  --secondary: 205 20% 20%;
+  --secondary-foreground: 42 24% 88%;
+  --muted: 205 20% 18%;
+  --accent: 8 64% 58%;
+  --accent-foreground: 205 30% 10%;
+  --destructive: 8 64% 58%;
+  --destructive-foreground: 42 24% 88%;
+  --border: 205 14% 22%;
+  --input: 205 14% 22%;
+  --ring: 205 34% 58%;
+  --sidebar: 205 26% 13%;
+  --sidebar-foreground: 42 24% 88%;
+  --sidebar-primary: 205 34% 58%;
+  --sidebar-primary-foreground: 205 30% 10%;
+  --sidebar-accent: 8 64% 58%;
+  --sidebar-accent-foreground: 205 30% 10%;
+  --sidebar-border: 205 14% 22%;
+  --sidebar-ring: 205 34% 58%;
+}
+
+body {
+  letter-spacing: var(--tracking-normal);
+  /* 宣纸纹理：多层径向渐变模拟纸纤维 + 微噪点 */
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(circle at 18% 22%, hsl(39 44% 42% / 0.035) 0, transparent 38%),
+    radial-gradient(circle at 82% 78%, hsl(208 36% 28% / 0.04) 0, transparent 42%),
+    radial-gradient(circle at 50% 50%, hsl(0 0% 100% / 0.25) 0, transparent 60%);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --radius-sm: var(--hl-radius-sm);
+    --radius-md: var(--hl-radius-md);
+    --radius-lg: var(--hl-radius-lg);
+  }
+  @layer base {
+    body { background: var(--background); color: var(--foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--background); }
+      .text-background { color: var(--background); }
+      .border-background { border-color: var(--background); }
+      .ring-background { --tw-ring-color: var(--background); }
+      .bg-foreground { background-color: var(--foreground); }
+      .text-foreground { color: var(--foreground); }
+      .border-foreground { border-color: var(--foreground); }
+      .ring-foreground { --tw-ring-color: var(--foreground); }
+      .bg-card { background-color: var(--card); }
+      .text-card { color: var(--card); }
+      .border-card { border-color: var(--card); }
+      .ring-card { --tw-ring-color: var(--card); }
+      .bg-card-foreground { background-color: var(--card-foreground); }
+      .text-card-foreground { color: var(--card-foreground); }
+      .border-card-foreground { border-color: var(--card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--card-foreground); }
+      .bg-popover { background-color: var(--popover); }
+      .text-popover { color: var(--popover); }
+      .border-popover { border-color: var(--popover); }
+      .ring-popover { --tw-ring-color: var(--popover); }
+      .bg-popover-foreground { background-color: var(--popover-foreground); }
+      .text-popover-foreground { color: var(--popover-foreground); }
+      .border-popover-foreground { border-color: var(--popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--popover-foreground); }
+      .bg-primary { background-color: var(--primary); }
+      .text-primary { color: var(--primary); }
+      .border-primary { border-color: var(--primary); }
+      .ring-primary { --tw-ring-color: var(--primary); }
+      .bg-primary-foreground { background-color: var(--primary-foreground); }
+      .text-primary-foreground { color: var(--primary-foreground); }
+      .border-primary-foreground { border-color: var(--primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--primary-foreground); }
+      .bg-secondary { background-color: var(--secondary); }
+      .text-secondary { color: var(--secondary); }
+      .border-secondary { border-color: var(--secondary); }
+      .ring-secondary { --tw-ring-color: var(--secondary); }
+      .bg-secondary-foreground { background-color: var(--secondary-foreground); }
+      .text-secondary-foreground { color: var(--secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--secondary-foreground); }
+      .bg-muted { background-color: var(--muted); }
+      .text-muted { color: var(--muted); }
+      .border-muted { border-color: var(--muted); }
+      .ring-muted { --tw-ring-color: var(--muted); }
+      .bg-muted-foreground { background-color: var(--muted-foreground); }
+      .text-muted-foreground { color: var(--muted-foreground); }
+      .border-muted-foreground { border-color: var(--muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--muted-foreground); }
+      .bg-accent { background-color: var(--accent); }
+      .text-accent { color: var(--accent); }
+      .border-accent { border-color: var(--accent); }
+      .ring-accent { --tw-ring-color: var(--accent); }
+      .bg-accent-foreground { background-color: var(--accent-foreground); }
+      .text-accent-foreground { color: var(--accent-foreground); }
+      .border-accent-foreground { border-color: var(--accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--accent-foreground); }
+      .bg-destructive { background-color: var(--destructive); }
+      .text-destructive { color: var(--destructive); }
+      .border-destructive { border-color: var(--destructive); }
+      .ring-destructive { --tw-ring-color: var(--destructive); }
+      .bg-destructive-foreground { background-color: var(--destructive-foreground); }
+      .text-destructive-foreground { color: var(--destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--destructive-foreground); }
+      .bg-border { background-color: var(--border); }
+      .text-border { color: var(--border); }
+      .border-border { border-color: var(--border); }
+      .ring-border { --tw-ring-color: var(--border); }
+      .bg-input { background-color: var(--input); }
+      .text-input { color: var(--input); }
+      .border-input { border-color: var(--input); }
+      .ring-input { --tw-ring-color: var(--input); }
+      .bg-ring { background-color: var(--ring); }
+      .text-ring { color: var(--ring); }
+      .border-ring { border-color: var(--ring); }
+      .ring-ring { --tw-ring-color: var(--ring); }
+      .bg-chart-1 { background-color: var(--chart-1); }
+      .text-chart-1 { color: var(--chart-1); }
+      .border-chart-1 { border-color: var(--chart-1); }
+      .ring-chart-1 { --tw-ring-color: var(--chart-1); }
+      .bg-chart-2 { background-color: var(--chart-2); }
+      .text-chart-2 { color: var(--chart-2); }
+      .border-chart-2 { border-color: var(--chart-2); }
+      .ring-chart-2 { --tw-ring-color: var(--chart-2); }
+      .bg-chart-3 { background-color: var(--chart-3); }
+      .text-chart-3 { color: var(--chart-3); }
+      .border-chart-3 { border-color: var(--chart-3); }
+      .ring-chart-3 { --tw-ring-color: var(--chart-3); }
+      .bg-chart-4 { background-color: var(--chart-4); }
+      .text-chart-4 { color: var(--chart-4); }
+      .border-chart-4 { border-color: var(--chart-4); }
+      .ring-chart-4 { --tw-ring-color: var(--chart-4); }
+      .bg-chart-5 { background-color: var(--chart-5); }
+      .text-chart-5 { color: var(--chart-5); }
+      .border-chart-5 { border-color: var(--chart-5); }
+      .ring-chart-5 { --tw-ring-color: var(--chart-5); }
+      .bg-sidebar { background-color: var(--sidebar); }
+      .text-sidebar { color: var(--sidebar); }
+      .border-sidebar { border-color: var(--sidebar); }
+      .ring-sidebar { --tw-ring-color: var(--sidebar); }
+      .bg-sidebar-foreground { background-color: var(--sidebar-foreground); }
+      .text-sidebar-foreground { color: var(--sidebar-foreground); }
+      .border-sidebar-foreground { border-color: var(--sidebar-foreground); }
+      .ring-sidebar-foreground { --tw-ring-color: var(--sidebar-foreground); }
+      .bg-sidebar-primary { background-color: var(--sidebar-primary); }
+      .text-sidebar-primary { color: var(--sidebar-primary); }
+      .border-sidebar-primary { border-color: var(--sidebar-primary); }
+      .ring-sidebar-primary { --tw-ring-color: var(--sidebar-primary); }
+      .bg-sidebar-primary-foreground { background-color: var(--sidebar-primary-foreground); }
+      .text-sidebar-primary-foreground { color: var(--sidebar-primary-foreground); }
+      .border-sidebar-primary-foreground { border-color: var(--sidebar-primary-foreground); }
+      .ring-sidebar-primary-foreground { --tw-ring-color: var(--sidebar-primary-foreground); }
+      .bg-sidebar-accent { background-color: var(--sidebar-accent); }
+      .text-sidebar-accent { color: var(--sidebar-accent); }
+      .border-sidebar-accent { border-color: var(--sidebar-accent); }
+      .ring-sidebar-accent { --tw-ring-color: var(--sidebar-accent); }
+      .bg-sidebar-accent-foreground { background-color: var(--sidebar-accent-foreground); }
+      .text-sidebar-accent-foreground { color: var(--sidebar-accent-foreground); }
+      .border-sidebar-accent-foreground { border-color: var(--sidebar-accent-foreground); }
+      .ring-sidebar-accent-foreground { --tw-ring-color: var(--sidebar-accent-foreground); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+<!-- ================================================================ -->
+<!-- 共享外壳样式（继承自 partials/project-shell.html，原文嵌入，勿改写）  -->
+<!-- ================================================================ -->
+<style>
+  /* --- 内容容器（叶子页面可复用此类） --- */
+  .hl-container {
+    max-width: 1140px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  /* ===== 顶部导航栏 ===== */
+  .hl-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: hsl(var(--background) / 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--hl-line);
+  }
+
+  .hl-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 64px;
+  }
+
+  .hl-seal-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+  }
+
+  .hl-seal-stamp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: var(--hl-cinnabar);
+    color: var(--hl-paper);
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+    border-radius: var(--hl-radius-sm);
+    box-shadow:
+      inset 0 0 0 1px hsl(var(--accent) / 0.25),
+      inset 0 1px 3px hsl(var(--primary) / 0.08);
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .hl-seal-name {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--hl-daiblue);
+    letter-spacing: var(--tracking-normal);
+    white-space: nowrap;
+  }
+
+  .hl-nav-desktop {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .hl-nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: hsl(var(--muted-foreground));
+    text-decoration: none;
+    border-radius: var(--hl-radius-sm);
+    transition: color 0.2s ease;
+  }
+
+  .hl-nav-link:hover {
+    color: var(--hl-daiblue);
+  }
+
+  .hl-nav-link:focus-visible {
+    outline: 2px solid var(--hl-daiblue);
+    outline-offset: 2px;
+    border-radius: var(--hl-radius-sm);
+  }
+
+  .hl-nav-link[data-active="true"] {
+    color: var(--hl-daiblue);
+    font-weight: 600;
+  }
+
+  .hl-nav-link[data-active="true"]::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 1rem;
+    right: 1rem;
+    height: 2px;
+    background-color: var(--hl-daiblue);
+    border-radius: 1px;
+  }
+
+  .hl-nav-link[data-active="true"]::before {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--hl-cinnabar);
+  }
+
+  .hl-mobile-menu {
+    position: relative;
+  }
+
+  .hl-mobile-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: var(--hl-radius-sm);
+    list-style: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .hl-mobile-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .hl-mobile-trigger:hover {
+    background-color: hsl(var(--secondary));
+  }
+
+  .hl-mobile-trigger:focus-visible {
+    outline: 2px solid var(--hl-daiblue);
+    outline-offset: 2px;
+  }
+
+  .hl-mobile-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--hl-daiblue);
+  }
+
+  .hl-nav-mobile {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.5rem;
+    background-color: var(--hl-paper);
+    border: 1px solid var(--hl-line);
+    border-radius: var(--hl-radius-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hl-mobile-link {
+    display: block;
+    padding: 0.625rem 0.875rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: hsl(var(--muted-foreground));
+    text-decoration: none;
+    border-radius: var(--hl-radius-sm);
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .hl-mobile-link:hover {
+    color: var(--hl-daiblue);
+    background-color: hsl(var(--secondary));
+  }
+
+  .hl-mobile-link:focus-visible {
+    outline: 2px solid var(--hl-daiblue);
+    outline-offset: 2px;
+  }
+
+  .hl-mobile-link[data-active="true"] {
+    color: var(--hl-daiblue);
+    font-weight: 600;
+    background-color: hsl(var(--secondary));
+  }
+
+  @media (min-width: 768px) {
+    .hl-nav-desktop {
+      display: flex;
+    }
+    .hl-mobile-menu {
+      display: none;
+    }
+  }
+
+  /* ===== 页脚 ===== */
+  .hl-footer {
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-top: 1px solid var(--hl-line);
+  }
+
+  .hl-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .hl-footer-title {
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--hl-daiblue);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .hl-footer-text {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: hsl(var(--muted-foreground));
+    margin: 0;
+  }
+
+  .hl-footer-bottom {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--hl-line);
+  }
+
+  .hl-footer-dot {
+    flex-shrink: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--hl-ochre);
+  }
+
+  .hl-footer-copy {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: hsl(var(--muted-foreground));
+    letter-spacing: var(--tracking-normal);
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .hl-footer-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hl-nav-link,
+    .hl-mobile-trigger,
+    .hl-mobile-link {
+      transition: none;
+    }
+  }
+</style>
+
+<!-- ================================================================ -->
+<!-- 说明页专属样式（hl-about- 前缀，凡例气质：单栏文档 + 章节卡片 + 印章） -->
+<!-- ================================================================ -->
+<style>
+  /* 主体：单栏文档，max-width 800px 居中 */
+  .hl-about-main {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  .hl-about-doc {
+    max-width: 800px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  /* --- 标题区 --- */
+  .hl-about-head {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .hl-about-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    color: var(--hl-daiblue);
+    letter-spacing: 0.06em;
+    margin: 0 0 0.5rem 0;
+    text-wrap: balance;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .hl-about-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: hsl(var(--muted-foreground));
+    letter-spacing: var(--tracking-normal);
+    margin: 0 0 1.25rem 0;
+  }
+  /* 赭石淡线（居中渐隐，版心气质） */
+  .hl-about-rule {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, var(--hl-ochre), transparent);
+    opacity: 0.75;
+  }
+
+  /* --- 章节卡片：宣纸深底 + 淡线描边 --- */
+  .hl-about-section {
+    background-color: var(--hl-paper-2);
+    border: 1px solid var(--hl-line);
+    border-radius: var(--hl-radius-md);
+    padding: 1.75rem;
+  }
+  .hl-about-sec-head {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+  /* 朱砂印章式序号「壹贰叁」 */
+  .hl-about-seal-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background-color: var(--hl-cinnabar);
+    color: var(--hl-paper);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: var(--hl-radius-sm);
+    box-shadow:
+      inset 0 0 0 1px hsl(var(--accent) / 0.25),
+      inset 0 1px 3px hsl(var(--primary) / 0.08);
+    flex-shrink: 0;
+    user-select: none;
+  }
+  .hl-about-sec-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--hl-daiblue);
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+  .hl-about-sec-body {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: var(--hl-ink);
+  }
+  .hl-about-sec-body p {
+    margin: 0 0 1rem 0;
+  }
+  .hl-about-sec-body p:last-child {
+    margin-bottom: 0;
+  }
+  /* 收录清单：赭石点标记 */
+  .hl-about-list {
+    list-style: none;
+    margin: 0 0 1rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .hl-about-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    line-height: 1.7;
+  }
+  .hl-about-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--hl-ochre);
+  }
+
+  /* --- 章节淡线分隔（赭石点 + 淡线，呼应页脚分隔语汇） --- */
+  .hl-about-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    margin: 2rem 0;
+  }
+  .hl-about-divider::before,
+  .hl-about-divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background-color: var(--hl-line);
+  }
+  .hl-about-divider-dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--hl-ochre);
+  }
+
+  /* --- 版本对照表（淡线分隔） --- */
+  .hl-about-table-wrap {
+    margin-top: 1.25rem;
+    overflow-x: auto;
+    border: 1px solid var(--hl-line);
+    border-radius: var(--hl-radius-sm);
+    background-color: var(--hl-paper);
+  }
+  .hl-about-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+  }
+  .hl-about-table caption {
+    caption-side: top;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+    color: hsl(var(--muted-foreground));
+    text-align: left;
+    border-bottom: 1px solid var(--hl-line);
+  }
+  .hl-about-table th,
+  .hl-about-table td {
+    padding: 0.625rem 0.875rem;
+    text-align: left;
+    border-bottom: 1px solid var(--hl-line);
+    vertical-align: top;
+  }
+  .hl-about-table thead th {
+    font-weight: 600;
+    color: var(--hl-daiblue);
+    background-color: var(--hl-paper-2);
+    white-space: nowrap;
+  }
+  .hl-about-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .hl-about-table td {
+    color: var(--hl-ink);
+    white-space: nowrap;
+  }
+  .hl-about-table .col-title {
+    font-weight: 600;
+    color: var(--hl-daiblue);
+  }
+
+  /* --- 朱砂大印章收尾 --- */
+  .hl-about-stamp-finale {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--hl-line);
+  }
+  .hl-about-big-seal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.1875rem;
+    width: 108px;
+    height: 108px;
+    padding: 0.625rem;
+    background-color: var(--hl-cinnabar);
+    border-radius: var(--hl-radius-sm);
+    box-shadow:
+      inset 0 0 0 1px hsl(var(--accent) / 0.3),
+      inset 0 2px 6px hsl(var(--primary) / 0.12);
+    align-items: center;
+    justify-items: center;
+  }
+  .hl-about-big-seal-text {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--hl-paper);
+    line-height: 1;
+    text-align: center;
+    user-select: none;
+  }
+  .hl-about-finale-note {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: hsl(var(--muted-foreground));
+    letter-spacing: var(--tracking-normal);
+    margin: 0;
+  }
+
+  /* --- 响应式：小屏收紧 --- */
+  @media (max-width: 640px) {
+    .hl-about-main {
+      padding-top: 1.75rem;
+      padding-bottom: 1.75rem;
+    }
+    .hl-about-doc {
+      padding-inline: 1.125rem;
+    }
+    .hl-about-head {
+      margin-bottom: 2rem;
+    }
+    .hl-about-section {
+      padding: 1.25rem;
+    }
+    .hl-about-sec-head {
+      gap: 0.625rem;
+      margin-bottom: 1rem;
+    }
+    .hl-about-seal-num {
+      width: 30px;
+      height: 30px;
+      font-size: 0.9375rem;
+    }
+    .hl-about-sec-title {
+      font-size: 1.125rem;
+    }
+    .hl-about-sec-body {
+      font-size: 0.875rem;
+      line-height: 1.8;
+    }
+    .hl-about-divider {
+      margin: 1.5rem 0;
+    }
+    .hl-about-stamp-finale {
+      margin-top: 2.25rem;
+      padding-top: 2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hl-about-rule,
+    .hl-about-divider::before,
+    .hl-about-divider::after {
+      transition: none;
+    }
+  }
+</style>
+
+<!-- ====== 顶部导航栏（继承自 partials/project-shell.html） ====== -->
+<header class="hl-header">
+  <div class="hl-container hl-nav-bar">
+    <a href="index.html" class="hl-seal-logo" data-dom-id="nav-logo" aria-label="红楼梦诗词检索站 · 首页">
+      <span class="hl-seal-stamp" aria-hidden="true">梦</span>
+      <span class="hl-seal-name">红楼梦诗词检索站</span>
+    </a>
+
+    <nav class="hl-nav-desktop" aria-label="主导航">
+      <a href="index.html" class="hl-nav-link" data-nav-key="home" data-dom-id="nav-home">
+        <span class="hl-nav-label">首页</span>
+      </a>
+      <a href="search.html" class="hl-nav-link" data-nav-key="search" data-dom-id="nav-search">
+        <span class="hl-nav-label">检索</span>
+      </a>
+      <a href="about.html" class="hl-nav-link" data-nav-key="about" data-dom-id="nav-about" data-active="true">
+        <span class="hl-nav-label">说明</span>
+      </a>
+    </nav>
+
+    <details class="hl-mobile-menu">
+      <summary class="hl-mobile-trigger" aria-label="展开 / 收起导航菜单">
+        <svg class="hl-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+      </summary>
+      <nav class="hl-nav-mobile" aria-label="移动端主导航">
+        <a href="index.html" class="hl-mobile-link" data-nav-key="home" data-dom-id="nav-home">首页</a>
+        <a href="search.html" class="hl-mobile-link" data-nav-key="search" data-dom-id="nav-search">检索</a>
+        <a href="about.html" class="hl-mobile-link" data-nav-key="about" data-dom-id="nav-about" data-active="true">说明</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<!-- ====== 凡例说明 主体（privateRegions） ====== -->
+<main class="hl-about-main">
+  <div class="hl-about-doc">
+
+    <!-- 标题区 -->
+    <header class="hl-about-head">
+      <h1 class="hl-about-title">凡例说明</h1>
+      <p class="hl-about-subtitle">收录范围 · 版本依据 · 免责声明</p>
+      <div class="hl-about-rule" aria-hidden="true"></div>
+    </header>
+
+    <!-- 章节 壹：收录范围 -->
+    <section class="hl-about-section" aria-labelledby="sec-scope">
+      <div class="hl-about-sec-head">
+        <span class="hl-about-seal-num" aria-hidden="true">壹</span>
+        <h2 class="hl-about-sec-title" id="sec-scope">收录范围</h2>
+      </div>
+      <div class="hl-about-sec-body">
+        <p>本站首期收录《红楼梦》中 36 首核心经典韵文，涵盖诗、词、曲、判词、酒令、灯谜六大体裁。范围包括：</p>
+        <ul class="hl-about-list">
+          <li>太虚幻境谶语（金陵十二钗判词、红楼梦十二支、好了歌等）</li>
+          <li>黛玉核心（葬花吟、秋窗风雨夕、桃花行、题帕三绝、五美吟）</li>
+          <li>诗社唱和（海棠诗、菊花诗、柳絮词等）</li>
+          <li>宝玉之作（四季即事、大观园题咏、红豆曲、芙蓉女儿诔等）</li>
+          <li>联句（芦雪广联句、中秋凹晶馆联句）</li>
+          <li>酒令灯谜怀古，以及其他重要韵文</li>
+        </ul>
+        <p>不增删，逐首撰写注音、译文、注释、赏析与延伸。</p>
+      </div>
+    </section>
+
+    <!-- 章节淡线分隔 -->
+    <div class="hl-about-divider" aria-hidden="true">
+      <span class="hl-about-divider-dot"></span>
+    </div>
+
+    <!-- 章节 贰：所依版本 -->
+    <section class="hl-about-section" aria-labelledby="sec-edition">
+      <div class="hl-about-sec-head">
+        <span class="hl-about-seal-num" aria-hidden="true">贰</span>
+        <h2 class="hl-about-sec-title" id="sec-edition">所依版本</h2>
+      </div>
+      <div class="hl-about-sec-body">
+        <p>本站以庚辰本为主要底本，程高本作参校。庚辰本（《脂砚斋重评石头记》庚辰秋月定本）为现存最早之完整脂评本，保留大量脂砚斋批语；程高本（程甲本/程乙本，清乾隆五十六年刊行）为通行百二十回本。个别字句两本有异，逐首标注所依版本，异文于注释中说明。</p>
+        <div class="hl-about-table-wrap">
+          <table class="hl-about-table">
+            <caption>异文示例（逐首详注于注释中）</caption>
+            <thead>
+              <tr>
+                <th scope="col">篇目</th>
+                <th scope="col">庚辰本</th>
+                <th scope="col">程高本</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-title">葬花吟</td>
+                <td>花谢花飞花满天</td>
+                <td>花谢花飞花满楼</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 章节淡线分隔 -->
+    <div class="hl-about-divider" aria-hidden="true">
+      <span class="hl-about-divider-dot"></span>
+    </div>
+
+    <!-- 章节 叁：免责声明 -->
+    <section class="hl-about-section" aria-labelledby="sec-disclaimer">
+      <div class="hl-about-sec-head">
+        <span class="hl-about-seal-num" aria-hidden="true">叁</span>
+        <h2 class="hl-about-sec-title" id="sec-disclaimer">免责声明</h2>
+      </div>
+      <div class="hl-about-sec-body">
+        <p>《红楼梦》原文属公有领域。本站注释、译文、赏析为原创撰写，仅供学习研究之用，不得用于商业用途。延伸资料统一采用站内互链，不引用外部链接，以规避外链版权与死链风险。如有错漏，欢迎指正。</p>
+      </div>
+    </section>
+
+    <!-- 朱砂印章收尾 -->
+    <div class="hl-about-stamp-finale">
+      <div class="hl-about-big-seal" role="img" aria-label="红楼韵文 印章">
+        <span class="hl-about-big-seal-text">红</span>
+        <span class="hl-about-big-seal-text">楼</span>
+        <span class="hl-about-big-seal-text">韵</span>
+        <span class="hl-about-big-seal-text">文</span>
+      </div>
+      <p class="hl-about-finale-note">方案版本 V1 · 2026-07-23</p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ====== 页脚（继承自 partials/project-shell.html） ====== -->
+<footer class="hl-footer">
+  <div class="hl-container hl-footer-inner">
+    <div class="hl-footer-grid">
+      <div class="hl-footer-col">
+        <h3 class="hl-footer-title">收录范围</h3>
+        <p class="hl-footer-text">36 首核心经典</p>
+      </div>
+      <div class="hl-footer-col">
+        <h3 class="hl-footer-title">所依版本</h3>
+        <p class="hl-footer-text">庚辰本 · 程高本</p>
+      </div>
+      <div class="hl-footer-col">
+        <h3 class="hl-footer-title">免责声明</h3>
+        <p class="hl-footer-text">原文公有领域，注释赏析原创</p>
+      </div>
+    </div>
+    <div class="hl-footer-bottom">
+      <span class="hl-footer-dot" aria-hidden="true"></span>
+      <p class="hl-footer-copy">&#169; 红楼梦诗词检索站 · 仅供学习研究</p>
+    </div>
+  </div>
+</footer>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

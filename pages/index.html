@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红楼梦诗词检索站 · 首页</title>
+    <style id="theme-vars">
+/* Source: structured-spec — 红楼梦诗词检索站 · 水墨宣纸 · 黛蓝 + 朱砂 */
+:root {
+  /* === 语义化色彩（HSL，供画布主题映射 / Tailwind 使用） === */
+  /* 背景 */
+  --background: 42 50% 92%;          /* 宣纸底 #F5EFE1 */
+  --card: 41 47% 88%;                /* 宣纸深一档 #EFE6D3 */
+  --card-foreground: 0 0% 17%;
+  --popover: 42 50% 92%;
+  --popover-foreground: 0 0% 17%;
+
+  /* 文字 */
+  --foreground: 0 0% 17%;            /* 墨字 #2B2B2B */
+  --muted-foreground: 30 10% 42%;    /* 淡墨，副文本 */
+
+  /* 主色：黛蓝 */
+  --primary: 208 36% 28%;            /* 黛蓝 #2E4A62 */
+  --primary-foreground: 42 50% 92%;
+  --secondary: 208 18% 90%;          /* 黛蓝淡晕，次级表面 */
+  --secondary-foreground: 208 36% 28%;
+  --muted: 42 26% 90%;               /* 宣纸淡面 */
+  --accent: 8 59% 45%;               /* 朱砂 #B5402F（CTA / 印章） */
+  --accent-foreground: 42 50% 92%;
+
+  /* 状态 */
+  --destructive: 8 59% 45%;
+  --destructive-foreground: 42 50% 92%;
+
+  /* 描边 */
+  --border: 39 29% 78%;              /* 淡线 #D8CDB8 */
+  --input: 39 29% 78%;
+  --ring: 208 36% 28%;
+
+  /* 图表色（黛蓝 / 朱砂 / 赭石系，备用） */
+  --chart-1: 208 36% 28%;
+  --chart-2: 8 59% 45%;
+  --chart-3: 39 44% 42%;
+  --chart-4: 205 42% 21%;
+  --chart-5: 208 18% 60%;
+
+  /* 侧栏（与卡片同系） */
+  --sidebar: 41 47% 88%;
+  --sidebar-foreground: 0 0% 17%;
+  --sidebar-primary: 208 36% 28%;
+  --sidebar-primary-foreground: 42 50% 92%;
+  --sidebar-accent: 8 59% 45%;
+  --sidebar-accent-foreground: 42 50% 92%;
+  --sidebar-border: 39 29% 78%;
+  --sidebar-ring: 208 36% 28%;
+
+  /* === 品牌命名色（hex，供水墨 / 印章 / 点缀直接引用） === */
+  --hl-paper: #F5EFE1;               /* 宣纸底 */
+  --hl-paper-2: #EFE6D3;             /* 宣纸深一档 */
+  --hl-ink: #2B2B2B;                 /* 墨字 */
+  --hl-daiblue: #2E4A62;             /* 黛蓝 */
+  --hl-daiblue-d: #1F3A4D;           /* 黛蓝加深 */
+  --hl-cinnabar: #B5402F;            /* 朱砂 */
+  --hl-ochre: #9C7A3C;               /* 赭石淡金 */
+  --hl-line: #D8CDB8;                /* 淡线 */
+
+  /* 字体 */
+  --font-sans: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --font-serif: "Noto Serif SC", "KaiTi", "STKaiti", "STSong", serif;
+  --font-mono: ui-monospace, "SFMono-Regular", monospace;
+
+  /* 圆角（克制，贴合古典版面） */
+  --radius: 4px;
+  --hl-radius-sm: 4px;
+  --hl-radius-md: 8px;
+  --hl-radius-lg: 12px;
+  --hl-radius-full: 9999px;
+
+  /* 间距 */
+  --spacing: 0.25rem;
+  --tracking-normal: 0.02em;
+
+  /* 阴影：静态表面以描边为主；浮起层轻微投影 */
+  --shadow-color: hsl(208 36% 28%);
+  --shadow-2xs: 0 1px 2px 0 hsl(208 36% 28% / 0.03);
+  --shadow-xs: 0 1px 2px 0 hsl(208 36% 28% / 0.04);
+  --shadow-sm: 0 1px 3px 0 hsl(208 36% 28% / 0.04), 0 1px 2px -1px hsl(208 36% 28% / 0.03);
+  --shadow: 0 2px 6px -1px hsl(208 36% 28% / 0.05), 0 1px 3px -1px hsl(208 36% 28% / 0.04);
+  --shadow-md: 0 4px 10px -2px hsl(208 36% 28% / 0.06), 0 2px 4px -1px hsl(208 36% 28% / 0.04);
+  --shadow-lg: 0 8px 18px -4px hsl(208 36% 28% / 0.08), 0 3px 6px -2px hsl(208 36% 28% / 0.04);
+  --shadow-xl: 0 14px 28px -6px hsl(208 36% 28% / 0.10), 0 6px 10px -4px hsl(208 36% 28% / 0.05);
+  --shadow-2xl: 0 18px 36px -8px hsl(208 36% 28% / 0.12);
+}
+
+/* 暗色：夜读墨色模式 */
+.dark {
+  --background: 205 30% 10%;
+  --card: 205 26% 13%;
+  --card-foreground: 42 24% 88%;
+  --popover: 205 28% 11%;
+  --popover-foreground: 42 24% 88%;
+  --foreground: 42 24% 88%;
+  --muted-foreground: 39 14% 62%;
+  --primary: 205 34% 58%;
+  --primary-foreground: 205 30% 10%;
+  --secondary: 205 20% 20%;
+  --secondary-foreground: 42 24% 88%;
+  --muted: 205 20% 18%;
+  --accent: 8 64% 58%;
+  --accent-foreground: 205 30% 10%;
+  --destructive: 8 64% 58%;
+  --destructive-foreground: 42 24% 88%;
+  --border: 205 14% 22%;
+  --input: 205 14% 22%;
+  --ring: 205 34% 58%;
+  --sidebar: 205 26% 13%;
+  --sidebar-foreground: 42 24% 88%;
+  --sidebar-primary: 205 34% 58%;
+  --sidebar-primary-foreground: 205 30% 10%;
+  --sidebar-accent: 8 64% 58%;
+  --sidebar-accent-foreground: 205 30% 10%;
+  --sidebar-border: 205 14% 22%;
+  --sidebar-ring: 205 34% 58%;
+}
+
+body {
+  letter-spacing: var(--tracking-normal);
+  /* 宣纸纹理：多层径向渐变模拟纸纤维 + 微噪点 */
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(circle at 18% 22%, hsl(39 44% 42% / 0.035) 0, transparent 38%),
+    radial-gradient(circle at 82% 78%, hsl(208 36% 28% / 0.04) 0, transparent 42%),
+    radial-gradient(circle at 50% 50%, hsl(0 0% 100% / 0.25) 0, transparent 60%);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --radius-sm: var(--hl-radius-sm);
+    --radius-md: var(--hl-radius-md);
+    --radius-lg: var(--hl-radius-lg);
+  }
+  @layer base {
+    body { background: var(--background); color: var(--foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--background); }
+      .text-background { color: var(--background); }
+      .border-background { border-color: var(--background); }
+      .ring-background { --tw-ring-color: var(--background); }
+      .bg-foreground { background-color: var(--foreground); }
+      .text-foreground { color: var(--foreground); }
+      .border-foreground { border-color: var(--foreground); }
+      .ring-foreground { --tw-ring-color: var(--foreground); }
+      .bg-card { background-color: var(--card); }
+      .text-card { color: var(--card); }
+      .border-card { border-color: var(--card); }
+      .ring-card { --tw-ring-color: var(--card); }
+      .bg-card-foreground { background-color: var(--card-foreground); }
+      .text-card-foreground { color: var(--card-foreground); }
+      .border-card-foreground { border-color: var(--card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--card-foreground); }
+      .bg-popover { background-color: var(--popover); }
+      .text-popover { color: var(--popover); }
+      .border-popover { border-color: var(--popover); }
+      .ring-popover { --tw-ring-color: var(--popover); }
+      .bg-popover-foreground { background-color: var(--popover-foreground); }
+      .text-popover-foreground { color: var(--popover-foreground); }
+      .border-popover-foreground { border-color: var(--popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--popover-foreground); }
+      .bg-primary { background-color: var(--primary); }
+      .text-primary { color: var(--primary); }
+      .border-primary { border-color: var(--primary); }
+      .ring-primary { --tw-ring-color: var(--primary); }
+      .bg-primary-foreground { background-color: var(--primary-foreground); }
+      .text-primary-foreground { color: var(--primary-foreground); }
+      .border-primary-foreground { border-color: var(--primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--primary-foreground); }
+      .bg-secondary { background-color: var(--secondary); }
+      .text-secondary { color: var(--secondary); }
+      .border-secondary { border-color: var(--secondary); }
+      .ring-secondary { --tw-ring-color: var(--secondary); }
+      .bg-secondary-foreground { background-color: var(--secondary-foreground); }
+      .text-secondary-foreground { color: var(--secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--secondary-foreground); }
+      .bg-muted { background-color: var(--muted); }
+      .text-muted { color: var(--muted); }
+      .border-muted { border-color: var(--muted); }
+      .ring-muted { --tw-ring-color: var(--muted); }
+      .bg-muted-foreground { background-color: var(--muted-foreground); }
+      .text-muted-foreground { color: var(--muted-foreground); }
+      .border-muted-foreground { border-color: var(--muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--muted-foreground); }
+      .bg-accent { background-color: var(--accent); }
+      .text-accent { color: var(--accent); }
+      .border-accent { border-color: var(--accent); }
+      .ring-accent { --tw-ring-color: var(--accent); }
+      .bg-accent-foreground { background-color: var(--accent-foreground); }
+      .text-accent-foreground { color: var(--accent-foreground); }
+      .border-accent-foreground { border-color: var(--accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--accent-foreground); }
+      .bg-destructive { background-color: var(--destructive); }
+      .text-destructive { color: var(--destructive); }
+      .border-destructive { border-color: var(--destructive); }
+      .ring-destructive { --tw-ring-color: var(--destructive); }
+      .bg-destructive-foreground { background-color: var(--destructive-foreground); }
+      .text-destructive-foreground { color: var(--destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--destructive-foreground); }
+      .bg-border { background-color: var(--border); }
+      .text-border { color: var(--border); }
+      .border-border { border-color: var(--border); }
+      .ring-border { --tw-ring-color: var(--border); }
+      .bg-input { background-color: var(--input); }
+      .text-input { color: var(--input); }
+      .border-input { border-color: var(--input); }
+      .ring-input { --tw-ring-color: var(--input); }
+      .bg-ring { background-color: var(--ring); }
+      .text-ring { color: var(--ring); }
+      .border-ring { border-color: var(--ring); }
+      .ring-ring { --tw-ring-color: var(--ring); }
+      .bg-chart-1 { background-color: var(--chart-1); }
+      .text-chart-1 { color: var(--chart-1); }
+      .border-chart-1 { border-color: var(--chart-1); }
+      .ring-chart-1 { --tw-ring-color: var(--chart-1); }
+      .bg-chart-2 { background-color: var(--chart-2); }
+      .text-chart-2 { color: var(--chart-2); }
+      .border-chart-2 { border-color: var(--chart-2); }
+      .ring-chart-2 { --tw-ring-color: var(--chart-2); }
+      .bg-chart-3 { background-color: var(--chart-3); }
+      .text-chart-3 { color: var(--chart-3); }
+      .border-chart-3 { border-color: var(--chart-3); }
+      .ring-chart-3 { --tw-ring-color: var(--chart-3); }
+      .bg-chart-4 { background-color: var(--chart-4); }
+      .text-chart-4 { color: var(--chart-4); }
+      .border-chart-4 { border-color: var(--chart-4); }
+      .ring-chart-4 { --tw-ring-color: var(--chart-4); }
+      .bg-chart-5 { background-color: var(--chart-5); }
+      .text-chart-5 { color: var(--chart-5); }
+      .border-chart-5 { border-color: var(--chart-5); }
+      .ring-chart-5 { --tw-ring-color: var(--chart-5); }
+      .bg-sidebar { background-color: var(--sidebar); }
+      .text-sidebar { color: var(--sidebar); }
+      .border-sidebar { border-color: var(--sidebar); }
+      .ring-sidebar { --tw-ring-color: var(--sidebar); }
+      .bg-sidebar-foreground { background-color: var(--sidebar-foreground); }
+      .text-sidebar-foreground { color: var(--sidebar-foreground); }
+      .border-sidebar-foreground { border-color: var(--sidebar-foreground); }
+      .ring-sidebar-foreground { --tw-ring-color: var(--sidebar-foreground); }
+      .bg-sidebar-primary { background-color: var(--sidebar-primary); }
+      .text-sidebar-primary { color: var(--sidebar-primary); }
+      .border-sidebar-primary { border-color: var(--sidebar-primary); }
+      .ring-sidebar-primary { --tw-ring-color: var(--sidebar-primary); }
+      .bg-sidebar-primary-foreground { background-color: var(--sidebar-primary-foreground); }
+      .text-sidebar-primary-foreground { color: var(--sidebar-primary-foreground); }
+      .border-sidebar-primary-foreground { border-color: var(--sidebar-primary-foreground); }
+      .ring-sidebar-primary-foreground { --tw-ring-color: var(--sidebar-primary-foreground); }
+      .bg-sidebar-accent { background-color: var(--sidebar-accent); }
+      .text-sidebar-accent { color: var(--sidebar-accent); }
+      .border-sidebar-accent { border-color: var(--sidebar-accent); }
+      .ring-sidebar-accent { --tw-ring-color: var(--sidebar-accent); }
+      .bg-sidebar-accent-foreground { background-color: var(--sidebar-accent-foreground); }
+      .text-sidebar-accent-foreground { color: var(--sidebar-accent-foreground); }
+      .border-sidebar-accent-foreground { border-color: var(--sidebar-accent-foreground); }
+      .ring-sidebar-accent-foreground { --tw-ring-color: var(--sidebar-accent-foreground); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <!-- ====== 共享外壳样式（继承自 partials/project-shell.html） ====== -->
+    <style>
+      /* ================================================================
+         红楼梦诗词检索站 · 共享外壳样式
+         作用域：.hl-header / .hl-footer 内元素，前缀 hl- 避免与叶子页面冲突
+         ================================================================ */
+
+      /* --- 内容容器（叶子页面可复用此类） --- */
+      .hl-container {
+        max-width: 1140px;
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+      }
+
+      /* ===== 顶部导航栏 ===== */
+      .hl-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        /* 半透明宣纸底 + 毛玻璃模糊 */
+        background-color: hsl(var(--background) / 0.92);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        /* 底部淡线分隔 */
+        border-bottom: 1px solid var(--hl-line);
+      }
+
+      .hl-nav-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        height: 64px;
+      }
+
+      /* --- 印章式站名 logo --- */
+      .hl-seal-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        text-decoration: none;
+      }
+
+      .hl-seal-stamp {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        /* 朱砂底 */
+        background-color: var(--hl-cinnabar);
+        /* 宣纸色字 */
+        color: var(--hl-paper);
+        font-family: var(--font-serif);
+        font-size: 1.375rem;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0;
+        /* 微圆角方块 */
+        border-radius: var(--hl-radius-sm);
+        /* 印章质感：内阴影模拟印泥边缘不匀 */
+        box-shadow:
+          inset 0 0 0 1px hsl(var(--accent) / 0.25),
+          inset 0 1px 3px hsl(var(--primary) / 0.08);
+        user-select: none;
+        flex-shrink: 0;
+      }
+
+      .hl-seal-name {
+        font-family: var(--font-serif);
+        font-size: 1.0625rem;
+        font-weight: 600;
+        /* 黛蓝站名 */
+        color: var(--hl-daiblue);
+        letter-spacing: var(--tracking-normal);
+        white-space: nowrap;
+      }
+
+      /* --- 桌面导航链接 --- */
+      .hl-nav-desktop {
+        display: none;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .hl-nav-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        color: hsl(var(--muted-foreground));
+        text-decoration: none;
+        border-radius: var(--hl-radius-sm);
+        transition: color 0.2s ease;
+      }
+
+      .hl-nav-link:hover {
+        color: var(--hl-daiblue);
+      }
+
+      .hl-nav-link:focus-visible {
+        outline: 2px solid var(--hl-daiblue);
+        outline-offset: 2px;
+        border-radius: var(--hl-radius-sm);
+      }
+
+      /* 激活态：黛蓝下划线 + 朱砂点标记 */
+      .hl-nav-link[data-active="true"] {
+        color: var(--hl-daiblue);
+        font-weight: 600;
+      }
+
+      /* 黛蓝下划线 */
+      .hl-nav-link[data-active="true"]::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 1rem;
+        right: 1rem;
+        height: 2px;
+        background-color: var(--hl-daiblue);
+        border-radius: 1px;
+      }
+
+      /* 朱砂点标记（顶部居中） */
+      .hl-nav-link[data-active="true"]::before {
+        content: "";
+        position: absolute;
+        top: 0.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: var(--hl-cinnabar);
+      }
+
+      /* --- 移动端汉堡菜单（<details> 纯 CSS 折叠，无需 JS） --- */
+      .hl-mobile-menu {
+        position: relative;
+      }
+
+      .hl-mobile-trigger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        border-radius: var(--hl-radius-sm);
+        list-style: none;
+        transition: background-color 0.2s ease;
+      }
+
+      /* 隐藏 <details> 默认三角标记 */
+      .hl-mobile-trigger::-webkit-details-marker {
+        display: none;
+      }
+
+      .hl-mobile-trigger:hover {
+        background-color: hsl(var(--secondary));
+      }
+
+      .hl-mobile-trigger:focus-visible {
+        outline: 2px solid var(--hl-daiblue);
+        outline-offset: 2px;
+      }
+
+      .hl-mobile-icon {
+        width: 22px;
+        height: 22px;
+        color: var(--hl-daiblue);
+      }
+
+      /* 折叠态：移动端下拉面板 */
+      .hl-nav-mobile {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        right: 0;
+        min-width: 180px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+        padding: 0.5rem;
+        background-color: var(--hl-paper);
+        border: 1px solid var(--hl-line);
+        border-radius: var(--hl-radius-md);
+        box-shadow: var(--shadow-md);
+      }
+
+      .hl-mobile-link {
+        display: block;
+        padding: 0.625rem 0.875rem;
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        color: hsl(var(--muted-foreground));
+        text-decoration: none;
+        border-radius: var(--hl-radius-sm);
+        transition: color 0.2s ease, background-color 0.2s ease;
+      }
+
+      .hl-mobile-link:hover {
+        color: var(--hl-daiblue);
+        background-color: hsl(var(--secondary));
+      }
+
+      .hl-mobile-link:focus-visible {
+        outline: 2px solid var(--hl-daiblue);
+        outline-offset: 2px;
+      }
+
+      /* 移动端激活态 */
+      .hl-mobile-link[data-active="true"] {
+        color: var(--hl-daiblue);
+        font-weight: 600;
+        background-color: hsl(var(--secondary));
+      }
+
+      /* 响应式断点：>= 768px 显示桌面导航，隐藏汉堡菜单 */
+      @media (min-width: 768px) {
+        .hl-nav-desktop {
+          display: flex;
+        }
+        .hl-mobile-menu {
+          display: none;
+        }
+      }
+
+      /* ===== 页脚 ===== */
+      .hl-footer {
+        margin-top: 4rem;
+        padding-top: 2.5rem;
+        padding-bottom: 1.5rem;
+        /* 顶部淡线分隔 */
+        border-top: 1px solid var(--hl-line);
+      }
+
+      .hl-footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .hl-footer-title {
+        font-family: var(--font-serif);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--hl-daiblue);
+        margin: 0 0 0.5rem 0;
+        letter-spacing: var(--tracking-normal);
+      }
+
+      .hl-footer-text {
+        font-family: var(--font-sans);
+        font-size: 0.8125rem;
+        line-height: 1.6;
+        /* 淡墨小字 */
+        color: hsl(var(--muted-foreground));
+        margin: 0;
+      }
+
+      /* 底部版权行 */
+      .hl-footer-bottom {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        margin-top: 2rem;
+        padding-top: 1.25rem;
+        /* 赭石淡线分隔 */
+        border-top: 1px solid var(--hl-line);
+      }
+
+      /* 赭石点装饰 */
+      .hl-footer-dot {
+        flex-shrink: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: var(--hl-ochre);
+      }
+
+      .hl-footer-copy {
+        font-family: var(--font-sans);
+        font-size: 0.8125rem;
+        color: hsl(var(--muted-foreground));
+        letter-spacing: var(--tracking-normal);
+        margin: 0;
+      }
+
+      /* 页脚三栏：>= 768px 横向排列 */
+      @media (min-width: 768px) {
+        .hl-footer-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+        }
+      }
+
+      /* --- 减弱动画（无障碍） --- */
+      @media (prefers-reduced-motion: reduce) {
+        .hl-nav-link,
+        .hl-mobile-trigger,
+        .hl-mobile-link {
+          transition: none;
+        }
+      }
+    </style>
+
+    <!-- ====== 顶部导航栏（继承外壳） ====== -->
+    <header class="hl-header">
+      <div class="hl-container hl-nav-bar">
+        <!-- 印章式站名 logo：朱砂底 + 宣纸色「梦」字 + 黛蓝站名 -->
+        <a href="index.html" class="hl-seal-logo" data-dom-id="nav-logo" aria-label="红楼梦诗词检索站 · 首页">
+          <span class="hl-seal-stamp" aria-hidden="true">梦</span>
+          <span class="hl-seal-name">红楼梦诗词检索站</span>
+        </a>
+
+        <!-- 桌面导航（>= 768px 显示） -->
+        <nav class="hl-nav-desktop" aria-label="主导航">
+          <a href="index.html" class="hl-nav-link" data-nav-key="home" data-dom-id="nav-home" data-active="true">
+            <span class="hl-nav-label">首页</span>
+          </a>
+          <a href="search.html" class="hl-nav-link" data-nav-key="search" data-dom-id="nav-search">
+            <span class="hl-nav-label">检索</span>
+          </a>
+          <a href="about.html" class="hl-nav-link" data-nav-key="about" data-dom-id="nav-about">
+            <span class="hl-nav-label">说明</span>
+          </a>
+        </nav>
+
+        <!-- 移动端汉堡菜单（< 768px 显示，纯 CSS <details> 折叠，无需 JS） -->
+        <details class="hl-mobile-menu">
+          <summary class="hl-mobile-trigger" aria-label="展开 / 收起导航菜单">
+            <svg class="hl-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="4" y1="7" x2="20" y2="7"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="17" x2="20" y2="17"></line>
+            </svg>
+          </summary>
+          <nav class="hl-nav-mobile" aria-label="移动端主导航">
+            <a href="index.html" class="hl-mobile-link" data-nav-key="home" data-dom-id="nav-home" data-active="true">首页</a>
+            <a href="search.html" class="hl-mobile-link" data-nav-key="search" data-dom-id="nav-search">检索</a>
+            <a href="about.html" class="hl-mobile-link" data-nav-key="about" data-dom-id="nav-about">说明</a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <!-- ====== 主体内容（pageTitle 插槽） ====== -->
+    <main>
+      <!-- 1. 水墨主视觉 Hero -->
+      <section class="hl-hero" aria-label="红楼梦诗词检索站 主视觉">
+        <img class="hl-hero-img" src="../assets/hero-ink-wash.jpg" alt="水墨晕染的宣纸卷轴" fetchpriority="high" />
+        <div class="hl-hero-overlay" aria-hidden="true"></div>
+        <div class="hl-hero-inner">
+          <span class="hl-hero-seal" aria-hidden="true">梦</span>
+          <h1 class="hl-hero-title" style="text-wrap: balance; word-break: keep-all; overflow-wrap: break-word;">红楼梦诗词检索站</h1>
+          <p class="hl-hero-sub">诗词 · 酒令 · 灯谜 · 判词 · 读懂红楼韵文</p>
+        </div>
+      </section>
+
+      <!-- 2. 居中大搜索框 -->
+      <section class="py-14 md:py-20" aria-label="诗词检索">
+        <div class="hl-container">
+          <div class="hl-search-wrap">
+            <form class="hl-search-form" role="search" action="search.html" method="get">
+              <input class="hl-search-input" type="search" name="q" placeholder='输入诗句、关键词，如"质本洁来还洁去"' aria-label="检索诗词" />
+              <button class="hl-search-btn" type="submit" data-dom-id="cta-search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <line x1="21" y1="21" x2="16.5" y2="16.5"></line>
+                </svg>
+                <span>检索</span>
+              </button>
+            </form>
+            <p class="hl-search-hint">可按 诗句 · 人物 · 回目 · 体裁 检索</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 三入口卡片（按人物 / 按回目 / 按类型） -->
+      <section class="pb-12 md:pb-16" aria-label="检索入口">
+        <div class="hl-container">
+          <div class="hl-section-head">
+            <span class="hl-section-dot" aria-hidden="true"></span>
+            <h2 class="hl-section-head-text">检索入口</h2>
+            <span class="hl-section-line" aria-hidden="true"></span>
+          </div>
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <a class="hl-entry-card" href="search.html" data-dom-id="entry-character">
+              <span class="hl-seal-mark" aria-hidden="true">人</span>
+              <h3 class="hl-entry-title">按人物</h3>
+              <p class="hl-entry-tags">黛玉 · 宝钗 · 宝玉 · 湘云 · 探春</p>
+              <p class="hl-entry-desc">按吟咏者检索</p>
+            </a>
+            <a class="hl-entry-card" href="search.html" data-dom-id="entry-chapter">
+              <span class="hl-seal-mark" aria-hidden="true">回</span>
+              <h3 class="hl-entry-title">按回目</h3>
+              <p class="hl-entry-tags">第一回 至 第一百二十回</p>
+              <p class="hl-entry-desc">顺原著顺序浏览</p>
+            </a>
+            <a class="hl-entry-card" href="search.html" data-dom-id="entry-type">
+              <span class="hl-seal-mark" aria-hidden="true">类</span>
+              <h3 class="hl-entry-title">按类型</h3>
+              <p class="hl-entry-tags">诗 · 词 · 曲 · 判词 · 酒令 · 灯谜</p>
+              <p class="hl-entry-desc">按体裁筛选</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 精选诗词卡片流 -->
+      <section class="pb-12 md:pb-16" aria-label="精选诗词">
+        <div class="hl-container">
+          <div class="hl-section-head">
+            <span class="hl-section-dot" aria-hidden="true"></span>
+            <h2 class="hl-section-head-text">精选诗词</h2>
+            <span class="hl-section-line" aria-hidden="true"></span>
+          </div>
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <a class="hl-poem-card" href="poem-detail.html?id=zanghuayin" data-dom-id="poem-card-1">
+              <span class="hl-seal-tag">歌行</span>
+              <h3 class="hl-poem-title">葬花吟</h3>
+              <p class="hl-poem-meta">林黛玉 · 第二十七回</p>
+              <p class="hl-poem-verse">花谢花飞花满天，红消香断有谁怜？</p>
+              <span class="hl-poem-link">读全文 →</span>
+            </a>
+            <a class="hl-poem-card" href="poem-detail.html?id=haolege" data-dom-id="poem-card-2">
+              <span class="hl-seal-tag">俗谚</span>
+              <h3 class="hl-poem-title">好了歌</h3>
+              <p class="hl-poem-meta">跛足道人 · 第一回</p>
+              <p class="hl-poem-verse">世人都晓神仙好，惟有功名忘不了</p>
+              <span class="hl-poem-link">读全文 →</span>
+            </a>
+            <a class="hl-poem-card" href="poem-detail.html?id=furuongnverlei" data-dom-id="poem-card-3">
+              <span class="hl-seal-tag">诔文</span>
+              <h3 class="hl-poem-title">芙蓉女儿诔</h3>
+              <p class="hl-poem-meta">贾宝玉 · 第七十八回</p>
+              <p class="hl-poem-verse">红绡帐里，公子情深；<br />黄土垄中，女儿命薄</p>
+              <span class="hl-poem-link">读全文 →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ====== 页脚（继承外壳） ====== -->
+    <footer class="hl-footer">
+      <div class="hl-container hl-footer-inner">
+        <!-- 三栏信息 -->
+        <div class="hl-footer-grid">
+          <div class="hl-footer-col">
+            <h3 class="hl-footer-title">收录范围</h3>
+            <p class="hl-footer-text">36 首核心经典</p>
+          </div>
+          <div class="hl-footer-col">
+            <h3 class="hl-footer-title">所依版本</h3>
+            <p class="hl-footer-text">庚辰本 · 程高本</p>
+          </div>
+          <div class="hl-footer-col">
+            <h3 class="hl-footer-title">免责声明</h3>
+            <p class="hl-footer-text">原文公有领域，注释赏析原创</p>
+          </div>
+        </div>
+        <!-- 底部版权行：赭石点 + 淡墨小字 -->
+        <div class="hl-footer-bottom">
+          <span class="hl-footer-dot" aria-hidden="true"></span>
+          <p class="hl-footer-copy">&#169; 红楼梦诗词检索站 · 仅供学习研究</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ====== 首页专属样式（Free-Explore，置于 <body> 末尾） ====== -->
+    <style>
+      /* 重新声明字体栈：确保 Noto Serif SC / 楷体 / 宋体 优先于 Tailwind 默认主题，
+         保持「标题楷体加粗、正文宋体」的古典版面（值与 colors_and_type.css 一致）。 */
+      :root {
+        --font-sans: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+        --font-serif: "Noto Serif SC", "KaiTi", "STKaiti", "STSong", serif;
+      }
+
+      /* ===== 1. 水墨 Hero ===== */
+      .hl-hero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: clamp(460px, 70vh, 720px);
+        overflow: hidden;
+      }
+      .hl-hero-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+      .hl-hero-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(180deg, hsl(var(--background) / 0.4) 0%, hsl(var(--background) / 0.7) 50%, hsl(var(--background) / 0.92) 78%, var(--hl-paper) 100%);
+      }
+      .hl-hero-inner {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+        padding: 3rem 1.5rem;
+        max-width: 42rem;
+      }
+      .hl-hero-seal {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        background-color: var(--hl-cinnabar);
+        color: var(--hl-paper);
+        font-family: var(--font-serif);
+        font-size: 1.875rem;
+        font-weight: 700;
+        line-height: 1;
+        border-radius: var(--hl-radius-sm);
+        box-shadow: inset 0 0 0 1px hsl(var(--accent) / 0.3), inset 0 1px 3px hsl(var(--primary) / 0.1), var(--shadow-md);
+      }
+      .hl-hero-title {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-weight: 700;
+        font-size: clamp(2.25rem, 6vw, 3.5rem);
+        line-height: 1.2;
+        color: var(--hl-daiblue-d);
+        letter-spacing: var(--tracking-normal);
+        text-shadow: 0 2px 14px hsl(var(--background) / 0.7);
+      }
+      .hl-hero-sub {
+        margin: 0;
+        font-family: var(--font-sans);
+        font-size: clamp(0.95rem, 2.2vw, 1.125rem);
+        color: var(--hl-daiblue);
+        letter-spacing: 0.08em;
+      }
+
+      /* ===== 2. 居中大搜索框 ===== */
+      .hl-search-wrap {
+        width: 100%;
+        max-width: 640px;
+        margin-inline: auto;
+      }
+      .hl-search-form {
+        display: flex;
+        align-items: stretch;
+        gap: 0.5rem;
+        background-color: var(--hl-paper);
+        border: 1px solid var(--hl-daiblue);
+        border-radius: var(--hl-radius-md);
+        padding: 0.375rem;
+        box-shadow: var(--shadow-sm);
+        transition: box-shadow 0.2s ease;
+      }
+      .hl-search-form:focus-within {
+        box-shadow: 0 0 0 3px hsl(var(--primary) / 0.2), var(--shadow-sm);
+      }
+      .hl-search-input {
+        flex: 1;
+        min-width: 0;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 0.625rem 0.875rem;
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        color: var(--hl-ink);
+        letter-spacing: var(--tracking-normal);
+      }
+      .hl-search-input::placeholder {
+        color: hsl(var(--muted-foreground));
+      }
+      .hl-search-input::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      .hl-search-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.375rem;
+        flex-shrink: 0;
+        padding: 0.625rem 1.25rem;
+        background-color: var(--hl-cinnabar);
+        color: var(--hl-paper);
+        border: none;
+        border-radius: var(--hl-radius-sm);
+        font-family: var(--font-serif);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.15s ease;
+      }
+      .hl-search-btn:hover {
+        background-color: hsl(var(--accent) / 0.9);
+      }
+      .hl-search-btn:active {
+        transform: translateY(1px);
+      }
+      .hl-search-btn:focus-visible {
+        outline: 2px solid var(--hl-daiblue);
+        outline-offset: 2px;
+      }
+      .hl-search-btn svg {
+        width: 1rem;
+        height: 1rem;
+      }
+      .hl-search-hint {
+        margin: 0.875rem 0 0;
+        text-align: center;
+        font-family: var(--font-sans);
+        font-size: 0.8125rem;
+        color: hsl(var(--muted-foreground));
+        letter-spacing: 0.04em;
+      }
+
+      /* ===== 区块标题（朱砂点 + 赭石淡线） ===== */
+      .hl-section-head {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+      }
+      .hl-section-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: var(--hl-cinnabar);
+        flex-shrink: 0;
+      }
+      .hl-section-head-text {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--hl-daiblue);
+        letter-spacing: var(--tracking-normal);
+        white-space: nowrap;
+      }
+      .hl-section-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, var(--hl-ochre), transparent);
+      }
+
+      /* ===== 朱砂印章式标记（入口卡片图标） ===== */
+      .hl-seal-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background-color: var(--hl-cinnabar);
+        color: var(--hl-paper);
+        font-family: var(--font-serif);
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1;
+        border-radius: var(--hl-radius-sm);
+        box-shadow: inset 0 0 0 1px hsl(var(--accent) / 0.25);
+        flex-shrink: 0;
+      }
+
+      /* ===== 入口卡片 ===== */
+      .hl-entry-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1.75rem 1.5rem;
+        background-color: hsl(var(--card));
+        border: 1px solid var(--hl-line);
+        border-radius: var(--hl-radius-md);
+        text-decoration: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      }
+      .hl-entry-card:hover {
+        border-color: var(--hl-daiblue);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-3px);
+      }
+      .hl-entry-card:focus-visible {
+        outline: 2px solid var(--hl-daiblue);
+        outline-offset: 2px;
+      }
+      .hl-entry-title {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--hl-daiblue);
+        letter-spacing: var(--tracking-normal);
+      }
+      .hl-entry-tags {
+        margin: 0;
+        font-family: var(--font-sans);
+        font-size: 0.875rem;
+        color: var(--hl-ochre);
+        letter-spacing: 0.04em;
+      }
+      .hl-entry-desc {
+        margin: 0;
+        font-family: var(--font-sans);
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: hsl(var(--muted-foreground));
+      }
+
+      /* ===== 朱砂印章式类型标签（诗词卡） ===== */
+      .hl-seal-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        background-color: var(--hl-cinnabar);
+        color: var(--hl-paper);
+        font-family: var(--font-serif);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        border-radius: var(--hl-radius-sm);
+        align-self: flex-start;
+      }
+
+      /* ===== 诗词卡片 ===== */
+      .hl-poem-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1.75rem 1.5rem;
+        height: 100%;
+        background-color: hsl(var(--card));
+        border: 1px solid var(--hl-line);
+        border-radius: var(--hl-radius-md);
+        text-decoration: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      }
+      .hl-poem-card:hover {
+        border-color: var(--hl-daiblue);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-3px);
+      }
+      .hl-poem-card:focus-visible {
+        outline: 2px solid var(--hl-daiblue);
+        outline-offset: 2px;
+      }
+      .hl-poem-title {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: var(--hl-daiblue);
+        letter-spacing: var(--tracking-normal);
+      }
+      .hl-poem-meta {
+        margin: 0;
+        font-family: var(--font-sans);
+        font-size: 0.8125rem;
+        color: hsl(var(--muted-foreground));
+        letter-spacing: 0.02em;
+      }
+      .hl-poem-verse {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-size: 1rem;
+        line-height: 2;
+        color: var(--hl-ink);
+        letter-spacing: 0.04em;
+        border-left: 2px solid var(--hl-ochre);
+        padding-left: 0.875rem;
+      }
+      .hl-poem-link {
+        margin-top: auto;
+        font-family: var(--font-sans);
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--hl-cinnabar);
+        letter-spacing: 0.06em;
+        transition: transform 0.2s ease;
+      }
+      .hl-poem-card:hover .hl-poem-link {
+        transform: translateX(3px);
+      }
+
+      /* ===== 减弱动画（无障碍） ===== */
+      @media (prefers-reduced-motion: reduce) {
+        .hl-entry-card,
+        .hl-poem-card,
+        .hl-search-btn,
+        .hl-search-form,
+        .hl-poem-link {
+          transition: none;
+        }
+        .hl-entry-card:hover,
+        .hl-poem-card:hover,
+        .hl-poem-card:hover .hl-poem-link {
+          transform: none;
+        }
+      }
+    </style>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{
+  "root": {
+    "nodeId": "gen-project-shell",
+    "kind": "project-shell",
+    "pageIds": ["page-index", "page-search", "page-poem-detail", "page-about"],
+    "output": "partials/project-shell.html",
+    "sharedRegions": [
+      "顶部导航栏（站名印章 + 导航链接 首页/检索/说明）",
+      "页脚（收录范围 / 版本声明 / 免责提示）",
+      "页面背景（宣纸纹理）",
+      "字体栈与字号比例",
+      "卡片样式（宣纸深底 + 黛蓝描边 + hover 浮起）",
+      "朱砂印章式标签样式",
+      "主按钮 / 次按钮样式",
+      "分隔线（赭石点 + 淡线）"
+    ],
+    "privateRegions": [],
+    "mutableSlots": ["activeNavItem", "pageTitle"],
+    "status": "generated",
+    "children": [
+      {
+        "nodeId": "gen-page-index",
+        "kind": "page-leaf",
+        "pageIds": ["page-index"],
+        "output": "pages/index.html",
+        "sharedRegions": [],
+        "privateRegions": ["水墨主视觉 Hero", "居中大搜索框", "三入口卡片（按人物/按回目/按类型）", "精选诗词卡片流"],
+        "mutableSlots": ["activeNavItem", "pageTitle"],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-search",
+        "kind": "page-leaf",
+        "pageIds": ["page-search"],
+        "output": "pages/search.html",
+        "sharedRegions": [],
+        "privateRegions": ["四维筛选区（关键词/人物/回目/类型）", "结果计数与排序", "诗词卡片流结果"],
+        "mutableSlots": ["activeNavItem", "pageTitle"],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-poem-detail",
+        "kind": "page-leaf",
+        "pageIds": ["page-poem-detail"],
+        "output": "pages/poem-detail.html",
+        "sharedRegions": [],
+        "privateRegions": ["诗词标题与元信息（人物/回目/类型/版本印章）", "原文（注音）", "白话译文", "典故注释", "赏析", "延伸互链"],
+        "mutableSlots": ["activeNavItem", "pageTitle"],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-about",
+        "kind": "page-leaf",
+        "pageIds": ["page-about"],
+        "output": "pages/about.html",
+        "sharedRegions": [],
+        "privateRegions": ["收录范围说明", "所依版本（庚辰本/程高本）", "免责声明"],
+        "mutableSlots": ["activeNavItem", "pageTitle"],
+        "status": "planned",
+        "children": []
+      }
+    ]
+  }
+}

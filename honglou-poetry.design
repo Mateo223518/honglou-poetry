@@ -1,0 +1,241 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "title": "首页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784814133875,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "interactions": [
+          {
+            "domId": "cta-search",
+            "targetPageId": "page-search",
+            "transitionLabel": "检索诗词"
+          },
+          {
+            "domId": "entry-character",
+            "targetPageId": "page-search",
+            "hideEdge": true,
+            "transitionLabel": "按人物检索"
+          },
+          {
+            "domId": "entry-chapter",
+            "targetPageId": "page-search",
+            "hideEdge": true,
+            "transitionLabel": "按回目检索"
+          },
+          {
+            "domId": "entry-type",
+            "targetPageId": "page-search",
+            "hideEdge": true,
+            "transitionLabel": "按类型检索"
+          },
+          {
+            "domId": "poem-card-1",
+            "targetPageId": "page-poem-detail",
+            "hideEdge": true,
+            "transitionLabel": "精选诗词"
+          },
+          {
+            "domId": "poem-card-2",
+            "targetPageId": "page-poem-detail",
+            "hideEdge": true,
+            "transitionLabel": "精选诗词"
+          },
+          {
+            "domId": "poem-card-3",
+            "targetPageId": "page-poem-detail",
+            "hideEdge": true,
+            "transitionLabel": "精选诗词"
+          },
+          {
+            "domId": "nav-search",
+            "targetPageId": "page-search",
+            "hideEdge": true,
+            "transitionLabel": "全局导航"
+          },
+          {
+            "domId": "nav-about",
+            "targetPageId": "page-about",
+            "hideEdge": true,
+            "transitionLabel": "全局导航"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-search",
+      "title": "检索列表",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784814133875,
+      "canvasData": {
+        "x": 620,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/search.html",
+        "interactions": [
+          {
+            "domId": "result-card-1",
+            "targetPageId": "page-poem-detail",
+            "transitionLabel": "查看详情"
+          },
+          {
+            "domId": "result-card-2",
+            "targetPageId": "page-poem-detail",
+            "hideEdge": true,
+            "transitionLabel": "查看详情"
+          },
+          {
+            "domId": "result-card-3",
+            "targetPageId": "page-poem-detail",
+            "hideEdge": true,
+            "transitionLabel": "查看详情"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "全局导航"
+          },
+          {
+            "domId": "nav-about",
+            "targetPageId": "page-about",
+            "hideEdge": true,
+            "transitionLabel": "全局导航"
+          },
+          {
+            "domId": "back-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "返回首页"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-poem-detail",
+      "title": "诗词详情",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784814133875,
+      "canvasData": {
+        "x": 1240,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/poem-detail.html",
+        "interactions": [
+          {
+            "domId": "related-poem-1",
+            "targetPageId": "page-poem-detail",
+            "hideEdge": true,
+            "transitionLabel": "延伸互链"
+          },
+          {
+            "domId": "related-poem-2",
+            "targetPageId": "page-poem-detail",
+            "hideEdge": true,
+            "transitionLabel": "延伸互链"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "全局导航"
+          },
+          {
+            "domId": "nav-search",
+            "targetPageId": "page-search",
+            "hideEdge": true,
+            "transitionLabel": "全局导航"
+          },
+          {
+            "domId": "nav-about",
+            "targetPageId": "page-about",
+            "hideEdge": true,
+            "transitionLabel": "全局导航"
+          },
+          {
+            "domId": "back-search",
+            "targetPageId": "page-search",
+            "hideEdge": true,
+            "transitionLabel": "返回检索"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-about",
+      "title": "说明",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784814133875,
+      "canvasData": {
+        "x": 0,
+        "y": 1162,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/about.html",
+        "interactions": [
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "全局导航"
+          },
+          {
+            "domId": "nav-search",
+            "targetPageId": "page-search",
+            "hideEdge": true,
+            "transitionLabel": "全局导航"
+          }
+        ]
+      }
+    },
+    {
+      "id": "image-001",
+      "title": "首页水墨主视觉",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784814133875,
+      "canvasData": {
+        "x": 0,
+        "y": 1825
+      },
+      "devMetadata": {
+        "imageSrc": "assets/hero-ink-wash.jpg"
+      }
+    },
+    {
+      "id": "image-002",
+      "title": "详情页水墨横幅",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784814133875,
+      "canvasData": {
+        "x": 620,
+        "y": 1825
+      },
+      "devMetadata": {
+        "imageSrc": "assets/detail-ink-wash.jpg"
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "desktop",
+    "projectName": "红楼梦诗词检索站"
+  }
+}
