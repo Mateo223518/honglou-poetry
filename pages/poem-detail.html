@@ -1164,12 +1164,44 @@ body {
       function loadPoemDetail() {
         var params = new URLSearchParams(window.location.search);
         var poemId = params.get('id') || 'zanghuayin';
+
+        // 先尝试从内置详细数据获取
         var data = poemDetails[poemId];
 
         if (!data) {
-          data = poemDetails.zanghuayin;
+          // 没有详细数据，从 poems.json 加载基本信息
+          fetch('../data/poems.json')
+            .then(function (response) { return response.json(); })
+            .then(function (poems) {
+              var info = null;
+              for (var i = 0; i < poems.length; i++) {
+                if (poems[i].id === poemId) { info = poems[i]; break; }
+              }
+              if (!info) {
+                info = poems[0];
+                poemId = info.id;
+              }
+              renderPoem({
+                title: info.title,
+                author: info.author,
+                chapter: info.chapter,
+                type: info.type,
+                version: '庚辰本',
+                original: [info.firstLine],
+                translation: ['暂无白话译文。'],
+                appreciation: ['暂无赏析内容。'],
+                appreciation2: null,
+                pullQuote: info.firstLine,
+                annotations: []
+              }, poemId, false);
+            });
+          return;
         }
 
+        renderPoem(data, poemId, true);
+      }
+
+      function renderPoem(data, poemId, hasDetail) {
         document.title = data.title + ' · 红楼梦诗词检索站';
 
         var titleEl = document.querySelector('.hl-poem-title');
@@ -1192,9 +1224,13 @@ body {
 
         var poemText = document.querySelector('.hl-poem-text');
         if (poemText) {
-          poemText.innerHTML = data.original.map(function (line) {
-            return '<p>' + line + '</p>';
-          }).join('');
+          if (hasDetail) {
+            poemText.innerHTML = data.original.map(function (line) {
+              return '<p>' + line + '</p>';
+            }).join('');
+          } else {
+            poemText.innerHTML = '<p style="color: hsl(var(--muted-foreground));">' + data.original[0] + '</p><p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem; margin-top: 1rem;">完整原文正在整理中…</p>';
+          }
         }
 
         var prose = document.querySelectorAll('.hl-prose');
@@ -1217,9 +1253,13 @@ body {
 
         var glossList = document.querySelector('.hl-gloss-list');
         if (glossList) {
-          glossList.innerHTML = data.annotations.map(function (item) {
-            return '<div class="hl-gloss-row"><dt>' + item[0] + '</dt><dd>' + item[1] + '</dd></div>';
-          }).join('');
+          if (data.annotations && data.annotations.length > 0) {
+            glossList.innerHTML = data.annotations.map(function (item) {
+              return '<div class="hl-gloss-row"><dt>' + item[0] + '</dt><dd>' + item[1] + '</dd></div>';
+            }).join('');
+          } else {
+            glossList.innerHTML = '<p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">暂无注释。</p>';
+          }
         }
 
         var versionNote = document.querySelector('.hl-version-note');
