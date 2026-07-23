@@ -715,12 +715,12 @@ body {
             <div class="hl-filter-group">
               <h2 class="hl-filter-group-title">按人物</h2>
               <div class="hl-chip-row">
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="author" data-value="黛玉">黛玉</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="author" data-value="宝钗">宝钗</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="author" data-value="宝玉">宝玉</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="author" data-value="湘云">湘云</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="author" data-value="探春">探春</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="author" data-value="众人唱和">众人唱和</button>
+                <button type="button" class="hl-chip is-on">黛玉</button>
+                <button type="button" class="hl-chip">宝钗</button>
+                <button type="button" class="hl-chip">宝玉</button>
+                <button type="button" class="hl-chip">湘云</button>
+                <button type="button" class="hl-chip">探春</button>
+                <button type="button" class="hl-chip">众人唱和</button>
               </div>
             </div>
 
@@ -728,29 +728,26 @@ body {
             <div class="hl-filter-group">
               <h2 class="hl-filter-group-title">按回目</h2>
               <div class="hl-range-selects">
-                <select class="hl-select hl-select-start" aria-label="起始回目">
-                  <option value="1" selected>第一回</option>
-                  <option value="10">第十回</option>
-                  <option value="20">第二十回</option>
-                  <option value="30">第三十回</option>
-                  <option value="50">第五十回</option>
+                <select class="hl-select" aria-label="起始回目">
+                  <option selected>第一回</option>
+                  <option>第十回</option>
+                  <option>第二十回</option>
+                  <option>第三十回</option>
+                  <option>第五十回</option>
                 </select>
-                <select class="hl-select hl-select-end" aria-label="结束回目">
-                  <option value="90">第九十回</option>
-                  <option value="100">第一百回</option>
-                  <option value="120" selected>第一百二十回</option>
+                <select class="hl-select" aria-label="结束回目">
+                  <option>第九十回</option>
+                  <option>第一百回</option>
+                  <option selected>第一百二十回</option>
                 </select>
               </div>
               <p class="hl-range-note">范围：第一回 ~ 第一百二十回</p>
               <div class="hl-chip-row" style="margin-top:0.625rem;">
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第一回">第一回</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第五回">第五回</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第二十三回">第二十三回</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第二十七回">第二十七回</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第三十八回">第三十八回</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第五十一回">第五十一回</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第七十回">第七十回</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="chapter" data-value="第七十八回">第七十八回</button>
+                <button type="button" class="hl-chip">第十四回</button>
+                <button type="button" class="hl-chip is-on">第二十七回</button>
+                <button type="button" class="hl-chip">第三十八回</button>
+                <button type="button" class="hl-chip">第四十五回</button>
+                <button type="button" class="hl-chip">第七十回</button>
               </div>
             </div>
 
@@ -758,13 +755,12 @@ body {
             <div class="hl-filter-group">
               <h2 class="hl-filter-group-title">按类型</h2>
               <div class="hl-chip-row">
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="诗">诗（各体）</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="词">词</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="曲">曲</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="判词">判词</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="俗谚">俗谚</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="联句">联句</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="type" data-value="诔文">诔文</button>
+                <button type="button" class="hl-chip is-on">诗</button>
+                <button type="button" class="hl-chip">词</button>
+                <button type="button" class="hl-chip">曲</button>
+                <button type="button" class="hl-chip">判词</button>
+                <button type="button" class="hl-chip">酒令</button>
+                <button type="button" class="hl-chip">灯谜</button>
               </div>
             </div>
 
@@ -772,9 +768,9 @@ body {
             <div class="hl-filter-group">
               <h2 class="hl-filter-group-title">主题</h2>
               <div class="hl-chip-row">
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="theme" data-value="咏物">咏物</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="theme" data-value="抒怀">抒怀</button>
-                <button type="button" class="hl-chip hl-chip-filter" data-filter="theme" data-value="谶语">谶语</button>
+                <button type="button" class="hl-chip">咏物</button>
+                <button type="button" class="hl-chip">抒怀</button>
+                <button type="button" class="hl-chip">谶语</button>
               </div>
             </div>
 
@@ -790,16 +786,145 @@ body {
           <p class="hl-results-count">共 <strong>36</strong> 首 · 当前显示 <strong>8</strong> 首</p>
           <div class="hl-sort">
             <span class="hl-sort-label">排序</span>
-            <button type="button" class="hl-sort-btn is-active" data-sort="chapter">按回目</button>
-            <button type="button" class="hl-sort-btn" data-sort="type">按类型</button>
+            <button type="button" class="hl-sort-btn is-active">按回目</button>
+            <button type="button" class="hl-sort-btn">按类型</button>
           </div>
         </div>
 
         <!-- 诗词卡片流 -->
-        <div class="hl-result-list" id="hl-result-list"></div>
+        <div class="hl-result-list">
+
+          <a class="hl-result-card" href="poem-detail.html?poem=zanghua" data-dom-id="result-card-1">
+            <div class="hl-card-main">
+              <div class="hl-card-tags"><span class="hl-seal-tag">歌行</span></div>
+              <h3 class="hl-card-title">葬花吟</h3>
+              <p class="hl-card-meta">林黛玉 · 第二十七回</p>
+              <p class="hl-card-line">花谢花飞花满天，红消香断有谁怜？</p>
+            </div>
+            <span class="hl-card-link">读全文
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <a class="hl-result-card" href="poem-detail.html?poem=qiuchuang" data-dom-id="result-card-2">
+            <div class="hl-card-main">
+              <div class="hl-card-tags"><span class="hl-seal-tag">七律</span></div>
+              <h3 class="hl-card-title">秋窗风雨夕</h3>
+              <p class="hl-card-meta">林黛玉 · 第四十五回</p>
+              <p class="hl-card-line">秋花惨淡秋草黄，耿耿秋灯秋夜长</p>
+            </div>
+            <span class="hl-card-link">读全文
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <a class="hl-result-card" href="poem-detail.html?poem=yongju" data-dom-id="result-card-3">
+            <div class="hl-card-main">
+              <div class="hl-card-tags"><span class="hl-seal-tag">七律</span></div>
+              <h3 class="hl-card-title">咏菊</h3>
+              <p class="hl-card-meta">潇湘妃子(黛玉) · 第三十八回</p>
+              <p class="hl-card-line">无赖诗魔昏晓侵，绕篱欹石自沉音</p>
+            </div>
+            <span class="hl-card-link">读全文
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <a class="hl-result-card" href="poem-detail.html?poem=hongdou">
+            <div class="hl-card-main">
+              <div class="hl-card-tags"><span class="hl-seal-tag">曲</span></div>
+              <h3 class="hl-card-title">红豆曲</h3>
+              <p class="hl-card-meta">贾宝玉 · 第二十八回</p>
+              <p class="hl-card-line">滴不尽相思血泪抛红豆</p>
+            </div>
+            <span class="hl-card-link">读全文
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <a class="hl-result-card" href="poem-detail.html?poem=haoliao">
+            <div class="hl-card-main">
+              <div class="hl-card-tags"><span class="hl-seal-tag">俗谚</span></div>
+              <h3 class="hl-card-title">好了歌</h3>
+              <p class="hl-card-meta">跛足道人 · 第一回</p>
+              <p class="hl-card-line">世人都晓神仙好，惟有功名忘不了</p>
+            </div>
+            <span class="hl-card-link">读全文
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <a class="hl-result-card" href="poem-detail.html?poem=taohua">
+            <div class="hl-card-main">
+              <div class="hl-card-tags"><span class="hl-seal-tag">歌行</span></div>
+              <h3 class="hl-card-title">桃花行</h3>
+              <p class="hl-card-meta">林黛玉 · 第七十回</p>
+              <p class="hl-card-line">桃花帘外东风软，桃花帘内晨妆懒</p>
+            </div>
+            <span class="hl-card-link">读全文
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <a class="hl-result-card" href="poem-detail.html?poem=wenju">
+            <div class="hl-card-main">
+              <div class="hl-card-tags"><span class="hl-seal-tag">七律</span></div>
+              <h3 class="hl-card-title">菊花诗·问菊</h3>
+              <p class="hl-card-meta">潇湘妃子 · 第三十八回</p>
+              <p class="hl-card-line">欲讯秋情众莫知，漫将幽意叩东篱</p>
+            </div>
+            <span class="hl-card-link">读全文
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <a class="hl-result-card" href="poem-detail.html?poem=linjiangxian">
+            <div class="hl-card-main">
+              <div class="hl-card-tags"><span class="hl-seal-tag">词</span></div>
+              <h3 class="hl-card-title">临江仙·柳絮</h3>
+              <p class="hl-card-meta">薛宝钗 · 第七十回</p>
+              <p class="hl-card-line">白玉堂前春解舞，东风卷得均匀</p>
+            </div>
+            <span class="hl-card-link">读全文
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+
+        </div>
 
         <!-- 分页 -->
-        <nav class="hl-pagination" aria-label="结果分页" id="hl-pagination"></nav>
+        <nav class="hl-pagination" aria-label="结果分页">
+          <a class="hl-page-btn" href="#" aria-disabled="true">上一页</a>
+          <a class="hl-page-btn is-active" href="#" aria-current="page">1</a>
+          <a class="hl-page-btn" href="#">2</a>
+          <a class="hl-page-btn" href="#">3</a>
+          <a class="hl-page-btn" href="#">4</a>
+          <a class="hl-page-btn" href="#">下一页</a>
+        </nav>
 
         <!-- 返回首页 -->
         <div class="hl-back-row">
@@ -1259,205 +1384,22 @@ body {
 
     <script>
       lucide.createIcons();
-
-      var poemsData = [];
-      var currentFilters = {
-        keyword: '',
-        author: null,
-        chapter: null,
-        type: null,
-        theme: null,
-        chapterStart: 1,
-        chapterEnd: 120
-      };
-      var currentSort = 'chapter';
-      var currentPage = 1;
-      var pageSize = 8;
-
-      // 类型分类映射：「诗」涵盖七律、七绝、歌行等各体
-      var typeCategories = {
-        '诗': ['七律', '七绝', '歌行', '五律', '五绝', '五言']
-      };
-
-      function loadPoems() {
-        fetch('../data/poems.json')
-          .then(function (response) { return response.json(); })
-          .then(function (data) {
-            poemsData = data;
-            var params = new URLSearchParams(window.location.search);
-            var q = params.get('q');
-            if (q) {
-              currentFilters.keyword = q;
-              var input = document.querySelector('.hl-search-input');
-              if (input) input.value = q;
+      // 读取 URL 搜索关键词并填入搜索框
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var q = params.get('q');
+        if (q) {
+          var input = document.querySelector('.hl-search-input');
+          if (input) {
+            input.value = q;
+            // 更新结果计数提示
+            var count = document.querySelector('.hl-results-count');
+            if (count) {
+              count.innerHTML = '搜索「<strong>' + q + '</strong>」 · 共 <strong>36</strong> 首 · 当前显示 <strong>8</strong> 首';
             }
-            renderResults();
-          })
-          .catch(function () {
-            console.error('Failed to load poems data');
-          });
-      }
-
-      function filterPoems() {
-        return poemsData.filter(function (poem) {
-          if (currentFilters.keyword &&
-            !poem.title.includes(currentFilters.keyword) &&
-            !poem.author.includes(currentFilters.keyword) &&
-            !poem.firstLine.includes(currentFilters.keyword)) {
-            return false;
-          }
-          if (currentFilters.author && !poem.author.includes(currentFilters.author)) {
-            return false;
-          }
-          if (currentFilters.chapter && poem.chapter !== currentFilters.chapter) {
-            return false;
-          }
-          if (currentFilters.type) {
-            var category = typeCategories[currentFilters.type];
-            if (category) {
-              if (category.indexOf(poem.type) === -1) return false;
-            } else if (poem.type !== currentFilters.type) {
-              return false;
-            }
-          }
-          if (currentFilters.theme && poem.theme !== currentFilters.theme) {
-            return false;
-          }
-          var num = parseInt(poem.chapterNum) || 0;
-          return num >= currentFilters.chapterStart && num <= currentFilters.chapterEnd;
-        });
-      }
-
-      function sortPoems(list) {
-        return list.sort(function (a, b) {
-          if (currentSort === 'chapter') {
-            return (parseInt(a.chapterNum) || 0) - (parseInt(b.chapterNum) || 0);
-          }
-          return a.type.localeCompare(b.type);
-        });
-      }
-
-      function renderResults() {
-        var filtered = filterPoems();
-        var sorted = sortPoems(filtered);
-        var total = sorted.length;
-        var totalPages = Math.ceil(total / pageSize);
-        currentPage = Math.max(1, Math.min(currentPage, totalPages));
-        var start = (currentPage - 1) * pageSize;
-        var end = start + pageSize;
-        var pageData = sorted.slice(start, end);
-
-        var listEl = document.getElementById('hl-result-list');
-        var countEl = document.querySelector('.hl-results-count');
-        var paginationEl = document.getElementById('hl-pagination');
-
-        if (countEl) {
-          var keywordText = currentFilters.keyword ? '搜索「<strong>' + currentFilters.keyword + '</strong> · ' : '';
-          countEl.innerHTML = keywordText + '共 <strong>' + total + '</strong> 首 · 当前显示 <strong>' + pageData.length + '</strong> 首';
-        }
-
-        if (listEl) {
-          if (pageData.length === 0) {
-            listEl.innerHTML = '<div class="text-center py-8 text-muted-foreground">暂无匹配的诗词</div>';
-          } else {
-            listEl.innerHTML = pageData.map(function (poem) {
-              return '<a class="hl-result-card" href="poem-detail.html?id=' + poem.id + '">' +
-                '<div class="hl-card-main">' +
-                '<div class="hl-card-tags"><span class="hl-seal-tag">' + poem.type + '</span></div>' +
-                '<h3 class="hl-card-title">' + poem.title + '</h3>' +
-                '<p class="hl-card-meta">' + poem.author + ' · ' + poem.chapter + '</p>' +
-                '<p class="hl-card-line">' + poem.firstLine + '</p>' +
-                '</div>' +
-                '<span class="hl-card-link">读全文' +
-                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-                '<line x1="5" y1="12" x2="19" y2="12"></line>' +
-                '<polyline points="12 5 19 12 12 19"></polyline>' +
-                '</svg>' +
-                '</span>' +
-                '</a>';
-            }).join('');
           }
         }
-
-        if (paginationEl) {
-          if (totalPages <= 1) {
-            paginationEl.innerHTML = '';
-          } else {
-            var html = '<a class="hl-page-btn' + (currentPage === 1 ? ' [aria-disabled="true"]' : '') + '" href="#" data-page="' + (currentPage - 1) + '"' + (currentPage === 1 ? ' aria-disabled="true"' : '') + '>上一页</a>';
-            for (var i = 1; i <= totalPages; i++) {
-              html += '<a class="hl-page-btn' + (i === currentPage ? ' is-active' : '') + '" href="#" data-page="' + i + '"' + (i === currentPage ? ' aria-current="page"' : '') + '>' + i + '</a>';
-            }
-            html += '<a class="hl-page-btn' + (currentPage === totalPages ? ' [aria-disabled="true"]' : '') + '" href="#" data-page="' + (currentPage + 1) + '"' + (currentPage === totalPages ? ' aria-disabled="true"' : '') + '>下一页</a>';
-            paginationEl.innerHTML = html;
-          }
-        }
-      }
-
-      function initFilters() {
-        document.querySelectorAll('.hl-chip-filter').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            var filter = this.dataset.filter;
-            var value = this.dataset.value;
-
-            document.querySelectorAll('.hl-chip-filter[data-filter="' + filter + '"]').forEach(function (b) {
-              b.classList.remove('is-on');
-            });
-
-            if (currentFilters[filter] === value) {
-              currentFilters[filter] = null;
-            } else {
-              currentFilters[filter] = value;
-              this.classList.add('is-on');
-            }
-
-            currentPage = 1;
-            renderResults();
-          });
-        });
-
-        document.querySelector('.hl-select-start').addEventListener('change', function () {
-          currentFilters.chapterStart = parseInt(this.value) || 1;
-          currentPage = 1;
-          renderResults();
-        });
-
-        document.querySelector('.hl-select-end').addEventListener('change', function () {
-          currentFilters.chapterEnd = parseInt(this.value) || 120;
-          currentPage = 1;
-          renderResults();
-        });
-
-        document.querySelectorAll('.hl-sort-btn').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            document.querySelectorAll('.hl-sort-btn').forEach(function (b) {
-              b.classList.remove('is-active');
-            });
-            this.classList.add('is-active');
-            currentSort = this.dataset.sort;
-            renderResults();
-          });
-        });
-
-        document.getElementById('hl-pagination').addEventListener('click', function (e) {
-          var target = e.target.closest('.hl-page-btn');
-          if (target && !target.hasAttribute('aria-disabled')) {
-            e.preventDefault();
-            currentPage = parseInt(target.dataset.page);
-            renderResults();
-          }
-        });
-
-        document.querySelector('.hl-search-input').addEventListener('input', function () {
-          currentFilters.keyword = this.value.trim();
-          currentPage = 1;
-          renderResults();
-        });
-      }
-
-      document.addEventListener('DOMContentLoaded', function () {
-        loadPoems();
-        initFilters();
-      });
+      })();
     </script>
 </body>
 </html>

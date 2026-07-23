@@ -585,11 +585,11 @@ body {
       <div class="hl-container" style="padding-top: 1.25rem; padding-bottom: 0.5rem;">
         <div class="flex items-center justify-between gap-3">
           <nav aria-label="面包屑导航" class="flex items-center gap-1.5 text-sm flex-wrap" style="font-family: var(--font-sans);">
-            <span style="color: hsl(var(--muted-foreground));">首页</span>
+            <a href="index.html" style="color: hsl(var(--muted-foreground)); text-decoration: none;">首页</a>
             <span style="color: var(--hl-ochre);">／</span>
-            <span style="color: hsl(var(--muted-foreground));">检索</span>
+            <a href="search.html" style="color: hsl(var(--muted-foreground)); text-decoration: none;">检索</a>
             <span style="color: var(--hl-ochre);">／</span>
-            <span style="color: var(--hl-daiblue); font-weight: 600;">葬花吟</span>
+            <span id="crumb-title" style="color: var(--hl-daiblue); font-weight: 600;">诗词详情</span>
           </nav>
           <a href="search.html" data-dom-id="back-search" class="hl-back-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 0.875rem; height: 0.875rem;" aria-hidden="true">
@@ -603,17 +603,17 @@ body {
 
       <!-- 水墨横幅 -->
       <section class="hl-ink-banner">
-        <img src="../assets/detail-ink-wash.jpg" alt="水墨横幅 · 葬花吟" class="hl-ink-img" />
+        <img id="banner-img" src="../assets/detail-ink-wash.jpg" alt="水墨横幅" class="hl-ink-img" />
         <div class="hl-ink-overlay" aria-hidden="true"></div>
         <div class="hl-ink-content">
-          <h1 class="hl-poem-title">葬花吟</h1>
+          <h1 id="banner-title" class="hl-poem-title">诗词详情</h1>
           <div class="hl-meta-row">
-            <span class="hl-seal-tag">歌行</span>
-            <span class="hl-meta-item">林黛玉</span>
+            <span id="banner-type" class="hl-seal-tag">体裁</span>
+            <span id="banner-author" class="hl-meta-item">作者</span>
             <span class="hl-meta-sep" aria-hidden="true">·</span>
-            <span class="hl-meta-item">第二十七回</span>
+            <span id="banner-chapter" class="hl-meta-item">回目</span>
             <span class="hl-meta-sep" aria-hidden="true">·</span>
-            <span class="hl-meta-item">庚辰本</span>
+            <span id="banner-version" class="hl-meta-item">版本</span>
           </div>
         </div>
       </section>
@@ -621,40 +621,13 @@ body {
       <!-- 阅读栏（单栏长文档，760px 居中） -->
       <article class="hl-reading">
 
-        <!-- 壹 · 原文（注音） -->
+        <!-- 壹 · 原文 -->
         <section class="hl-poem-section">
           <div class="hl-section-head">
             <span class="hl-seal-num" aria-hidden="true">壹</span>
             <h2 class="hl-section-title">原文</h2>
           </div>
-          <div class="hl-poem-text">
-            <p>花谢花飞花满天，红消香断有谁怜？</p>
-            <p>游丝软系飘春榭，落絮轻沾扑绣帘。</p>
-            <p>闺中女儿惜春暮，愁绪满怀无释处，</p>
-            <p>手把花锄出绣闺，忍踏落花来复去。</p>
-            <p>柳丝榆荚<sup class="pinyin">jiá</sup>自芳菲，不管桃飘与李飞；</p>
-            <p>桃李明年能再发，明年闺中知有谁？</p>
-            <p>三月香巢已垒<sup class="pinyin">lěi</sup>成，梁间燕子太无情！</p>
-            <p>明年花发虽可啄<sup class="pinyin">zhuó</sup>，却不道人去梁空巢也倾。</p>
-            <p>一年三百六十日，风刀霜剑严相逼，</p>
-            <p>明媚鲜妍能几时，一朝飘泊难寻觅。</p>
-            <p>花开易见落难寻，阶前愁杀葬花人，</p>
-            <p>独倚花锄泪暗洒，洒上空枝见血痕。</p>
-            <p>杜鹃无语正黄昏，荷锄归去掩重门；</p>
-            <p>青灯照壁人初睡，冷雨敲窗被未温。</p>
-            <p>怪奴底事倍伤神？半为怜春半恼春：</p>
-            <p>怜春忽至恼忽去，至又无言去未闻。</p>
-            <p>昨宵庭外悲歌发，知是花魂<sup class="pinyin">hún</sup>与鸟魂？</p>
-            <p>花魂鸟魂总难留，鸟自无言花自羞；</p>
-            <p>愿奴胁下生双翼，随花飞到天尽头。</p>
-            <p>天尽头，何处有香丘？</p>
-            <p>未若锦囊收艳骨，一抔<sup class="pinyin">póu</sup>净土掩风流；</p>
-            <p>质本洁来还洁去，强于污淖<sup class="pinyin">nào</sup>陷渠沟。</p>
-            <p>尔今死去侬<sup class="pinyin">nóng</sup>收葬，未卜侬身何日丧？</p>
-            <p>侬<sup class="pinyin">nóng</sup>今葬花人笑痴，他年葬侬知是谁？</p>
-            <p>试看春残花渐落，便是红颜老死时；</p>
-            <p>一朝春尽红颜老，花落人亡两不知！</p>
-          </div>
+          <div id="sec-original" class="hl-poem-text"></div>
         </section>
 
         <div class="hl-divider" aria-hidden="true"><span class="hl-divider-dot"></span></div>
@@ -665,13 +638,7 @@ body {
             <span class="hl-seal-num" aria-hidden="true">贰</span>
             <h2 class="hl-section-title">白话译文</h2>
           </div>
-          <div class="hl-prose">
-            <p>花儿凋谢、柳絮飞舞漫天遍野，红颜消退、香气断绝有谁怜惜？游丝软软地系在春榭，飘落的柳絮轻轻沾上衣帘。闺中女儿惋惜春将暮，满怀愁绪无处排遣，手执花锄走出绣阁，不忍践踏落花来又复去。</p>
-            <p>柳丝榆荚自顾芬芳，不管桃花飘零李花飞散；桃李明年尚能再发，明年闺中又知有谁？三月香巢已经筑成，梁间燕子太过无情；明年花开虽可啄食，却不料人去楼空巢也倾颓。</p>
-            <p>一年三百六十日，风刀霜剑严相逼迫，明媚鲜妍能有几时，一朝飘泊再难寻觅。花开易见落难寻，阶前愁煞葬花人；独倚花锄暗洒泪，洒上空枝似见血痕。杜鹃无语正值黄昏，荷锄归去掩上重门；青灯照壁人初睡，冷雨敲窗被未温。</p>
-            <p>怪我何事倍伤神？半为怜春半恼春：怜春忽至恼忽去，至又无言去未闻。昨宵庭外悲歌起，知是花魂还是鸟魂？花魂鸟魂总难留，鸟自无言花自羞；愿我胁下生双翼，随花飞到天尽头。</p>
-            <p>天尽头，何处有香丘？不如锦囊收艳骨，一抔净土掩风流；质本洁来还洁去，强于污淖陷渠沟。你今死去我来收葬，未卜我身何日丧？我今葬花人笑痴，他年葬我知是谁？试看春残花渐落，便是红颜老死时；一朝春尽红颜老，花落人亡两不知。</p>
-          </div>
+          <div id="sec-translation" class="hl-prose"></div>
         </section>
 
         <div class="hl-divider" aria-hidden="true"><span class="hl-divider-dot"></span></div>
@@ -682,28 +649,7 @@ body {
             <span class="hl-seal-num" aria-hidden="true">叁</span>
             <h2 class="hl-section-title">注释</h2>
           </div>
-          <dl class="hl-gloss-list">
-            <div class="hl-gloss-row">
-              <dt>落絮</dt>
-              <dd>飘落的柳絮，喻身世飘零。</dd>
-            </div>
-            <div class="hl-gloss-row">
-              <dt>香丘</dt>
-              <dd>芳香的坟冢，黛玉自拟葬花之处。</dd>
-            </div>
-            <div class="hl-gloss-row">
-              <dt>榆荚</dt>
-              <dd>榆树果实，喻微贱之物。</dd>
-            </div>
-            <div class="hl-gloss-row">
-              <dt>风刀霜剑</dt>
-              <dd>喻严酷的处境与世态炎凉。</dd>
-            </div>
-            <div class="hl-gloss-row">
-              <dt>质本洁来还洁去</dt>
-              <dd>黛玉洁净自守的宣言，亦为命运谶语。</dd>
-            </div>
-          </dl>
+          <dl id="sec-gloss" class="hl-gloss-list"></dl>
         </section>
 
         <div class="hl-divider" aria-hidden="true"><span class="hl-divider-dot"></span></div>
@@ -714,15 +660,7 @@ body {
             <span class="hl-seal-num" aria-hidden="true">肆</span>
             <h2 class="hl-section-title">赏析</h2>
           </div>
-          <div class="hl-prose">
-            <p>《葬花吟》是黛玉孤高性情与悲剧命运的总谶。「一年三百六十日，风刀霜剑严相逼」既写春残，亦写寄人篱下的处境；「质本洁来还洁去」则是其洁净自守的宣言。</p>
-          </div>
-          <blockquote class="hl-pullquote">
-            <p>质本洁来还洁去，强于污淖陷渠沟。</p>
-          </blockquote>
-          <div class="hl-prose">
-            <p>全诗以花自况，由惜花、葬花到问花，层层推进，将身世之悲与死亡预感融为一体，笔致凄美，为全书最沉痛之音。</p>
-          </div>
+          <div id="sec-analysis" class="hl-prose"></div>
         </section>
 
         <div class="hl-divider" aria-hidden="true"><span class="hl-divider-dot"></span></div>
@@ -733,17 +671,8 @@ body {
             <span class="hl-seal-num" aria-hidden="true">伍</span>
             <h2 class="hl-section-title">延伸</h2>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a href="poem-detail.html" data-dom-id="related-poem-1" class="hl-rel-card">
-              <span class="hl-rel-label">同人作品</span>
-              <span class="hl-rel-titles">桃花行 · 秋窗风雨夕 · 题帕三绝</span>
-            </a>
-            <a href="poem-detail.html" data-dom-id="related-poem-2" class="hl-rel-card">
-              <span class="hl-rel-label">同回剧情</span>
-              <span class="hl-rel-titles">滴翠亭杨妃戏彩蝶 · 埋香冢飞燕泣残红</span>
-            </a>
-          </div>
-          <p class="hl-version-note">本首所依版本：庚辰本（第二十七回）</p>
+          <div id="sec-related" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+          <p id="version-note" class="hl-version-note"></p>
         </section>
 
       </article>
@@ -1113,171 +1042,112 @@ body {
         }
       }
     </style>
+    <script src="../assets/poems-data.js"></script>
     <script>
-      lucide.createIcons();
-
-      var poemDetails = {
-        zanghuayin: {
-          title: '葬花吟',
-          author: '林黛玉',
-          chapter: '第二十七回',
-          chapterNum: 27,
-          type: '歌行',
-          version: '庚辰本',
-          original: ['花谢花飞花满天，红消香断有谁怜？', '游丝软系飘春榭，落絮轻沾扑绣帘。', '闺中女儿惜春暮，愁绪满怀无释处，', '手把花锄出绣闺，忍踏落花来复去。', '柳丝榆荚<sup class="pinyin">jiá</sup>自芳菲，不管桃飘与李飞；', '桃李明年能再发，明年闺中知有谁？', '三月香巢已垒<sup class="pinyin">lěi</sup>成，梁间燕子太无情！', '明年花发虽可啄<sup class="pinyin">zhuó</sup>，却不道人去梁空巢也倾。', '一年三百六十日，风刀霜剑严相逼，', '明媚鲜妍能几时，一朝飘泊难寻觅。', '花开易见落难寻，阶前愁杀葬花人，', '独倚花锄泪暗洒，洒上空枝见血痕。', '杜鹃无语正黄昏，荷锄归去掩重门；', '青灯照壁人初睡，冷雨敲窗被未温。', '怪奴底事倍伤神？半为怜春半恼春：', '怜春忽至恼忽去，至又无言去未闻。', '昨宵庭外悲歌发，知是花魂<sup class="pinyin">hún</sup>与鸟魂？', '花魂鸟魂总难留，鸟自无言花自羞；', '愿奴胁下生双翼，随花飞到天尽头。', '天尽头，何处有香丘？', '未若锦囊收艳骨，一抔<sup class="pinyin">póu</sup>净土掩风流；', '质本洁来还洁去，强于污淖<sup class="pinyin">nào</sup>陷渠沟。', '尔今死去侬<sup class="pinyin">nóng</sup>收葬，未卜侬身何日丧？', '侬<sup class="pinyin">nóng</sup>今葬花人笑痴，他年葬侬知是谁？', '试看春残花渐落，便是红颜老死时；', '一朝春尽红颜老，花落人亡两不知！'],
-          translation: ['花儿凋谢、柳絮飞舞漫天遍野，红颜消退、香气断绝有谁怜惜？游丝软软地系在春榭，飘落的柳絮轻轻沾上衣帘。闺中女儿惋惜春将暮，满怀愁绪无处排遣，手执花锄走出绣阁，不忍践踏落花来又复去。', '柳丝榆荚自顾芬芳，不管桃花飘零李花飞散；桃李明年尚能再发，明年闺中又知有谁？三月香巢已经筑成，梁间燕子太过无情；明年花开虽可啄食，却不料人去楼空巢也倾颓。', '一年三百六十日，风刀霜剑严相逼迫，明媚鲜妍能有几时，一朝飘泊再难寻觅。花开易见落难寻，阶前愁煞葬花人；独倚花锄暗洒泪，洒上空枝似见血痕。杜鹃无语正值黄昏，荷锄归去掩上重门；青灯照壁人初睡，冷雨敲窗被未温。', '怪我何事倍伤神？半为怜春半恼春：怜春忽至恼忽去，至又无言去未闻。昨宵庭外悲歌起，知是花魂还是鸟魂？花魂鸟魂总难留，鸟自无言花自羞；愿我胁下生双翼，随花飞到天尽头。', '天尽头，何处有香丘？不如锦囊收艳骨，一抔净土掩风流；质本洁来还洁去，强于污淖陷渠沟。你今死去我来收葬，未卜我身何日丧？我今葬花人笑痴，他年葬我知是谁？试看春残花渐落，便是红颜老死时；一朝春尽红颜老，花落人亡两不知。'],
-          annotations: [['落絮', '飘落的柳絮，喻身世飘零。'], ['香丘', '芳香的坟冢，黛玉自拟葬花之处。'], ['榆荚', '榆树果实，喻微贱之物。'], ['风刀霜剑', '喻严酷的处境与世态炎凉。'], ['质本洁来还洁去', '黛玉洁净自守的宣言，亦为命运谶语。']],
-          appreciation: ['《葬花吟》是黛玉孤高性情与悲剧命运的总谶。「一年三百六十日，风刀霜剑严相逼」既写春残，亦写寄人篱下的处境；「质本洁来还洁去」则是其洁净自守的宣言。'],
-          pullQuote: '质本洁来还洁去，强于污淖陷渠沟。',
-          appreciation2: ['全诗以花自况，由惜花、葬花到问花，层层推进，将身世之悲与死亡预感融为一体，笔致凄美，为全书最沉痛之音。']
-        },
-        haolege: {
-          title: '好了歌',
-          author: '跛足道人',
-          chapter: '第一回',
-          chapterNum: 1,
-          type: '俗谚',
-          version: '庚辰本',
-          original: ['世人都晓神仙好，惟有功名忘不了！', '古今将相在何方？荒冢一堆草没了。', '世人都晓神仙好，只有金银忘不了！', '终朝只恨聚无多，及到多时眼闭了。', '世人都晓神仙好，只有娇妻忘不了！', '君生日日说恩情，君死又随人去了。', '世人都晓神仙好，只有儿孙忘不了！', '痴心父母古来多，孝顺儿孙谁见了？'],
-          translation: ['世人都知道神仙好，唯有功名利禄忘不了！', '古往今来的将相如今在哪里？只留下一堆荒冢被野草淹没了。', '世人都知道神仙好，唯有金银财宝忘不了！', '整天只恨聚敛不够多，等到多的时候眼睛也闭上了。', '世人都知道神仙好，唯有娇妻美妾忘不了！', '你活着的时候天天说恩情，你死了她又跟着别人去了。', '世人都知道神仙好，唯有子孙后代忘不了！', '痴心的父母自古以来就很多，孝顺的儿孙又有谁见过呢？'],
-          annotations: [['荒冢', '荒芜的坟墓。'], ['聚无多', '聚敛财富总觉得不够多。'], ['眼闭了', '指死亡。']],
-          appreciation: ['《好了歌》以俗谚形式揭示人生无常，功名、金银、娇妻、儿孙皆为虚幻，是全书「好了」主题的点睛之笔。'],
-          pullQuote: '世人都晓神仙好，惟有功名忘不了！',
-          appreciation2: ['此歌看似浅白，实则蕴含深刻的禅理，与甄士隐的注解相互呼应，构成全书的哲学基调。']
-        },
-        furuongnverlei: {
-          title: '芙蓉女儿诔',
-          author: '贾宝玉',
-          chapter: '第七十八回',
-          chapterNum: 78,
-          type: '诔文',
-          version: '庚辰本',
-          original: ['红绡帐里，公子情深；黄土垄中，女儿命薄！', '汝南泪血，斑斑洒向西风；梓泽余衷，默默诉凭冷月。'],
-          translation: ['红绡帐里，公子情深意重；黄土垄中，女儿命薄如纸！', '汝南王的血泪，斑斑点点洒向西风；金谷园的余哀，默默倾诉凭吊冷月。'],
-          annotations: [['诔文', '哀悼死者的祭文。'], ['红绡帐', '华美精致的纱帐，指代富贵生活。'], ['黄土垄', '指坟墓。'], ['汝南泪血', '用汝南王刘宋的典故，喻悲痛至极。'], ['梓泽', '晋代石崇的金谷园，指代繁华之地。']],
-          appreciation: ['《芙蓉女儿诔》是宝玉为晴雯所作的祭文，情真意切，辞藻华美，是《红楼梦》中最动人的抒情篇章之一。'],
-          pullQuote: '红绡帐里，公子情深；黄土垄中，女儿命薄！',
-          appreciation2: ['诔文以香草美人之喻，寄托了宝玉对美好事物被毁灭的深切哀悼，亦是对封建礼教的无声控诉。']
-        }
-      };
-
-      function loadPoemDetail() {
+      (function () {
         var params = new URLSearchParams(window.location.search);
-        var poemId = params.get('id') || 'zanghuayin';
+        var poemId = params.get('poem') || 'zanghua';
+        var POEMS = window.HL_POEMS || {};
+        var poem = POEMS[poemId];
+        if (!poem) { poemId = Object.keys(POEMS)[0]; poem = POEMS[poemId]; }
 
-        // 先尝试从内置详细数据获取
-        var data = poemDetails[poemId];
+        // 标题 → id 反查表（延伸互链用）
+        var titleToId = {};
+        Object.keys(POEMS).forEach(function (id) { titleToId[POEMS[id].title] = id; });
 
-        if (!data) {
-          // 没有详细数据，从 poems.json 加载基本信息
-          fetch('../data/poems.json')
-            .then(function (response) { return response.json(); })
-            .then(function (poems) {
-              var info = null;
-              for (var i = 0; i < poems.length; i++) {
-                if (poems[i].id === poemId) { info = poems[i]; break; }
-              }
-              if (!info) {
-                info = poems[0];
-                poemId = info.id;
-              }
-              renderPoem({
-                title: info.title,
-                author: info.author,
-                chapter: info.chapter,
-                type: info.type,
-                version: '庚辰本',
-                original: [info.firstLine],
-                translation: ['暂无白话译文。'],
-                appreciation: ['暂无赏析内容。'],
-                appreciation2: null,
-                pullQuote: info.firstLine,
-                annotations: []
-              }, poemId, false);
-            });
-          return;
-        }
+        // 文档标题
+        document.title = poem.title + ' · 红楼梦诗词检索站';
 
-        renderPoem(data, poemId, true);
-      }
+        // 面包屑
+        document.getElementById('crumb-title').textContent = poem.title;
 
-      function renderPoem(data, poemId, hasDetail) {
-        document.title = data.title + ' · 红楼梦诗词检索站';
+        // 横幅
+        var bannerImg = document.getElementById('banner-img');
+        if (bannerImg) bannerImg.alt = '水墨横幅 · ' + poem.title;
+        document.getElementById('banner-title').textContent = poem.title;
+        document.getElementById('banner-type').textContent = poem.type;
+        document.getElementById('banner-author').textContent = poem.author;
+        document.getElementById('banner-chapter').textContent = poem.chapter;
+        var verShort = (poem.version || '').split('（')[0].trim() || poem.version || '';
+        document.getElementById('banner-version').textContent = verShort;
 
-        var titleEl = document.querySelector('.hl-poem-title');
-        if (titleEl) titleEl.textContent = data.title;
+        // 壹 · 原文（处理含换行的条目，如诔文）
+        var secOriginal = document.getElementById('sec-original');
+        (poem.original || []).forEach(function (line) {
+          line.split('\n').forEach(function (sub) {
+            sub = sub.trim();
+            if (sub) {
+              var p = document.createElement('p');
+              p.textContent = sub;
+              secOriginal.appendChild(p);
+            }
+          });
+        });
 
-        var metaItems = document.querySelectorAll('.hl-meta-item');
-        if (metaItems.length >= 2) {
-          metaItems[0].textContent = data.author;
-          metaItems[1].textContent = data.chapter;
-        }
+        // 贰 · 白话译文
+        var secTranslation = document.getElementById('sec-translation');
+        (poem.translation || []).forEach(function (para) {
+          var p = document.createElement('p');
+          p.textContent = para;
+          secTranslation.appendChild(p);
+        });
 
-        var versionEl = document.querySelector('.hl-meta-row .hl-meta-item:last-child');
-        if (versionEl) versionEl.textContent = data.version;
+        // 叁 · 注释
+        var secGloss = document.getElementById('sec-gloss');
+        (poem.gloss || []).forEach(function (g) {
+          var row = document.createElement('div');
+          row.className = 'hl-gloss-row';
+          var dt = document.createElement('dt');
+          dt.textContent = g.term;
+          var dd = document.createElement('dd');
+          dd.textContent = g.note;
+          row.appendChild(dt);
+          row.appendChild(dd);
+          secGloss.appendChild(row);
+        });
 
-        var sealTag = document.querySelector('.hl-meta-row .hl-seal-tag');
-        if (sealTag) sealTag.textContent = data.type;
-
-        var breadcrumb = document.querySelector('nav[aria-label="面包屑导航"] span:last-child');
-        if (breadcrumb) breadcrumb.textContent = data.title;
-
-        var poemText = document.querySelector('.hl-poem-text');
-        if (poemText) {
-          if (hasDetail) {
-            poemText.innerHTML = data.original.map(function (line) {
-              return '<p>' + line + '</p>';
-            }).join('');
-          } else {
-            poemText.innerHTML = '<p style="color: hsl(var(--muted-foreground));">' + data.original[0] + '</p><p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem; margin-top: 1rem;">完整原文正在整理中…</p>';
+        // 肆 · 赏析（首段后插入引文）
+        var secAnalysis = document.getElementById('sec-analysis');
+        (poem.analysis || []).forEach(function (para, i) {
+          var p = document.createElement('p');
+          p.textContent = para;
+          secAnalysis.appendChild(p);
+          if (i === 0 && poem.pullquote) {
+            var bq = document.createElement('blockquote');
+            bq.className = 'hl-pullquote';
+            var qp = document.createElement('p');
+            qp.textContent = poem.pullquote;
+            bq.appendChild(qp);
+            secAnalysis.appendChild(bq);
           }
-        }
+        });
 
-        var prose = document.querySelectorAll('.hl-prose');
-        if (prose.length >= 3) {
-          prose[0].innerHTML = data.translation.map(function (para) {
-            return '<p>' + para + '</p>';
-          }).join('');
+        // 伍 · 延伸互链
+        var secRelated = document.getElementById('sec-related');
+        (poem.related || []).forEach(function (r, i) {
+          var a = document.createElement('a');
+          a.className = 'hl-rel-card';
+          var firstTitle = (r.titles || '').split('·')[0].trim();
+          var targetId = titleToId[firstTitle];
+          a.href = targetId
+            ? ('poem-detail.html?poem=' + targetId)
+            : ('search.html?keyword=' + encodeURIComponent(firstTitle));
+          if (i < 2) a.setAttribute('data-dom-id', 'related-poem-' + (i + 1));
+          var lab = document.createElement('span');
+          lab.className = 'hl-rel-label';
+          lab.textContent = r.label;
+          var tit = document.createElement('span');
+          tit.className = 'hl-rel-titles';
+          tit.textContent = r.titles;
+          a.appendChild(lab);
+          a.appendChild(tit);
+          secRelated.appendChild(a);
+        });
 
-          prose[1].innerHTML = data.appreciation.map(function (para) {
-            return '<p>' + para + '</p>';
-          }).join('');
-
-          prose[2].innerHTML = (data.appreciation2 ? data.appreciation2.map(function (para) {
-            return '<p>' + para + '</p>';
-          }).join('') : '');
-        }
-
-        var pullquote = document.querySelector('.hl-pullquote p');
-        if (pullquote) pullquote.textContent = data.pullQuote;
-
-        var glossList = document.querySelector('.hl-gloss-list');
-        if (glossList) {
-          if (data.annotations && data.annotations.length > 0) {
-            glossList.innerHTML = data.annotations.map(function (item) {
-              return '<div class="hl-gloss-row"><dt>' + item[0] + '</dt><dd>' + item[1] + '</dd></div>';
-            }).join('');
-          } else {
-            glossList.innerHTML = '<p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">暂无注释。</p>';
-          }
-        }
-
-        var versionNote = document.querySelector('.hl-version-note');
-        if (versionNote) {
-          versionNote.textContent = '本首所依版本：' + data.version + '（' + data.chapter + '）';
-        }
-
-        var inkImg = document.querySelector('.hl-ink-img');
-        if (inkImg) inkImg.alt = '水墨横幅 · ' + data.title;
-
-        var relLinks = document.querySelectorAll('.hl-rel-card');
-        if (relLinks.length >= 2) {
-          relLinks[0].href = 'poem-detail.html?id=' + (poemId === 'zanghuayin' ? 'taohuaxing' : 'zanghuayin');
-          relLinks[1].href = 'poem-detail.html?id=' + (poemId === 'haolege' ? 'haolegejie' : 'haolege');
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', loadPoemDetail);
+        // 版本声明
+        document.getElementById('version-note').textContent = '本首所依版本：' + (poem.version || '');
+      })();
     </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
