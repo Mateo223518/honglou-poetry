@@ -1198,14 +1198,16 @@ body {
         }
 
         var prose = document.querySelectorAll('.hl-prose');
-        if (prose.length >= 2) {
+        if (prose.length >= 3) {
           prose[0].innerHTML = data.translation.map(function (para) {
             return '<p>' + para + '</p>';
           }).join('');
 
           prose[1].innerHTML = data.appreciation.map(function (para) {
             return '<p>' + para + '</p>';
-          }).join('') + (data.appreciation2 ? data.appreciation2.map(function (para) {
+          }).join('');
+
+          prose[2].innerHTML = (data.appreciation2 ? data.appreciation2.map(function (para) {
             return '<p>' + para + '</p>';
           }).join('') : '');
         }
@@ -1223,6 +1225,15 @@ body {
         var versionNote = document.querySelector('.hl-version-note');
         if (versionNote) {
           versionNote.textContent = '本首所依版本：' + data.version + '（' + data.chapter + '）';
+        }
+
+        var inkImg = document.querySelector('.hl-ink-img');
+        if (inkImg) inkImg.alt = '水墨横幅 · ' + data.title;
+
+        var relLinks = document.querySelectorAll('.hl-rel-card');
+        if (relLinks.length >= 2) {
+          relLinks[0].href = 'poem-detail.html?id=' + (poemId === 'zanghuayin' ? 'taohuaxing' : 'zanghuayin');
+          relLinks[1].href = 'poem-detail.html?id=' + (poemId === 'haolege' ? 'haolegejie' : 'haolege');
         }
       }
 
