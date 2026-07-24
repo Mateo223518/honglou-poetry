@@ -712,65 +712,42 @@ body {
           <div class="hl-filter-content">
 
             <!-- 按人物 -->
-            <div class="hl-filter-group">
+            <div class="hl-filter-group" data-filter="author">
               <h2 class="hl-filter-group-title">按人物</h2>
               <div class="hl-chip-row">
-                <button type="button" class="hl-chip is-on">黛玉</button>
-                <button type="button" class="hl-chip">宝钗</button>
-                <button type="button" class="hl-chip">宝玉</button>
-                <button type="button" class="hl-chip">湘云</button>
-                <button type="button" class="hl-chip">探春</button>
-                <button type="button" class="hl-chip">众人唱和</button>
+                <button type="button" class="hl-chip is-on" data-value="">全部</button>
+                <button type="button" class="hl-chip" data-value="黛玉">黛玉</button>
+                <button type="button" class="hl-chip" data-value="宝钗">宝钗</button>
+                <button type="button" class="hl-chip" data-value="宝玉">宝玉</button>
+                <button type="button" class="hl-chip" data-value="道人">跛足道人</button>
               </div>
             </div>
 
             <!-- 按回目 -->
-            <div class="hl-filter-group">
+            <div class="hl-filter-group" data-filter="chapter">
               <h2 class="hl-filter-group-title">按回目</h2>
-              <div class="hl-range-selects">
-                <select class="hl-select" aria-label="起始回目">
-                  <option selected>第一回</option>
-                  <option>第十回</option>
-                  <option>第二十回</option>
-                  <option>第三十回</option>
-                  <option>第五十回</option>
-                </select>
-                <select class="hl-select" aria-label="结束回目">
-                  <option>第九十回</option>
-                  <option>第一百回</option>
-                  <option selected>第一百二十回</option>
-                </select>
-              </div>
-              <p class="hl-range-note">范围：第一回 ~ 第一百二十回</p>
-              <div class="hl-chip-row" style="margin-top:0.625rem;">
-                <button type="button" class="hl-chip">第十四回</button>
-                <button type="button" class="hl-chip is-on">第二十七回</button>
-                <button type="button" class="hl-chip">第三十八回</button>
-                <button type="button" class="hl-chip">第四十五回</button>
-                <button type="button" class="hl-chip">第七十回</button>
+              <div class="hl-chip-row">
+                <button type="button" class="hl-chip is-on" data-value="">全部</button>
+                <button type="button" class="hl-chip" data-value="第一回">第一回</button>
+                <button type="button" class="hl-chip" data-value="第二十七回">第二十七回</button>
+                <button type="button" class="hl-chip" data-value="第二十八回">第二十八回</button>
+                <button type="button" class="hl-chip" data-value="第三十八回">第三十八回</button>
+                <button type="button" class="hl-chip" data-value="第四十五回">第四十五回</button>
+                <button type="button" class="hl-chip" data-value="第七十回">第七十回</button>
+                <button type="button" class="hl-chip" data-value="第七十八回">第七十八回</button>
               </div>
             </div>
 
             <!-- 按类型 -->
-            <div class="hl-filter-group">
+            <div class="hl-filter-group" data-filter="type">
               <h2 class="hl-filter-group-title">按类型</h2>
               <div class="hl-chip-row">
-                <button type="button" class="hl-chip is-on">诗</button>
-                <button type="button" class="hl-chip">词</button>
-                <button type="button" class="hl-chip">曲</button>
-                <button type="button" class="hl-chip">判词</button>
-                <button type="button" class="hl-chip">酒令</button>
-                <button type="button" class="hl-chip">灯谜</button>
-              </div>
-            </div>
-
-            <!-- 主题（可选） -->
-            <div class="hl-filter-group">
-              <h2 class="hl-filter-group-title">主题</h2>
-              <div class="hl-chip-row">
-                <button type="button" class="hl-chip">咏物</button>
-                <button type="button" class="hl-chip">抒怀</button>
-                <button type="button" class="hl-chip">谶语</button>
+                <button type="button" class="hl-chip is-on" data-value="">全部</button>
+                <button type="button" class="hl-chip" data-value="诗">诗</button>
+                <button type="button" class="hl-chip" data-value="词">词</button>
+                <button type="button" class="hl-chip" data-value="曲">曲</button>
+                <button type="button" class="hl-chip" data-value="诔文">诔文</button>
+                <button type="button" class="hl-chip" data-value="俗谚">俗谚</button>
               </div>
             </div>
 
@@ -1382,23 +1359,201 @@ body {
   }
 </style>
 
+    <script src="../assets/poems-data.js"></script>
     <script>
       lucide.createIcons();
-      // 读取 URL 搜索关键词并填入搜索框
+
       (function () {
+        var POEMS = window.HL_POEMS || {};
+        var poemList = Object.keys(POEMS).map(function (id) {
+          var p = POEMS[id];
+          return Object.assign({ id: id }, p);
+        });
+
+        // 筛选状态
+        var state = { keyword: '', author: '', chapter: '', type: '', sort: 'chapter' };
+
+        // 类型映射：筛选标签 → 实际体裁匹配
+        function matchType(poemType, val) {
+          if (!val) return true;
+          var t = poemType || '';
+          if (val === '诗')   return /歌行|七律|五律|绝句|古风/.test(t);
+          if (val === '词')   return /词/.test(t);
+          if (val === '曲')   return /曲/.test(t);
+          if (val === '诔文') return /诔/.test(t);
+          if (val === '俗谚') return /俗|谚/.test(t);
+          return false;
+        }
+
+        // 人物映射
+        function matchAuthor(poemAuthor, val) {
+          if (!val) return true;
+          var a = poemAuthor || '';
+          if (val === '黛玉') return /黛玉|潇湘/.test(a);
+          if (val === '宝钗') return /宝钗/.test(a);
+          if (val === '宝玉') return /宝玉/.test(a);
+          if (val === '道人') return /道人/.test(a);
+          return false;
+        }
+
+        function matchChapter(poemChapter, val) {
+          if (!val) return true;
+          return poemChapter === val;
+        }
+
+        // 关键词匹配（标题、作者、体裁、回目、原文、译文）
+        function matchKeyword(poem, kw) {
+          if (!kw) return true;
+          kw = kw.toLowerCase();
+          if ((poem.title || '').toLowerCase().indexOf(kw) >= 0) return true;
+          if ((poem.author || '').toLowerCase().indexOf(kw) >= 0) return true;
+          if ((poem.type || '').toLowerCase().indexOf(kw) >= 0) return true;
+          if ((poem.chapter || '').toLowerCase().indexOf(kw) >= 0) return true;
+          if ((poem.original || []).join('').toLowerCase().indexOf(kw) >= 0) return true;
+          if ((poem.translation || []).join('').toLowerCase().indexOf(kw) >= 0) return true;
+          return false;
+        }
+
+        // 中文回目数字转阿拉伯数字（用于排序）
+        var numMap = { '一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10 };
+        function chapterOrder(ch) {
+          var m = (ch || '').match(/第(.+)回/);
+          if (!m) return 999;
+          var s = m[1];
+          if (s.indexOf('百') >= 0) {
+            var parts = s.split('百');
+            var bai = parts[0] ? (numMap[parts[0]] || 1) : 1;
+            var rest = 0;
+            if (parts[1]) {
+              if (parts[1].indexOf('十') >= 0) {
+                var sp = parts[1].split('十');
+                rest = (sp[0] ? (numMap[sp[0]] || 1) : 1) * 10 + (sp[1] ? (numMap[sp[1]] || 0) : 0);
+              } else { rest = numMap[parts[1]] || 0; }
+            }
+            return bai * 100 + rest;
+          }
+          if (s.indexOf('十') >= 0) {
+            var sp2 = s.split('十');
+            return (sp2[0] ? (numMap[sp2[0]] || 1) : 1) * 10 + (sp2[1] ? (numMap[sp2[1]] || 0) : 0);
+          }
+          return numMap[s] || 999;
+        }
+
+        // 筛选 + 排序
+        function getFiltered() {
+          var result = poemList.filter(function (p) {
+            return matchKeyword(p, state.keyword)
+              && matchAuthor(p.author, state.author)
+              && matchChapter(p.chapter, state.chapter)
+              && matchType(p.type, state.type);
+          });
+          if (state.sort === 'type') {
+            result.sort(function (a, b) {
+              return (a.type || '').localeCompare(b.type || '') || (a.title || '').localeCompare(b.title || '');
+            });
+          } else {
+            result.sort(function (a, b) { return chapterOrder(a.chapter) - chapterOrder(b.chapter); });
+          }
+          return result;
+        }
+
+        function escapeHtml(s) {
+          return String(s || '').replace(/[&<>"']/g, function (c) {
+            return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
+          });
+        }
+
+        // 渲染单张卡片
+        function renderCard(p) {
+          var line = (p.original && p.original[0]) || '';
+          return '<a class="hl-result-card" href="poem-detail.html?poem=' + p.id + '">' +
+            '<div class="hl-card-main">' +
+              '<div class="hl-card-tags"><span class="hl-seal-tag">' + escapeHtml(p.type) + '</span></div>' +
+              '<h3 class="hl-card-title">' + escapeHtml(p.title) + '</h3>' +
+              '<p class="hl-card-meta">' + escapeHtml(p.author) + ' · ' + escapeHtml(p.chapter) + '</p>' +
+              '<p class="hl-card-line">' + escapeHtml(line) + '</p>' +
+            '</div>' +
+            '<span class="hl-card-link">读全文' +
+              '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+                '<line x1="5" y1="12" x2="19" y2="12"></line>' +
+                '<polyline points="12 5 19 12 12 19"></polyline>' +
+              '</svg>' +
+            '</span>' +
+          '</a>';
+        }
+
+        // 更新结果区
+        function update() {
+          var list = getFiltered();
+          var container = document.querySelector('.hl-result-list');
+          var count = document.querySelector('.hl-results-count');
+          var total = poemList.length;
+
+          if (count) {
+            var kwText = state.keyword ? '搜索「<strong>' + escapeHtml(state.keyword) + '</strong>」 · ' : '';
+            count.innerHTML = kwText + '共 <strong>' + total + '</strong> 首 · 当前显示 <strong>' + list.length + '</strong> 首';
+          }
+
+          if (!container) return;
+
+          if (list.length === 0) {
+            container.innerHTML = '<div style="text-align:center;padding:3rem 1rem;color:hsl(var(--muted-foreground));">' +
+              '<p style="font-size:1.125rem;margin-bottom:0.5rem;">未找到匹配的诗词</p>' +
+              '<p style="font-size:0.875rem;">试试调整筛选条件或更换关键词</p></div>';
+          } else {
+            container.innerHTML = list.map(renderCard).join('');
+          }
+
+          // 数据量小，隐藏分页
+          var pagination = document.querySelector('.hl-pagination');
+          if (pagination) pagination.style.display = 'none';
+        }
+
+        // 绑定筛选 chip 事件（同组单选）
+        document.querySelectorAll('.hl-filter-group[data-filter]').forEach(function (group) {
+          var filterName = group.getAttribute('data-filter');
+          group.querySelectorAll('.hl-chip').forEach(function (chip) {
+            chip.addEventListener('click', function () {
+              group.querySelectorAll('.hl-chip').forEach(function (c) { c.classList.remove('is-on'); });
+              chip.classList.add('is-on');
+              state[filterName] = chip.getAttribute('data-value') || '';
+              update();
+            });
+          });
+        });
+
+        // 绑定排序事件
+        document.querySelectorAll('.hl-sort-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            document.querySelectorAll('.hl-sort-btn').forEach(function (b) { b.classList.remove('is-active'); });
+            btn.classList.add('is-active');
+            state.sort = (btn.textContent.indexOf('类型') >= 0) ? 'type' : 'chapter';
+            update();
+          });
+        });
+
+        // 关键词搜索（实时 + URL 参数）
+        var input = document.querySelector('.hl-search-input');
         var params = new URLSearchParams(window.location.search);
         var q = params.get('q');
-        if (q) {
-          var input = document.querySelector('.hl-search-input');
-          if (input) {
-            input.value = q;
-            // 更新结果计数提示
-            var count = document.querySelector('.hl-results-count');
-            if (count) {
-              count.innerHTML = '搜索「<strong>' + q + '</strong>」 · 共 <strong>36</strong> 首 · 当前显示 <strong>8</strong> 首';
-            }
-          }
+        if (q && input) { input.value = q; state.keyword = q; }
+
+        var form = document.querySelector('.hl-search-row');
+        if (form) {
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (input) { state.keyword = input.value.trim(); update(); }
+          });
         }
+        if (input) {
+          input.addEventListener('input', function () {
+            state.keyword = input.value.trim();
+            update();
+          });
+        }
+
+        // 初始渲染
+        update();
       })();
     </script>
 </body>
