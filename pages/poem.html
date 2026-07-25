@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>葬花吟 — 林黛玉 · 红楼梦诗词检索站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
+    <style id="theme-vars">
+/* ============================================
+   红楼梦诗词检索站 — Brand CSS
+   古典意境设计方向
+   ============================================ */
+
+/* --- Brand Prefix --- */
+:root {
+  --brand-prefix: hlp;
+}
+
+/* --- Brand Primary: 朱红 --- */
+:root {
+  --hlp-primary-50: #fef2f0;
+  --hlp-primary-100: #fde5e0;
+  --hlp-primary-200: #f9cac0;
+  --hlp-primary-300: #f3a495;
+  --hlp-primary-400: #e8765e;
+  --hlp-primary-500: #c45c48;
+  --hlp-primary-600: #a8432f;
+  --hlp-primary-700: #8a3525;
+  --hlp-primary-800: #6e2c1f;
+  --hlp-primary-900: #5a261c;
+  --hlp-primary-950: #321210;
+}
+
+/* --- Neutral: 墨色/宣纸 --- */
+:root {
+  --hlp-neutral-50: #faf7f0;
+  --hlp-neutral-100: #f5f0e6;
+  --hlp-neutral-200: #ebe2d0;
+  --hlp-neutral-300: #d9ccb5;
+  --hlp-neutral-400: #c2ae93;
+  --hlp-neutral-500: #a89079;
+  --hlp-neutral-600: #8d7562;
+  --hlp-neutral-700: #6e5b4e;
+  --hlp-neutral-800: #5a4b42;
+  --hlp-neutral-900: #3d322c;
+  --hlp-neutral-950: #1e1a16;
+}
+
+/* --- Ink: 墨色层次（用于标题/正文） --- */
+:root {
+  --hlp-ink-light: #5a4b42;
+  --hlp-ink: #3d322c;
+  --hlp-ink-dark: #1e1a16;
+}
+
+/* --- State Colors --- */
+:root {
+  --state-success: #5a7a52;
+  --state-warning: #b8860b;
+  --state-error: #a8432f;
+  --state-info: #4a6b8a;
+}
+
+/* --- Semantic Aliases (required by apply-html-head-contract.mjs) --- */
+:root {
+  --hlp-background: var(--hlp-neutral-100);
+  --hlp-foreground: var(--hlp-ink-dark);
+  --hlp-card: var(--hlp-neutral-50);
+  --hlp-card-foreground: var(--hlp-ink);
+  --hlp-popover: var(--hlp-neutral-50);
+  --hlp-popover-foreground: var(--hlp-ink);
+  --hlp-primary: var(--hlp-primary-500);
+  --hlp-primary-foreground: #ffffff;
+  --hlp-muted: var(--hlp-neutral-200);
+  --hlp-muted-foreground: var(--hlp-neutral-600);
+  --hlp-border: var(--hlp-neutral-300);
+  --hlp-input: var(--hlp-neutral-200);
+  --hlp-ring: var(--hlp-primary-400);
+}
+
+/* --- Radius Scale (restrained) --- */
+:root {
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+}
+
+/* --- Typography System --- */
+:root {
+  --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
+  --font-body: "LXGW WenKai", "LXGW WenKai TC", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+  --font-accent: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.625;
+  --leading-relaxed: 1.75;
+  --leading-loose: 2;
+
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.2em;
+}
+
+/* --- Surface & Depth Model --- */
+:root {
+  --shadow-card: 0 1px 3px rgba(30, 26, 22, 0.04);
+  --shadow-elevated: 0 4px 12px rgba(30, 26, 22, 0.05);
+  --border-subtle: 1px solid var(--hlp-neutral-200);
+  --border-default: 1px solid var(--hlp-neutral-300);
+}
+
+/* --- Tailwind Theme Inline (@theme) --- */
+@theme inline {
+  --color-hlp-primary-50: var(--hlp-primary-50);
+  --color-hlp-primary-100: var(--hlp-primary-100);
+  --color-hlp-primary-200: var(--hlp-primary-200);
+  --color-hlp-primary-300: var(--hlp-primary-300);
+  --color-hlp-primary-400: var(--hlp-primary-400);
+  --color-hlp-primary-500: var(--hlp-primary-500);
+  --color-hlp-primary-600: var(--hlp-primary-600);
+  --color-hlp-primary-700: var(--hlp-primary-700);
+  --color-hlp-primary-800: var(--hlp-primary-800);
+  --color-hlp-primary-900: var(--hlp-primary-900);
+  --color-hlp-primary-950: var(--hlp-primary-950);
+  --color-hlp-neutral-50: var(--hlp-neutral-50);
+  --color-hlp-neutral-100: var(--hlp-neutral-100);
+  --color-hlp-neutral-200: var(--hlp-neutral-200);
+  --color-hlp-neutral-300: var(--hlp-neutral-300);
+  --color-hlp-neutral-400: var(--hlp-neutral-400);
+  --color-hlp-neutral-500: var(--hlp-neutral-500);
+  --color-hlp-neutral-600: var(--hlp-neutral-600);
+  --color-hlp-neutral-700: var(--hlp-neutral-700);
+  --color-hlp-neutral-800: var(--hlp-neutral-800);
+  --color-hlp-neutral-900: var(--hlp-neutral-900);
+  --color-hlp-neutral-950: var(--hlp-neutral-950);
+  --color-ink-light: var(--hlp-ink-light);
+  --color-ink: var(--hlp-ink);
+  --color-ink-dark: var(--hlp-ink-dark);
+  --color-state-success: var(--state-success);
+  --color-state-warning: var(--state-warning);
+  --color-state-error: var(--state-error);
+  --color-state-info: var(--state-info);
+  --color-background: var(--hlp-background);
+  --color-foreground: var(--hlp-foreground);
+  --color-card: var(--hlp-card);
+  --color-card-foreground: var(--hlp-card-foreground);
+  --color-popover: var(--hlp-popover);
+  --color-popover-foreground: var(--hlp-popover-foreground);
+  --color-primary: var(--hlp-primary);
+  --color-primary-foreground: var(--hlp-primary-foreground);
+  --color-muted: var(--hlp-muted);
+  --color-muted-foreground: var(--hlp-muted-foreground);
+  --color-border: var(--hlp-border);
+  --color-input: var(--hlp-input);
+  --color-ring: var(--hlp-ring);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-accent: var(--font-accent);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-hlp-primary-50: var(--hlp-primary-50);
+    --color-hlp-primary-100: var(--hlp-primary-100);
+    --color-hlp-primary-200: var(--hlp-primary-200);
+    --color-hlp-primary-300: var(--hlp-primary-300);
+    --color-hlp-primary-400: var(--hlp-primary-400);
+    --color-hlp-primary-500: var(--hlp-primary-500);
+    --color-hlp-primary-600: var(--hlp-primary-600);
+    --color-hlp-primary-700: var(--hlp-primary-700);
+    --color-hlp-primary-800: var(--hlp-primary-800);
+    --color-hlp-primary-900: var(--hlp-primary-900);
+    --color-hlp-primary-950: var(--hlp-primary-950);
+    --color-hlp-neutral-50: var(--hlp-neutral-50);
+    --color-hlp-neutral-100: var(--hlp-neutral-100);
+    --color-hlp-neutral-200: var(--hlp-neutral-200);
+    --color-hlp-neutral-300: var(--hlp-neutral-300);
+    --color-hlp-neutral-400: var(--hlp-neutral-400);
+    --color-hlp-neutral-500: var(--hlp-neutral-500);
+    --color-hlp-neutral-600: var(--hlp-neutral-600);
+    --color-hlp-neutral-700: var(--hlp-neutral-700);
+    --color-hlp-neutral-800: var(--hlp-neutral-800);
+    --color-hlp-neutral-900: var(--hlp-neutral-900);
+    --color-hlp-neutral-950: var(--hlp-neutral-950);
+    --color-ink-light: var(--hlp-ink-light);
+    --color-ink: var(--hlp-ink);
+    --color-ink-dark: var(--hlp-ink-dark);
+    --color-state-success: var(--state-success);
+    --color-state-warning: var(--state-warning);
+    --color-state-error: var(--state-error);
+    --color-state-info: var(--state-info);
+    --color-background: var(--hlp-background);
+    --color-foreground: var(--hlp-foreground);
+    --color-card: var(--hlp-card);
+    --color-card-foreground: var(--hlp-card-foreground);
+    --color-popover: var(--hlp-popover);
+    --color-popover-foreground: var(--hlp-popover-foreground);
+    --color-primary: var(--hlp-primary);
+    --color-primary-foreground: var(--hlp-primary-foreground);
+    --color-muted: var(--hlp-muted);
+    --color-muted-foreground: var(--hlp-muted-foreground);
+    --color-border: var(--hlp-border);
+    --color-input: var(--hlp-input);
+    --color-ring: var(--hlp-ring);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-full: var(--radius-full);
+  }
+  @layer base {
+    body { background: var(--hlp-background); color: var(--hlp-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-hlp-primary-50 { background-color: var(--hlp-primary-50); }
+      .text-hlp-primary-50 { color: var(--hlp-primary-50); }
+      .border-hlp-primary-50 { border-color: var(--hlp-primary-50); }
+      .ring-hlp-primary-50 { --tw-ring-color: var(--hlp-primary-50); }
+      .bg-hlp-primary-100 { background-color: var(--hlp-primary-100); }
+      .text-hlp-primary-100 { color: var(--hlp-primary-100); }
+      .border-hlp-primary-100 { border-color: var(--hlp-primary-100); }
+      .ring-hlp-primary-100 { --tw-ring-color: var(--hlp-primary-100); }
+      .bg-hlp-primary-200 { background-color: var(--hlp-primary-200); }
+      .text-hlp-primary-200 { color: var(--hlp-primary-200); }
+      .border-hlp-primary-200 { border-color: var(--hlp-primary-200); }
+      .ring-hlp-primary-200 { --tw-ring-color: var(--hlp-primary-200); }
+      .bg-hlp-primary-300 { background-color: var(--hlp-primary-300); }
+      .text-hlp-primary-300 { color: var(--hlp-primary-300); }
+      .border-hlp-primary-300 { border-color: var(--hlp-primary-300); }
+      .ring-hlp-primary-300 { --tw-ring-color: var(--hlp-primary-300); }
+      .bg-hlp-primary-400 { background-color: var(--hlp-primary-400); }
+      .text-hlp-primary-400 { color: var(--hlp-primary-400); }
+      .border-hlp-primary-400 { border-color: var(--hlp-primary-400); }
+      .ring-hlp-primary-400 { --tw-ring-color: var(--hlp-primary-400); }
+      .bg-hlp-primary-500 { background-color: var(--hlp-primary-500); }
+      .text-hlp-primary-500 { color: var(--hlp-primary-500); }
+      .border-hlp-primary-500 { border-color: var(--hlp-primary-500); }
+      .ring-hlp-primary-500 { --tw-ring-color: var(--hlp-primary-500); }
+      .bg-hlp-primary-600 { background-color: var(--hlp-primary-600); }
+      .text-hlp-primary-600 { color: var(--hlp-primary-600); }
+      .border-hlp-primary-600 { border-color: var(--hlp-primary-600); }
+      .ring-hlp-primary-600 { --tw-ring-color: var(--hlp-primary-600); }
+      .bg-hlp-primary-700 { background-color: var(--hlp-primary-700); }
+      .text-hlp-primary-700 { color: var(--hlp-primary-700); }
+      .border-hlp-primary-700 { border-color: var(--hlp-primary-700); }
+      .ring-hlp-primary-700 { --tw-ring-color: var(--hlp-primary-700); }
+      .bg-hlp-primary-800 { background-color: var(--hlp-primary-800); }
+      .text-hlp-primary-800 { color: var(--hlp-primary-800); }
+      .border-hlp-primary-800 { border-color: var(--hlp-primary-800); }
+      .ring-hlp-primary-800 { --tw-ring-color: var(--hlp-primary-800); }
+      .bg-hlp-primary-900 { background-color: var(--hlp-primary-900); }
+      .text-hlp-primary-900 { color: var(--hlp-primary-900); }
+      .border-hlp-primary-900 { border-color: var(--hlp-primary-900); }
+      .ring-hlp-primary-900 { --tw-ring-color: var(--hlp-primary-900); }
+      .bg-hlp-primary-950 { background-color: var(--hlp-primary-950); }
+      .text-hlp-primary-950 { color: var(--hlp-primary-950); }
+      .border-hlp-primary-950 { border-color: var(--hlp-primary-950); }
+      .ring-hlp-primary-950 { --tw-ring-color: var(--hlp-primary-950); }
+      .bg-hlp-neutral-50 { background-color: var(--hlp-neutral-50); }
+      .text-hlp-neutral-50 { color: var(--hlp-neutral-50); }
+      .border-hlp-neutral-50 { border-color: var(--hlp-neutral-50); }
+      .ring-hlp-neutral-50 { --tw-ring-color: var(--hlp-neutral-50); }
+      .bg-hlp-neutral-100 { background-color: var(--hlp-neutral-100); }
+      .text-hlp-neutral-100 { color: var(--hlp-neutral-100); }
+      .border-hlp-neutral-100 { border-color: var(--hlp-neutral-100); }
+      .ring-hlp-neutral-100 { --tw-ring-color: var(--hlp-neutral-100); }
+      .bg-hlp-neutral-200 { background-color: var(--hlp-neutral-200); }
+      .text-hlp-neutral-200 { color: var(--hlp-neutral-200); }
+      .border-hlp-neutral-200 { border-color: var(--hlp-neutral-200); }
+      .ring-hlp-neutral-200 { --tw-ring-color: var(--hlp-neutral-200); }
+      .bg-hlp-neutral-300 { background-color: var(--hlp-neutral-300); }
+      .text-hlp-neutral-300 { color: var(--hlp-neutral-300); }
+      .border-hlp-neutral-300 { border-color: var(--hlp-neutral-300); }
+      .ring-hlp-neutral-300 { --tw-ring-color: var(--hlp-neutral-300); }
+      .bg-hlp-neutral-400 { background-color: var(--hlp-neutral-400); }
+      .text-hlp-neutral-400 { color: var(--hlp-neutral-400); }
+      .border-hlp-neutral-400 { border-color: var(--hlp-neutral-400); }
+      .ring-hlp-neutral-400 { --tw-ring-color: var(--hlp-neutral-400); }
+      .bg-hlp-neutral-500 { background-color: var(--hlp-neutral-500); }
+      .text-hlp-neutral-500 { color: var(--hlp-neutral-500); }
+      .border-hlp-neutral-500 { border-color: var(--hlp-neutral-500); }
+      .ring-hlp-neutral-500 { --tw-ring-color: var(--hlp-neutral-500); }
+      .bg-hlp-neutral-600 { background-color: var(--hlp-neutral-600); }
+      .text-hlp-neutral-600 { color: var(--hlp-neutral-600); }
+      .border-hlp-neutral-600 { border-color: var(--hlp-neutral-600); }
+      .ring-hlp-neutral-600 { --tw-ring-color: var(--hlp-neutral-600); }
+      .bg-hlp-neutral-700 { background-color: var(--hlp-neutral-700); }
+      .text-hlp-neutral-700 { color: var(--hlp-neutral-700); }
+      .border-hlp-neutral-700 { border-color: var(--hlp-neutral-700); }
+      .ring-hlp-neutral-700 { --tw-ring-color: var(--hlp-neutral-700); }
+      .bg-hlp-neutral-800 { background-color: var(--hlp-neutral-800); }
+      .text-hlp-neutral-800 { color: var(--hlp-neutral-800); }
+      .border-hlp-neutral-800 { border-color: var(--hlp-neutral-800); }
+      .ring-hlp-neutral-800 { --tw-ring-color: var(--hlp-neutral-800); }
+      .bg-hlp-neutral-900 { background-color: var(--hlp-neutral-900); }
+      .text-hlp-neutral-900 { color: var(--hlp-neutral-900); }
+      .border-hlp-neutral-900 { border-color: var(--hlp-neutral-900); }
+      .ring-hlp-neutral-900 { --tw-ring-color: var(--hlp-neutral-900); }
+      .bg-hlp-neutral-950 { background-color: var(--hlp-neutral-950); }
+      .text-hlp-neutral-950 { color: var(--hlp-neutral-950); }
+      .border-hlp-neutral-950 { border-color: var(--hlp-neutral-950); }
+      .ring-hlp-neutral-950 { --tw-ring-color: var(--hlp-neutral-950); }
+      .bg-ink-light { background-color: var(--hlp-ink-light); }
+      .text-ink-light { color: var(--hlp-ink-light); }
+      .border-ink-light { border-color: var(--hlp-ink-light); }
+      .ring-ink-light { --tw-ring-color: var(--hlp-ink-light); }
+      .bg-ink { background-color: var(--hlp-ink); }
+      .text-ink { color: var(--hlp-ink); }
+      .border-ink { border-color: var(--hlp-ink); }
+      .ring-ink { --tw-ring-color: var(--hlp-ink); }
+      .bg-ink-dark { background-color: var(--hlp-ink-dark); }
+      .text-ink-dark { color: var(--hlp-ink-dark); }
+      .border-ink-dark { border-color: var(--hlp-ink-dark); }
+      .ring-ink-dark { --tw-ring-color: var(--hlp-ink-dark); }
+      .bg-state-success { background-color: var(--state-success); }
+      .text-state-success { color: var(--state-success); }
+      .border-state-success { border-color: var(--state-success); }
+      .ring-state-success { --tw-ring-color: var(--state-success); }
+      .bg-state-warning { background-color: var(--state-warning); }
+      .text-state-warning { color: var(--state-warning); }
+      .border-state-warning { border-color: var(--state-warning); }
+      .ring-state-warning { --tw-ring-color: var(--state-warning); }
+      .bg-state-error { background-color: var(--state-error); }
+      .text-state-error { color: var(--state-error); }
+      .border-state-error { border-color: var(--state-error); }
+      .ring-state-error { --tw-ring-color: var(--state-error); }
+      .bg-state-info { background-color: var(--state-info); }
+      .text-state-info { color: var(--state-info); }
+      .border-state-info { border-color: var(--state-info); }
+      .ring-state-info { --tw-ring-color: var(--state-info); }
+      .bg-background { background-color: var(--hlp-background); }
+      .text-background { color: var(--hlp-background); }
+      .border-background { border-color: var(--hlp-background); }
+      .ring-background { --tw-ring-color: var(--hlp-background); }
+      .bg-foreground { background-color: var(--hlp-foreground); }
+      .text-foreground { color: var(--hlp-foreground); }
+      .border-foreground { border-color: var(--hlp-foreground); }
+      .ring-foreground { --tw-ring-color: var(--hlp-foreground); }
+      .bg-card { background-color: var(--hlp-card); }
+      .text-card { color: var(--hlp-card); }
+      .border-card { border-color: var(--hlp-card); }
+      .ring-card { --tw-ring-color: var(--hlp-card); }
+      .bg-card-foreground { background-color: var(--hlp-card-foreground); }
+      .text-card-foreground { color: var(--hlp-card-foreground); }
+      .border-card-foreground { border-color: var(--hlp-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--hlp-card-foreground); }
+      .bg-popover { background-color: var(--hlp-popover); }
+      .text-popover { color: var(--hlp-popover); }
+      .border-popover { border-color: var(--hlp-popover); }
+      .ring-popover { --tw-ring-color: var(--hlp-popover); }
+      .bg-popover-foreground { background-color: var(--hlp-popover-foreground); }
+      .text-popover-foreground { color: var(--hlp-popover-foreground); }
+      .border-popover-foreground { border-color: var(--hlp-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--hlp-popover-foreground); }
+      .bg-primary { background-color: var(--hlp-primary); }
+      .text-primary { color: var(--hlp-primary); }
+      .border-primary { border-color: var(--hlp-primary); }
+      .ring-primary { --tw-ring-color: var(--hlp-primary); }
+      .bg-primary-foreground { background-color: var(--hlp-primary-foreground); }
+      .text-primary-foreground { color: var(--hlp-primary-foreground); }
+      .border-primary-foreground { border-color: var(--hlp-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--hlp-primary-foreground); }
+      .bg-muted { background-color: var(--hlp-muted); }
+      .text-muted { color: var(--hlp-muted); }
+      .border-muted { border-color: var(--hlp-muted); }
+      .ring-muted { --tw-ring-color: var(--hlp-muted); }
+      .bg-muted-foreground { background-color: var(--hlp-muted-foreground); }
+      .text-muted-foreground { color: var(--hlp-muted-foreground); }
+      .border-muted-foreground { border-color: var(--hlp-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--hlp-muted-foreground); }
+      .bg-border { background-color: var(--hlp-border); }
+      .text-border { color: var(--hlp-border); }
+      .border-border { border-color: var(--hlp-border); }
+      .ring-border { --tw-ring-color: var(--hlp-border); }
+      .bg-input { background-color: var(--hlp-input); }
+      .text-input { color: var(--hlp-input); }
+      .border-input { border-color: var(--hlp-input); }
+      .ring-input { --tw-ring-color: var(--hlp-input); }
+      .bg-ring { background-color: var(--hlp-ring); }
+      .text-ring { color: var(--hlp-ring); }
+      .border-ring { border-color: var(--hlp-ring); }
+      .ring-ring { --tw-ring-color: var(--hlp-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-body antialiased">
+
+    <!-- ==================== 导航栏 ==================== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-hlp-neutral-200 bg-hlp-neutral-50/90 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+            <!-- 左侧：站名 + 印章图标 -->
+            <a href="../index.html" class="flex items-center gap-2 group" data-dom-id="nav-home">
+                <img src="../assets/seal-stamp.jpg" alt="" width="32" height="32" class="rounded-sm opacity-80 group-hover:opacity-100 transition-opacity duration-200">
+                <span class="font-display text-lg text-ink-dark tracking-wider">红楼梦诗词</span>
+            </a>
+            <!-- 右侧：导航链接 -->
+            <div class="flex items-center gap-6">
+                <a href="../index.html" class="text-sm text-hlp-neutral-600 hover:text-hlp-primary-600 transition-colors duration-200" data-dom-id="nav-home">首页</a>
+                <a href="search.html" class="text-sm text-hlp-neutral-600 hover:text-hlp-primary-600 transition-colors duration-200" data-dom-id="nav-search">检索</a>
+                <a href="about.html" class="text-sm text-hlp-neutral-600 hover:text-hlp-primary-600 transition-colors duration-200" data-dom-id="nav-about">说明</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== 主内容区 ==================== -->
+    <main class="pt-14">
+        <div class="max-w-3xl mx-auto px-6">
+
+            <!-- ==================== 面包屑导航 ==================== -->
+            <nav class="pt-6 pb-4 flex items-center gap-2 text-sm font-body">
+                <a href="../index.html" class="text-hlp-neutral-500 hover:text-hlp-primary-600 transition-colors duration-200" data-dom-id="breadcrumb-home">首页</a>
+                <span class="text-hlp-neutral-400">/</span>
+                <a href="search.html" class="text-hlp-neutral-500 hover:text-hlp-primary-600 transition-colors duration-200" data-dom-id="breadcrumb-search">检索</a>
+                <span class="text-hlp-neutral-400">/</span>
+                <span class="text-hlp-neutral-700 font-medium" data-dom-id="breadcrumb-current">葬花吟</span>
+            </nav>
+
+            <!-- ==================== 诗词头部（核心视觉区域） ==================== -->
+            <section class="py-16 md:py-24 flex flex-col items-center text-center">
+                <!-- 类型标签 -->
+                <span class="inline-block px-4 py-1 rounded-full bg-hlp-primary-100 text-hlp-primary-700 text-xs font-body font-medium tracking-wide mb-8">
+                    歌行
+                </span>
+
+                <!-- 诗名 -->
+                <h1 class="font-display text-4xl text-ink-dark tracking-wider leading-tight mb-6">
+                    葬花吟
+                </h1>
+
+                <!-- 作者信息 -->
+                <p class="text-base text-hlp-neutral-600 font-body tracking-wide mb-10">
+                    林黛玉 · 第二十七回
+                </p>
+
+                <!-- 装饰分隔线 -->
+                <div class="flex items-center gap-4 w-full max-w-xs">
+                    <div class="flex-1 h-px bg-hlp-neutral-300"></div>
+                    <span class="w-1.5 h-1.5 rotate-45 bg-hlp-neutral-400 inline-block"></span>
+                    <div class="flex-1 h-px bg-hlp-neutral-300"></div>
+                </div>
+            </section>
+
+            <!-- ==================== 原文区域 ==================== -->
+            <section class="py-12 md:py-20">
+                <div class="max-w-2xl mx-auto text-center">
+                    <div id="poem-content" class="font-display text-lg text-ink-dark leading-loose tracking-wide space-y-6" style="line-height: 2.4;">
+                        <p>花谢花飞花满天，红消香断有谁怜？</p>
+                        <p>游丝软系飘春榭，落絮轻沾扑绣帘。</p>
+                        <p>闺中女儿惜春暮，愁绪满怀无释处。</p>
+                        <p>手把花锄出绣帘，忍踏落花来复去。</p>
+
+                        <!-- 折叠的剩余内容 -->
+                        <div id="poem-collapsed" class="hidden">
+                            <p>柳丝榆荚自芳菲，不管桃飘与李飞；</p>
+                            <p>桃李明年能再发，明年闺中知有谁？</p>
+                            <p>三月香巢已垒成，梁间燕子太无情！</p>
+                            <p>明年花发虽可啄，却不道人去梁空巢也倾。</p>
+                            <p>一年三百六十日，风刀霜剑严相逼；</p>
+                            <p>明媚鲜妍能几时，一朝漂泊难寻觅。</p>
+                            <p>花开易见落难寻，阶前闷杀葬花人；</p>
+                            <p>独倚花锄泪暗洒，洒上空枝见血痕。</p>
+                            <p>杜鹃无语正黄昏，荷锄归去掩重门；</p>
+                            <p>青灯照壁人初睡，冷雨敲窗被未温。</p>
+                            <p>怪奴底事倍伤神，半为怜春半恼春。</p>
+                            <p>怜春忽至恼忽去，至又无言去不闻。</p>
+                            <p>昨宵庭外悲歌发，知是花魂与鸟魂？</p>
+                            <p>花魂鸟魂总难留，鸟自无言花自羞。</p>
+                            <p>愿奴胁下生双翼，随花飞到天尽头。</p>
+                            <p>天尽头，何处有香丘？</p>
+                            <p>未若锦囊收艳骨，一抔净土掩风流。</p>
+                            <p>质本洁来还洁去，强于污淖陷渠沟。</p>
+                            <p>尔今死去侬收葬，未卜侬身何日丧？</p>
+                            <p>侬今葬花人笑痴，他年葬侬知是谁？</p>
+                            <p>试看春残花渐落，便是红颜老死时。</p>
+                            <p>一朝春尽红颜老，花落人亡两不知！</p>
+                        </div>
+                    </div>
+
+                    <!-- 展开全文按钮 -->
+                    <div class="mt-12">
+                        <button
+                            id="btn-expand-full"
+                            data-dom-id="btn-expand-full"
+                            class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-hlp-neutral-300 text-hlp-neutral-600 text-sm font-body hover:border-hlp-primary-400 hover:text-hlp-primary-600 transition-all duration-300 cursor-pointer"
+                            onclick="togglePoem()"
+                        >
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            <span id="expand-text">展开全文</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== 诗词元信息 ==================== -->
+            <section class="py-8 flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6">
+                <!-- 标签组 -->
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <span class="px-3 py-1 rounded-full bg-muted text-muted-foreground text-sm font-body">诗</span>
+                    <span class="px-3 py-1 rounded-full bg-muted text-muted-foreground text-sm font-body">歌行</span>
+                    <span class="px-3 py-1 rounded-full bg-muted text-muted-foreground text-sm font-body">黛玉</span>
+                    <span class="px-3 py-1 rounded-full bg-muted text-muted-foreground text-sm font-body">第二十七回</span>
+                </div>
+
+                <!-- 收藏/分享按钮 -->
+                <div class="flex items-center gap-3">
+                    <button
+                        data-dom-id="btn-favorite"
+                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-hlp-neutral-200 text-hlp-neutral-500 text-sm font-body hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-all duration-200 cursor-pointer"
+                    >
+                        <i data-lucide="heart" class="w-4 h-4"></i>
+                        <span>收藏</span>
+                    </button>
+                    <button
+                        data-dom-id="btn-share"
+                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-hlp-neutral-200 text-hlp-neutral-500 text-sm font-body hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-all duration-200 cursor-pointer"
+                    >
+                        <i data-lucide="share-2" class="w-4 h-4"></i>
+                        <span>分享</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 装饰分隔线 -->
+            <div class="flex items-center gap-4 py-6">
+                <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+                <span class="w-1 h-1 rounded-full bg-hlp-neutral-400 inline-block"></span>
+                <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+            </div>
+
+            <!-- ==================== 注释区域 ==================== -->
+            <section class="py-8">
+                <div class="flex items-center gap-4 mb-10">
+                    <h2 class="font-display text-xl text-ink-dark tracking-wider flex-shrink-0">注释</h2>
+                    <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+                </div>
+
+                <div class="space-y-8 max-w-2xl">
+                    <!-- 注释条目 1 -->
+                    <div class="pl-2">
+                        <p class="font-display text-base text-hlp-primary-600 mb-2">游丝软系飘春榭</p>
+                        <p class="text-base text-ink-light font-body leading-relaxed indent-8">
+                            游丝：春天飘荡在空中的蛛丝。春榭：春日的亭台。软系：轻轻缠结。指春天空中飘荡的游丝缠绕在亭台之间，营造出一种春意阑珊的氛围。
+                        </p>
+                    </div>
+
+                    <!-- 注释条目 2 -->
+                    <div class="pl-2">
+                        <p class="font-display text-base text-hlp-primary-600 mb-2">落絮轻沾扑绣帘</p>
+                        <p class="text-base text-ink-light font-body leading-relaxed indent-8">
+                            落絮：飘落的柳絮。轻沾：轻轻附着。柳絮飘落时轻轻沾挂在绣帘上，又随风扑打帘幕，描写暮春时节细腻的景象。
+                        </p>
+                    </div>
+
+                    <!-- 注释条目 3 -->
+                    <div class="pl-2">
+                        <p class="font-display text-base text-hlp-primary-600 mb-2">风刀霜剑严相逼</p>
+                        <p class="text-base text-ink-light font-body leading-relaxed indent-8">
+                            风刀霜剑：以自然界的严酷比喻环境的逼迫。此处隐喻贾府中各种势力对黛玉的压迫，也暗喻世态炎凉、人情冷暖。
+                        </p>
+                    </div>
+
+                    <!-- 注释条目 4 -->
+                    <div class="pl-2">
+                        <p class="font-display text-base text-hlp-primary-600 mb-2">质本洁来还洁去</p>
+                        <p class="text-base text-ink-light font-body leading-relaxed indent-8">
+                            质本性本纯洁，去时也应保持纯洁。这是黛玉的人生宣言，表达了她不肯与世俗同流合污的高洁志向，也是全诗精神的核心所在。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 装饰分隔线 -->
+            <div class="flex items-center gap-4 py-6">
+                <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+                <span class="w-1 h-1 rounded-full bg-hlp-neutral-400 inline-block"></span>
+                <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+            </div>
+
+            <!-- ==================== 译文区域 ==================== -->
+            <section class="py-8">
+                <div class="flex items-center gap-4 mb-10">
+                    <h2 class="font-display text-xl text-ink-dark tracking-wider flex-shrink-0">译文</h2>
+                    <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+                </div>
+
+                <div class="max-w-2xl font-body text-base text-ink-light leading-relaxed space-y-4 indent-8">
+                    <p>
+                        花儿已经凋谢，花瓣四处飞舞漫天飘散，那褪去的红色和消散的香气，还有谁会来怜惜？春天的游丝柔软地缠绕在亭台之间，飘落的柳絮轻轻沾挂在绣帘上。
+                    </p>
+                    <p>
+                        闺房中的少女叹息春天的迟暮，满腹愁绪无处排解。手里拿着花锄走出绣帘，怎忍心踩踏落花来回走动。
+                    </p>
+                    <p>
+                        柳条和榆钱各自散发着芬芳，却不去管桃花飘零李花纷飞。桃花李花明年还能再开，明年的闺房中还有谁在呢？三月的香巢已经筑好，梁间的燕子却太无情。明年花开时燕子虽能啄食花蕊，却不知道那时人已离去、梁已空空、巢也倾覆了。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 装饰分隔线 -->
+            <div class="flex items-center gap-4 py-6">
+                <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+                <span class="w-1 h-1 rounded-full bg-hlp-neutral-400 inline-block"></span>
+                <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+            </div>
+
+            <!-- ==================== 赏析区域 ==================== -->
+            <section class="py-8">
+                <div class="flex items-center gap-4 mb-10">
+                    <h2 class="font-display text-xl text-ink-dark tracking-wider flex-shrink-0">赏析</h2>
+                    <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+                </div>
+
+                <div class="max-w-2xl font-body text-base text-ink leading-relaxed space-y-6 indent-8">
+                    <p>
+                        《葬花吟》是《红楼梦》中最著名的诗篇之一，出现在第二十七回"滴翠亭杨妃戏彩蝶，埋香冢飞燕泣残红"之中。此诗为林黛玉所吟，是她感叹身世遭遇的全部哀音，也是曹雪芹借以塑造黛玉形象的重要艺术手段。全诗以"花"的意象贯穿始终，将花的命运与人的命运巧妙交织，营造出一种哀婉凄美、深沉悲怆的艺术境界。
+                    </p>
+                    <p>
+                        从艺术手法上看，此诗采用了大量的对仗、叠词和象征手法。起句"花谢花飞花满天"以三个"花"字叠用，营造出花雨纷飞的意象，奠定了全诗感伤的基调。"风刀霜剑严相逼"一句以刀剑喻风雨，将自然力量人格化，暗示了贾府内部的明争暗斗和黛玉所承受的巨大精神压力。而"质本洁来还洁去，强于污淖陷渠沟"两句，则是全诗的灵魂所在，高度概括了黛玉高洁孤傲的性格和宁折不弯的精神。
+                    </p>
+                    <p>
+                        从思想内容上看，此诗不仅是对落花的哀悼，更是黛玉对自己命运的预感和对人生意义的深沉思考。诗中"一朝春尽红颜老，花落人亡两不知"的结语，既是黛玉悲剧命运的诗意写照，也是对整个贾府盛极而衰命运的暗示。诗中流露出的对生命短暂的感伤、对美好事物消逝的痛惜、对世俗污浊的抗拒，都使此诗超越了单纯的伤春之作，而具有了更深层的哲学意蕴和人文关怀。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 装饰分隔线 -->
+            <div class="flex items-center gap-4 py-6">
+                <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+                <span class="w-1 h-1 rounded-full bg-hlp-neutral-400 inline-block"></span>
+                <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+            </div>
+
+            <!-- ==================== 延伸阅读 ==================== -->
+            <section class="py-8 pb-20">
+                <div class="flex items-center gap-4 mb-10">
+                    <h2 class="font-display text-xl text-ink-dark tracking-wider flex-shrink-0">延伸阅读</h2>
+                    <div class="flex-1 h-px bg-hlp-neutral-200"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- 延伸卡片 1 -->
+                    <a href="poem.html?id=qiuchuang" data-dom-id="related-poem-1"
+                       class="group block p-5 rounded-lg border border-hlp-neutral-200 bg-hlp-neutral-50 hover:border-hlp-primary-300 hover:shadow-[var(--shadow-elevated)] transition-all duration-300">
+                        <h3 class="font-display text-base text-ink-dark group-hover:text-hlp-primary-700 transition-colors duration-200 mb-1.5">
+                            秋窗风雨夕
+                        </h3>
+                        <p class="text-sm text-hlp-neutral-600 font-body">
+                            林黛玉 · 第四十五回
+                        </p>
+                    </a>
+
+                    <!-- 延伸卡片 2 -->
+                    <a href="poem?id=taohuaxing" data-dom-id="related-poem-2"
+                       class="group block p-5 rounded-lg border border-hlp-neutral-200 bg-hlp-neutral-50 hover:border-hlp-primary-300 hover:shadow-[var(--shadow-elevated)] transition-all duration-300">
+                        <h3 class="font-display text-base text-ink-dark group-hover:text-hlp-primary-700 transition-colors duration-200 mb-1.5">
+                            桃花行
+                        </h3>
+                        <p class="text-sm text-hlp-neutral-600 font-body">
+                            林黛玉 · 第七十回
+                        </p>
+                    </a>
+
+                    <!-- 延伸卡片 3 -->
+                    <a href="poem?id=tipajue" data-dom-id="related-poem-3"
+                       class="group block p-5 rounded-lg border border-hlp-neutral-200 bg-hlp-neutral-50 hover:border-hlp-primary-300 hover:shadow-[var(--shadow-elevated)] transition-all duration-300">
+                        <h3 class="font-display text-base text-ink-dark group-hover:text-hlp-primary-700 transition-colors duration-200 mb-1.5">
+                            题帕三绝
+                        </h3>
+                        <p class="text-sm text-hlp-neutral-600 font-body">
+                            林黛玉 · 第三十四回
+                        </p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ==================== 返回检索按钮 ==================== -->
+            <div class="pb-16 text-center">
+                <a href="search.html" data-dom-id="back-to-search"
+                   class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-hlp-neutral-300 text-hlp-neutral-600 text-sm font-body hover:border-hlp-primary-400 hover:text-hlp-primary-600 transition-all duration-300">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span>返回检索</span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ==================== 底部 ==================== -->
+    <footer class="border-t border-hlp-neutral-200 py-6">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-xs text-hlp-neutral-500 font-body">红楼梦诗词检索站</p>
+        </div>
+    </footer>
+
+    <!-- ==================== 展开全文交互脚本 ==================== -->
+    <script>
+        function togglePoem() {
+            const collapsed = document.getElementById('poem-collapsed');
+            const expandText = document.getElementById('expand-text');
+            const btn = document.getElementById('btn-expand-full');
+            const icon = btn.querySelector('[data-lucide]');
+
+            if (collapsed.classList.contains('hidden')) {
+                collapsed.classList.remove('hidden');
+                expandText.textContent = '收起全文';
+                if (icon) {
+                    icon.setAttribute('data-lucide', 'chevron-up');
+                }
+            } else {
+                collapsed.classList.add('hidden');
+                expandText.textContent = '展开全文';
+                if (icon) {
+                    icon.setAttribute('data-lucide', 'chevron-down');
+                }
+            }
+            lucide.createIcons();
+        }
+    </script>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

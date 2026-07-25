@@ -1,0 +1,175 @@
+/* ============================================
+   红楼梦诗词检索站 — Brand CSS
+   古典意境设计方向
+   ============================================ */
+
+/* --- Brand Prefix --- */
+:root {
+  --brand-prefix: hlp;
+}
+
+/* --- Brand Primary: 朱红 --- */
+:root {
+  --hlp-primary-50: #fef2f0;
+  --hlp-primary-100: #fde5e0;
+  --hlp-primary-200: #f9cac0;
+  --hlp-primary-300: #f3a495;
+  --hlp-primary-400: #e8765e;
+  --hlp-primary-500: #c45c48;
+  --hlp-primary-600: #a8432f;
+  --hlp-primary-700: #8a3525;
+  --hlp-primary-800: #6e2c1f;
+  --hlp-primary-900: #5a261c;
+  --hlp-primary-950: #321210;
+}
+
+/* --- Neutral: 墨色/宣纸 --- */
+:root {
+  --hlp-neutral-50: #faf7f0;
+  --hlp-neutral-100: #f5f0e6;
+  --hlp-neutral-200: #ebe2d0;
+  --hlp-neutral-300: #d9ccb5;
+  --hlp-neutral-400: #c2ae93;
+  --hlp-neutral-500: #a89079;
+  --hlp-neutral-600: #8d7562;
+  --hlp-neutral-700: #6e5b4e;
+  --hlp-neutral-800: #5a4b42;
+  --hlp-neutral-900: #3d322c;
+  --hlp-neutral-950: #1e1a16;
+}
+
+/* --- Ink: 墨色层次（用于标题/正文） --- */
+:root {
+  --hlp-ink-light: #5a4b42;
+  --hlp-ink: #3d322c;
+  --hlp-ink-dark: #1e1a16;
+}
+
+/* --- State Colors --- */
+:root {
+  --state-success: #5a7a52;
+  --state-warning: #b8860b;
+  --state-error: #a8432f;
+  --state-info: #4a6b8a;
+}
+
+/* --- Semantic Aliases (required by apply-html-head-contract.mjs) --- */
+:root {
+  --hlp-background: var(--hlp-neutral-100);
+  --hlp-foreground: var(--hlp-ink-dark);
+  --hlp-card: var(--hlp-neutral-50);
+  --hlp-card-foreground: var(--hlp-ink);
+  --hlp-popover: var(--hlp-neutral-50);
+  --hlp-popover-foreground: var(--hlp-ink);
+  --hlp-primary: var(--hlp-primary-500);
+  --hlp-primary-foreground: #ffffff;
+  --hlp-muted: var(--hlp-neutral-200);
+  --hlp-muted-foreground: var(--hlp-neutral-600);
+  --hlp-border: var(--hlp-neutral-300);
+  --hlp-input: var(--hlp-neutral-200);
+  --hlp-ring: var(--hlp-primary-400);
+}
+
+/* --- Radius Scale (restrained) --- */
+:root {
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+}
+
+/* --- Typography System --- */
+:root {
+  /* Display / Hero Title — CJK Serif */
+  --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
+  /* Body — LXGW WenKai (Handwritten Classical Feel) */
+  --font-body: "LXGW WenKai", "LXGW WenKai TC", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+  /* Accent / Classical — for seal stamps, classical calligraphy feel */
+  --font-accent: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+
+  /* Type Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Line Heights -- 柔和宽松 */
+  --leading-tight: 1.35;
+  --leading-snug: 1.5;
+  --leading-normal: 1.8;
+  --leading-relaxed: 1.9;
+  --leading-loose: 2.15;
+
+  /* Letter Spacing -- 古典字间距 */
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.12em;
+  --tracking-widest: 0.22em;
+}
+
+/* --- Surface & Depth Model --- */
+:root {
+  /* Static surfaces use border-first, no deep shadows */
+  --shadow-card: 0 1px 3px rgba(30, 26, 22, 0.04);
+  --shadow-elevated: 0 4px 12px rgba(30, 26, 22, 0.05);
+  --border-subtle: 1px solid var(--hlp-neutral-200);
+  --border-default: 1px solid var(--hlp-neutral-300);
+}
+
+/* --- Tailwind Theme Inline (@theme) --- */
+@theme inline {
+  --color-hlp-primary-50: var(--hlp-primary-50);
+  --color-hlp-primary-100: var(--hlp-primary-100);
+  --color-hlp-primary-200: var(--hlp-primary-200);
+  --color-hlp-primary-300: var(--hlp-primary-300);
+  --color-hlp-primary-400: var(--hlp-primary-400);
+  --color-hlp-primary-500: var(--hlp-primary-500);
+  --color-hlp-primary-600: var(--hlp-primary-600);
+  --color-hlp-primary-700: var(--hlp-primary-700);
+  --color-hlp-primary-800: var(--hlp-primary-800);
+  --color-hlp-primary-900: var(--hlp-primary-900);
+  --color-hlp-primary-950: var(--hlp-primary-950);
+  --color-hlp-neutral-50: var(--hlp-neutral-50);
+  --color-hlp-neutral-100: var(--hlp-neutral-100);
+  --color-hlp-neutral-200: var(--hlp-neutral-200);
+  --color-hlp-neutral-300: var(--hlp-neutral-300);
+  --color-hlp-neutral-400: var(--hlp-neutral-400);
+  --color-hlp-neutral-500: var(--hlp-neutral-500);
+  --color-hlp-neutral-600: var(--hlp-neutral-600);
+  --color-hlp-neutral-700: var(--hlp-neutral-700);
+  --color-hlp-neutral-800: var(--hlp-neutral-800);
+  --color-hlp-neutral-900: var(--hlp-neutral-900);
+  --color-hlp-neutral-950: var(--hlp-neutral-950);
+  --color-ink-light: var(--hlp-ink-light);
+  --color-ink: var(--hlp-ink);
+  --color-ink-dark: var(--hlp-ink-dark);
+  --color-state-success: var(--state-success);
+  --color-state-warning: var(--state-warning);
+  --color-state-error: var(--state-error);
+  --color-state-info: var(--state-info);
+  --color-background: var(--hlp-background);
+  --color-foreground: var(--hlp-foreground);
+  --color-card: var(--hlp-card);
+  --color-card-foreground: var(--hlp-card-foreground);
+  --color-popover: var(--hlp-popover);
+  --color-popover-foreground: var(--hlp-popover-foreground);
+  --color-primary: var(--hlp-primary);
+  --color-primary-foreground: var(--hlp-primary-foreground);
+  --color-muted: var(--hlp-muted);
+  --color-muted-foreground: var(--hlp-muted-foreground);
+  --color-border: var(--hlp-border);
+  --color-input: var(--hlp-input);
+  --color-ring: var(--hlp-ring);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-accent: var(--font-accent);
+}

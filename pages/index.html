@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红楼梦诗词检索站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
+    <style id="theme-vars">
+/* ============================================
+   红楼梦诗词检索站 -- Brand CSS
+   古典意境设计方向
+   ============================================ */
+
+/* --- Brand Prefix --- */
+:root {
+  --brand-prefix: hlp;
+}
+
+/* --- Brand Primary: 朱红 --- */
+:root {
+  --hlp-primary-50: #fef2f0;
+  --hlp-primary-100: #fde5e0;
+  --hlp-primary-200: #f9cac0;
+  --hlp-primary-300: #f3a495;
+  --hlp-primary-400: #e8765e;
+  --hlp-primary-500: #c45c48;
+  --hlp-primary-600: #a8432f;
+  --hlp-primary-700: #8a3525;
+  --hlp-primary-800: #6e2c1f;
+  --hlp-primary-900: #5a261c;
+  --hlp-primary-950: #321210;
+}
+
+/* --- Neutral: 墨色/宣纸 --- */
+:root {
+  --hlp-neutral-50: #faf7f0;
+  --hlp-neutral-100: #f5f0e6;
+  --hlp-neutral-200: #ebe2d0;
+  --hlp-neutral-300: #d9ccb5;
+  --hlp-neutral-400: #c2ae93;
+  --hlp-neutral-500: #a89079;
+  --hlp-neutral-600: #8d7562;
+  --hlp-neutral-700: #6e5b4e;
+  --hlp-neutral-800: #5a4b42;
+  --hlp-neutral-900: #3d322c;
+  --hlp-neutral-950: #1e1a16;
+}
+
+/* --- Ink: 墨色层次（用于标题/正文） --- */
+:root {
+  --hlp-ink-light: #5a4b42;
+  --hlp-ink: #3d322c;
+  --hlp-ink-dark: #1e1a16;
+}
+
+/* --- State Colors --- */
+:root {
+  --state-success: #5a7a52;
+  --state-warning: #b8860b;
+  --state-error: #a8432f;
+  --state-info: #4a6b8a;
+}
+
+/* --- Semantic Aliases (required by apply-html-head-contract.mjs) --- */
+:root {
+  --hlp-background: var(--hlp-neutral-100);
+  --hlp-foreground: var(--hlp-ink-dark);
+  --hlp-card: var(--hlp-neutral-50);
+  --hlp-card-foreground: var(--hlp-ink);
+  --hlp-popover: var(--hlp-neutral-50);
+  --hlp-popover-foreground: var(--hlp-ink);
+  --hlp-primary: var(--hlp-primary-500);
+  --hlp-primary-foreground: #ffffff;
+  --hlp-muted: var(--hlp-neutral-200);
+  --hlp-muted-foreground: var(--hlp-neutral-600);
+  --hlp-border: var(--hlp-neutral-300);
+  --hlp-input: var(--hlp-neutral-200);
+  --hlp-ring: var(--hlp-primary-400);
+}
+
+/* --- Radius Scale (restrained) --- */
+:root {
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+}
+
+/* --- Typography System --- */
+:root {
+  /* Display / Hero Title -- CJK Serif */
+  --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
+  /* Body -- LXGW WenKai (Handwritten Classical Feel) */
+  --font-body: "LXGW WenKai", "LXGW WenKai TC", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+  /* Accent / Classical -- for seal stamps, classical calligraphy feel */
+  --font-accent: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+
+  /* Type Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Line Heights -- 柔和宽松 */
+  --leading-tight: 1.35;
+  --leading-snug: 1.5;
+  --leading-normal: 1.8;
+  --leading-relaxed: 1.9;
+  --leading-loose: 2.15;
+
+  /* Letter Spacing -- 古典字间距 */
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.12em;
+  --tracking-widest: 0.22em;
+}
+
+/* --- Surface & Depth Model --- */
+:root {
+  /* Static surfaces use border-first, no deep shadows */
+  --shadow-card: 0 1px 3px rgba(30, 26, 22, 0.04);
+  --shadow-elevated: 0 4px 12px rgba(30, 26, 22, 0.05);
+  --border-subtle: 1px solid var(--hlp-neutral-200);
+  --border-default: 1px solid var(--hlp-neutral-300);
+}
+
+/* --- Tailwind Theme Inline (@theme) --- */
+@theme inline {
+  --color-hlp-primary-50: var(--hlp-primary-50);
+  --color-hlp-primary-100: var(--hlp-primary-100);
+  --color-hlp-primary-200: var(--hlp-primary-200);
+  --color-hlp-primary-300: var(--hlp-primary-300);
+  --color-hlp-primary-400: var(--hlp-primary-400);
+  --color-hlp-primary-500: var(--hlp-primary-500);
+  --color-hlp-primary-600: var(--hlp-primary-600);
+  --color-hlp-primary-700: var(--hlp-primary-700);
+  --color-hlp-primary-800: var(--hlp-primary-800);
+  --color-hlp-primary-900: var(--hlp-primary-900);
+  --color-hlp-primary-950: var(--hlp-primary-950);
+  --color-hlp-neutral-50: var(--hlp-neutral-50);
+  --color-hlp-neutral-100: var(--hlp-neutral-100);
+  --color-hlp-neutral-200: var(--hlp-neutral-200);
+  --color-hlp-neutral-300: var(--hlp-neutral-300);
+  --color-hlp-neutral-400: var(--hlp-neutral-400);
+  --color-hlp-neutral-500: var(--hlp-neutral-500);
+  --color-hlp-neutral-600: var(--hlp-neutral-600);
+  --color-hlp-neutral-700: var(--hlp-neutral-700);
+  --color-hlp-neutral-800: var(--hlp-neutral-800);
+  --color-hlp-neutral-900: var(--hlp-neutral-900);
+  --color-hlp-neutral-950: var(--hlp-neutral-950);
+  --color-ink-light: var(--hlp-ink-light);
+  --color-ink: var(--hlp-ink);
+  --color-ink-dark: var(--hlp-ink-dark);
+  --color-state-success: var(--state-success);
+  --color-state-warning: var(--state-warning);
+  --color-state-error: var(--state-error);
+  --color-state-info: var(--state-info);
+  --color-background: var(--hlp-background);
+  --color-foreground: var(--hlp-foreground);
+  --color-card: var(--hlp-card);
+  --color-card-foreground: var(--hlp-card-foreground);
+  --color-popover: var(--hlp-popover);
+  --color-popover-foreground: var(--hlp-popover-foreground);
+  --color-primary: var(--hlp-primary);
+  --color-primary-foreground: var(--hlp-primary-foreground);
+  --color-muted: var(--hlp-muted);
+  --color-muted-foreground: var(--hlp-muted-foreground);
+  --color-border: var(--hlp-border);
+  --color-input: var(--hlp-input);
+  --color-ring: var(--hlp-ring);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-accent: var(--font-accent);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-hlp-primary-50: var(--hlp-primary-50);
+    --color-hlp-primary-100: var(--hlp-primary-100);
+    --color-hlp-primary-200: var(--hlp-primary-200);
+    --color-hlp-primary-300: var(--hlp-primary-300);
+    --color-hlp-primary-400: var(--hlp-primary-400);
+    --color-hlp-primary-500: var(--hlp-primary-500);
+    --color-hlp-primary-600: var(--hlp-primary-600);
+    --color-hlp-primary-700: var(--hlp-primary-700);
+    --color-hlp-primary-800: var(--hlp-primary-800);
+    --color-hlp-primary-900: var(--hlp-primary-900);
+    --color-hlp-primary-950: var(--hlp-primary-950);
+    --color-hlp-neutral-50: var(--hlp-neutral-50);
+    --color-hlp-neutral-100: var(--hlp-neutral-100);
+    --color-hlp-neutral-200: var(--hlp-neutral-200);
+    --color-hlp-neutral-300: var(--hlp-neutral-300);
+    --color-hlp-neutral-400: var(--hlp-neutral-400);
+    --color-hlp-neutral-500: var(--hlp-neutral-500);
+    --color-hlp-neutral-600: var(--hlp-neutral-600);
+    --color-hlp-neutral-700: var(--hlp-neutral-700);
+    --color-hlp-neutral-800: var(--hlp-neutral-800);
+    --color-hlp-neutral-900: var(--hlp-neutral-900);
+    --color-hlp-neutral-950: var(--hlp-neutral-950);
+    --color-ink-light: var(--hlp-ink-light);
+    --color-ink: var(--hlp-ink);
+    --color-ink-dark: var(--hlp-ink-dark);
+    --color-state-success: var(--state-success);
+    --color-state-warning: var(--state-warning);
+    --color-state-error: var(--state-error);
+    --color-state-info: var(--state-info);
+    --color-background: var(--hlp-background);
+    --color-foreground: var(--hlp-foreground);
+    --color-card: var(--hlp-card);
+    --color-card-foreground: var(--hlp-card-foreground);
+    --color-popover: var(--hlp-popover);
+    --color-popover-foreground: var(--hlp-popover-foreground);
+    --color-primary: var(--hlp-primary);
+    --color-primary-foreground: var(--hlp-primary-foreground);
+    --color-muted: var(--hlp-muted);
+    --color-muted-foreground: var(--hlp-muted-foreground);
+    --color-border: var(--hlp-border);
+    --color-input: var(--hlp-input);
+    --color-ring: var(--hlp-ring);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-full: var(--radius-full);
+  }
+  @layer base {
+    body { background: var(--hlp-background); color: var(--hlp-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-hlp-primary-50 { background-color: var(--hlp-primary-50); }
+      .text-hlp-primary-50 { color: var(--hlp-primary-50); }
+      .border-hlp-primary-50 { border-color: var(--hlp-primary-50); }
+      .ring-hlp-primary-50 { --tw-ring-color: var(--hlp-primary-50); }
+      .bg-hlp-primary-100 { background-color: var(--hlp-primary-100); }
+      .text-hlp-primary-100 { color: var(--hlp-primary-100); }
+      .border-hlp-primary-100 { border-color: var(--hlp-primary-100); }
+      .ring-hlp-primary-100 { --tw-ring-color: var(--hlp-primary-100); }
+      .bg-hlp-primary-200 { background-color: var(--hlp-primary-200); }
+      .text-hlp-primary-200 { color: var(--hlp-primary-200); }
+      .border-hlp-primary-200 { border-color: var(--hlp-primary-200); }
+      .ring-hlp-primary-200 { --tw-ring-color: var(--hlp-primary-200); }
+      .bg-hlp-primary-300 { background-color: var(--hlp-primary-300); }
+      .text-hlp-primary-300 { color: var(--hlp-primary-300); }
+      .border-hlp-primary-300 { border-color: var(--hlp-primary-300); }
+      .ring-hlp-primary-300 { --tw-ring-color: var(--hlp-primary-300); }
+      .bg-hlp-primary-400 { background-color: var(--hlp-primary-400); }
+      .text-hlp-primary-400 { color: var(--hlp-primary-400); }
+      .border-hlp-primary-400 { border-color: var(--hlp-primary-400); }
+      .ring-hlp-primary-400 { --tw-ring-color: var(--hlp-primary-400); }
+      .bg-hlp-primary-500 { background-color: var(--hlp-primary-500); }
+      .text-hlp-primary-500 { color: var(--hlp-primary-500); }
+      .border-hlp-primary-500 { border-color: var(--hlp-primary-500); }
+      .ring-hlp-primary-500 { --tw-ring-color: var(--hlp-primary-500); }
+      .bg-hlp-primary-600 { background-color: var(--hlp-primary-600); }
+      .text-hlp-primary-600 { color: var(--hlp-primary-600); }
+      .border-hlp-primary-600 { border-color: var(--hlp-primary-600); }
+      .ring-hlp-primary-600 { --tw-ring-color: var(--hlp-primary-600); }
+      .bg-hlp-primary-700 { background-color: var(--hlp-primary-700); }
+      .text-hlp-primary-700 { color: var(--hlp-primary-700); }
+      .border-hlp-primary-700 { border-color: var(--hlp-primary-700); }
+      .ring-hlp-primary-700 { --tw-ring-color: var(--hlp-primary-700); }
+      .bg-hlp-primary-800 { background-color: var(--hlp-primary-800); }
+      .text-hlp-primary-800 { color: var(--hlp-primary-800); }
+      .border-hlp-primary-800 { border-color: var(--hlp-primary-800); }
+      .ring-hlp-primary-800 { --tw-ring-color: var(--hlp-primary-800); }
+      .bg-hlp-primary-900 { background-color: var(--hlp-primary-900); }
+      .text-hlp-primary-900 { color: var(--hlp-primary-900); }
+      .border-hlp-primary-900 { border-color: var(--hlp-primary-900); }
+      .ring-hlp-primary-900 { --tw-ring-color: var(--hlp-primary-900); }
+      .bg-hlp-primary-950 { background-color: var(--hlp-primary-950); }
+      .text-hlp-primary-950 { color: var(--hlp-primary-950); }
+      .border-hlp-primary-950 { border-color: var(--hlp-primary-950); }
+      .ring-hlp-primary-950 { --tw-ring-color: var(--hlp-primary-950); }
+      .bg-hlp-neutral-50 { background-color: var(--hlp-neutral-50); }
+      .text-hlp-neutral-50 { color: var(--hlp-neutral-50); }
+      .border-hlp-neutral-50 { border-color: var(--hlp-neutral-50); }
+      .ring-hlp-neutral-50 { --tw-ring-color: var(--hlp-neutral-50); }
+      .bg-hlp-neutral-100 { background-color: var(--hlp-neutral-100); }
+      .text-hlp-neutral-100 { color: var(--hlp-neutral-100); }
+      .border-hlp-neutral-100 { border-color: var(--hlp-neutral-100); }
+      .ring-hlp-neutral-100 { --tw-ring-color: var(--hlp-neutral-100); }
+      .bg-hlp-neutral-200 { background-color: var(--hlp-neutral-200); }
+      .text-hlp-neutral-200 { color: var(--hlp-neutral-200); }
+      .border-hlp-neutral-200 { border-color: var(--hlp-neutral-200); }
+      .ring-hlp-neutral-200 { --tw-ring-color: var(--hlp-neutral-200); }
+      .bg-hlp-neutral-300 { background-color: var(--hlp-neutral-300); }
+      .text-hlp-neutral-300 { color: var(--hlp-neutral-300); }
+      .border-hlp-neutral-300 { border-color: var(--hlp-neutral-300); }
+      .ring-hlp-neutral-300 { --tw-ring-color: var(--hlp-neutral-300); }
+      .bg-hlp-neutral-400 { background-color: var(--hlp-neutral-400); }
+      .text-hlp-neutral-400 { color: var(--hlp-neutral-400); }
+      .border-hlp-neutral-400 { border-color: var(--hlp-neutral-400); }
+      .ring-hlp-neutral-400 { --tw-ring-color: var(--hlp-neutral-400); }
+      .bg-hlp-neutral-500 { background-color: var(--hlp-neutral-500); }
+      .text-hlp-neutral-500 { color: var(--hlp-neutral-500); }
+      .border-hlp-neutral-500 { border-color: var(--hlp-neutral-500); }
+      .ring-hlp-neutral-500 { --tw-ring-color: var(--hlp-neutral-500); }
+      .bg-hlp-neutral-600 { background-color: var(--hlp-neutral-600); }
+      .text-hlp-neutral-600 { color: var(--hlp-neutral-600); }
+      .border-hlp-neutral-600 { border-color: var(--hlp-neutral-600); }
+      .ring-hlp-neutral-600 { --tw-ring-color: var(--hlp-neutral-600); }
+      .bg-hlp-neutral-700 { background-color: var(--hlp-neutral-700); }
+      .text-hlp-neutral-700 { color: var(--hlp-neutral-700); }
+      .border-hlp-neutral-700 { border-color: var(--hlp-neutral-700); }
+      .ring-hlp-neutral-700 { --tw-ring-color: var(--hlp-neutral-700); }
+      .bg-hlp-neutral-800 { background-color: var(--hlp-neutral-800); }
+      .text-hlp-neutral-800 { color: var(--hlp-neutral-800); }
+      .border-hlp-neutral-800 { border-color: var(--hlp-neutral-800); }
+      .ring-hlp-neutral-800 { --tw-ring-color: var(--hlp-neutral-800); }
+      .bg-hlp-neutral-900 { background-color: var(--hlp-neutral-900); }
+      .text-hlp-neutral-900 { color: var(--hlp-neutral-900); }
+      .border-hlp-neutral-900 { border-color: var(--hlp-neutral-900); }
+      .ring-hlp-neutral-900 { --tw-ring-color: var(--hlp-neutral-900); }
+      .bg-hlp-neutral-950 { background-color: var(--hlp-neutral-950); }
+      .text-hlp-neutral-950 { color: var(--hlp-neutral-950); }
+      .border-hlp-neutral-950 { border-color: var(--hlp-neutral-950); }
+      .ring-hlp-neutral-950 { --tw-ring-color: var(--hlp-neutral-950); }
+      .bg-ink-light { background-color: var(--hlp-ink-light); }
+      .text-ink-light { color: var(--hlp-ink-light); }
+      .border-ink-light { border-color: var(--hlp-ink-light); }
+      .ring-ink-light { --tw-ring-color: var(--hlp-ink-light); }
+      .bg-ink { background-color: var(--hlp-ink); }
+      .text-ink { color: var(--hlp-ink); }
+      .border-ink { border-color: var(--hlp-ink); }
+      .ring-ink { --tw-ring-color: var(--hlp-ink); }
+      .bg-ink-dark { background-color: var(--hlp-ink-dark); }
+      .text-ink-dark { color: var(--hlp-ink-dark); }
+      .border-ink-dark { border-color: var(--hlp-ink-dark); }
+      .ring-ink-dark { --tw-ring-color: var(--hlp-ink-dark); }
+      .bg-state-success { background-color: var(--state-success); }
+      .text-state-success { color: var(--state-success); }
+      .border-state-success { border-color: var(--state-success); }
+      .ring-state-success { --tw-ring-color: var(--state-success); }
+      .bg-state-warning { background-color: var(--state-warning); }
+      .text-state-warning { color: var(--state-warning); }
+      .border-state-warning { border-color: var(--state-warning); }
+      .ring-state-warning { --tw-ring-color: var(--state-warning); }
+      .bg-state-error { background-color: var(--state-error); }
+      .text-state-error { color: var(--state-error); }
+      .border-state-error { border-color: var(--state-error); }
+      .ring-state-error { --tw-ring-color: var(--state-error); }
+      .bg-state-info { background-color: var(--state-info); }
+      .text-state-info { color: var(--state-info); }
+      .border-state-info { border-color: var(--state-info); }
+      .ring-state-info { --tw-ring-color: var(--state-info); }
+      .bg-background { background-color: var(--hlp-background); }
+      .text-background { color: var(--hlp-background); }
+      .border-background { border-color: var(--hlp-background); }
+      .ring-background { --tw-ring-color: var(--hlp-background); }
+      .bg-foreground { background-color: var(--hlp-foreground); }
+      .text-foreground { color: var(--hlp-foreground); }
+      .border-foreground { border-color: var(--hlp-foreground); }
+      .ring-foreground { --tw-ring-color: var(--hlp-foreground); }
+      .bg-card { background-color: var(--hlp-card); }
+      .text-card { color: var(--hlp-card); }
+      .border-card { border-color: var(--hlp-card); }
+      .ring-card { --tw-ring-color: var(--hlp-card); }
+      .bg-card-foreground { background-color: var(--hlp-card-foreground); }
+      .text-card-foreground { color: var(--hlp-card-foreground); }
+      .border-card-foreground { border-color: var(--hlp-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--hlp-card-foreground); }
+      .bg-popover { background-color: var(--hlp-popover); }
+      .text-popover { color: var(--hlp-popover); }
+      .border-popover { border-color: var(--hlp-popover); }
+      .ring-popover { --tw-ring-color: var(--hlp-popover); }
+      .bg-popover-foreground { background-color: var(--hlp-popover-foreground); }
+      .text-popover-foreground { color: var(--hlp-popover-foreground); }
+      .border-popover-foreground { border-color: var(--hlp-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--hlp-popover-foreground); }
+      .bg-primary { background-color: var(--hlp-primary); }
+      .text-primary { color: var(--hlp-primary); }
+      .border-primary { border-color: var(--hlp-primary); }
+      .ring-primary { --tw-ring-color: var(--hlp-primary); }
+      .bg-primary-foreground { background-color: var(--hlp-primary-foreground); }
+      .text-primary-foreground { color: var(--hlp-primary-foreground); }
+      .border-primary-foreground { border-color: var(--hlp-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--hlp-primary-foreground); }
+      .bg-muted { background-color: var(--hlp-muted); }
+      .text-muted { color: var(--hlp-muted); }
+      .border-muted { border-color: var(--hlp-muted); }
+      .ring-muted { --tw-ring-color: var(--hlp-muted); }
+      .bg-muted-foreground { background-color: var(--hlp-muted-foreground); }
+      .text-muted-foreground { color: var(--hlp-muted-foreground); }
+      .border-muted-foreground { border-color: var(--hlp-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--hlp-muted-foreground); }
+      .bg-border { background-color: var(--hlp-border); }
+      .text-border { color: var(--hlp-border); }
+      .border-border { border-color: var(--hlp-border); }
+      .ring-border { --tw-ring-color: var(--hlp-border); }
+      .bg-input { background-color: var(--hlp-input); }
+      .text-input { color: var(--hlp-input); }
+      .border-input { border-color: var(--hlp-input); }
+      .ring-input { --tw-ring-color: var(--hlp-input); }
+      .bg-ring { background-color: var(--hlp-ring); }
+      .text-ring { color: var(--hlp-ring); }
+      .border-ring { border-color: var(--hlp-ring); }
+      .ring-ring { --tw-ring-color: var(--hlp-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+      /* Scroll-down arrow animation */
+      @keyframes float-down {
+        0%, 100% { transform: translateY(0); opacity: 0.5; }
+        50% { transform: translateY(10px); opacity: 1; }
+      }
+      .animate-float-down {
+        animation: float-down 2.5s ease-in-out infinite;
+      }
+      /* Falling petals animation */
+      @keyframes petal-fall {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px) rotate(0deg) translateX(0);
+        }
+        10% {
+          opacity: 0.7;
+        }
+        90% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(100vh) rotate(720deg) translateX(var(--drift, 40px));
+        }
+      }
+      @keyframes petal-sway {
+        0%, 100% { transform: translateX(0) rotate(0deg); }
+        25% { transform: translateX(var(--sway-x, 15px)) rotate(90deg); }
+        50% { transform: translateX(0) rotate(180deg); }
+        75% { transform: translateX(calc(var(--sway-x, 15px) * -1)) rotate(270deg); }
+      }
+      .petal {
+        position: absolute;
+        pointer-events: none;
+        z-index: 5;
+        will-change: transform, opacity;
+      }
+      .petal-inner {
+        width: var(--size, 12px);
+        height: var(--size, 12px);
+        border-radius: 50% 0 50% 50%;
+        opacity: var(--petal-opacity, 0.4);
+        animation: petal-sway var(--sway-dur, 4s) ease-in-out infinite;
+      }
+      .petal-anim {
+        animation: petal-fall var(--fall-dur, 12s) linear infinite;
+        animation-delay: var(--delay, 0s);
+      }
+    </style>
+</head>
+<body class="min-h-screen font-body antialiased" style="font-weight: 300; letter-spacing: 0.02em;">
+
+    <!-- ===== 导航栏 ===== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b" style="background: rgba(250, 247, 240, 0.78); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-color: var(--hlp-neutral-200);">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- 左侧站名 -->
+            <a href="index.html" class="font-display text-sm text-hlp-neutral-600 tracking-wider transition-colors duration-200 hover:text-ink-dark" data-dom-id="nav-home">红楼梦诗词检索站</a>
+            <!-- 右侧导航 -->
+            <div class="flex items-center gap-8 font-body text-sm tracking-wide">
+                <a href="index.html" class="text-ink-dark relative pb-0.5 transition-colors duration-200" data-dom-id="nav-home" style="border-bottom: 2px solid var(--hlp-primary-500);">首页</a>
+                <a href="search.html" class="text-hlp-neutral-600 hover:text-ink-dark transition-colors duration-200" data-dom-id="nav-search">检索</a>
+                <a href="about.html" class="text-hlp-neutral-600 hover:text-ink-dark transition-colors duration-200" data-dom-id="nav-about">说明</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== 第一屏 Hero -- 纯氛围 ===== -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- 水墨背景 -->
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('../assets/hero-inkwash.jpg');"></div>
+        <!-- 暖米色渐变覆盖 -- 让背景若隐若现 -->
+        <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(245, 240, 230, 0.80) 0%, rgba(245, 240, 230, 0.88) 40%, rgba(245, 240, 230, 0.94) 100%);"></div>
+
+        <!-- 花瓣飘落容器 -->
+        <div id="petals-container" class="absolute inset-0 overflow-hidden pointer-events-none" style="z-index: 5;"></div>
+
+        <!-- 居中内容 -->
+        <div class="relative z-10 text-center px-6">
+            <!-- 印章图标 64x64 -->
+            <img src="../assets/seal-stamp.jpg" alt="印章" class="w-16 h-16 rounded-lg mx-auto mb-8 opacity-60">
+
+            <!-- 主标题 -->
+            <h1 class="font-display text-5xl text-ink-dark tracking-widest" style="line-height: var(--leading-snug);">
+                红楼梦诗词检索站
+            </h1>
+
+            <!-- 留白 -->
+            <div class="h-12"></div>
+
+            <!-- 名句 -->
+            <p class="font-accent text-lg text-hlp-primary-600 tracking-wide" style="line-height: var(--leading-relaxed);">
+                满纸荒唐言，一把辛酸泪
+            </p>
+
+            <!-- 留白 -->
+            <div class="h-12"></div>
+
+            <!-- "入梦" 按钮 -- border 风格 -->
+            <a href="#search-section"
+               class="inline-block font-display text-sm text-hlp-primary-500 border border-hlp-primary-300 rounded-lg px-10 py-3 tracking-widest transition-all duration-300 hover:bg-hlp-primary-50 hover:border-hlp-primary-400"
+               data-dom-id="hero-enter">
+                入梦
+            </a>
+
+            <!-- 底部下滑提示 -->
+            <div class="mt-20 animate-float-down">
+                <span class="font-body text-sm text-hlp-neutral-500 tracking-wide">下滑探索</span>
+                <span class="text-hlp-neutral-400 ml-1">&darr;</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 第二屏 检索区域 ===== -->
+    <section id="search-section" class="py-28 px-6">
+        <div class="max-w-5xl mx-auto">
+            <!-- 区域标题 -->
+            <h2 class="font-display text-3xl text-ink-dark tracking-wider mb-4 text-center">检索诗词</h2>
+            <p class="text-sm text-hlp-neutral-600 tracking-wide mb-16 text-center font-body">四维联动 &middot; 诗词曲判词酒令灯谜</p>
+
+            <!-- 搜索框 + 按钮 -->
+            <div class="max-w-2xl mx-auto flex items-center gap-3 mb-4">
+                <input
+                    type="text"
+                    placeholder="输入诗句、关键词，如&ldquo;质本洁来还洁去&rdquo;"
+                    class="flex-1 px-6 py-4 rounded-lg text-base font-body bg-card border text-ink placeholder-hlp-neutral-500 focus:outline-none focus:ring-2 focus:ring-hlp-primary-400 transition-shadow duration-200"
+                    style="border-color: var(--hlp-neutral-300); line-height: var(--leading-normal);"
+                >
+                <button
+                    class="px-10 py-4 rounded-lg text-base font-body text-white bg-hlp-primary-500 hover:bg-hlp-primary-600 transition-colors duration-200 whitespace-nowrap cursor-pointer"
+                    data-dom-id="hero-search"
+                >
+                    检索
+                </button>
+            </div>
+            <p class="text-sm text-hlp-neutral-600 tracking-wide font-body text-center mb-20">可按 诗句 &middot; 人物 &middot; 回目 &middot; 体裁 检索</p>
+
+            <!-- 检索方式卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 按人物 -->
+                <div class="rounded-lg p-8 bg-card transition-all duration-300 hover:-translate-y-1 cursor-pointer" style="border: var(--border-subtle); box-shadow: var(--shadow-card);" data-dom-id="entry-character">
+                    <h3 class="font-display text-xl text-ink-dark mb-3">按人物</h3>
+                    <p class="font-body text-sm text-hlp-neutral-600 mb-6" style="line-height: var(--leading-relaxed);">
+                        黛玉 &middot; 宝钗 &middot; 宝玉 &middot; 湘云 &middot; 探春
+                    </p>
+                    <p class="font-body text-sm text-hlp-neutral-500 mb-6" style="line-height: var(--leading-relaxed);">
+                        按吟咏者检索诗词
+                    </p>
+                    <a href="#" class="font-body text-sm text-hlp-primary-600 hover:text-hlp-primary-700 transition-colors duration-200">探索 &rarr;</a>
+                </div>
+
+                <!-- 按回目 -->
+                <div class="rounded-lg p-8 bg-card transition-all duration-300 hover:-translate-y-1 cursor-pointer" style="border: var(--border-subtle); box-shadow: var(--shadow-card);" data-dom-id="entry-chapter">
+                    <h3 class="font-display text-xl text-ink-dark mb-3">按回目</h3>
+                    <p class="font-body text-sm text-hlp-neutral-600 mb-6" style="line-height: var(--leading-relaxed);">
+                        第一回 至 第一百二十回
+                    </p>
+                    <p class="font-body text-sm text-hlp-neutral-500 mb-6" style="line-height: var(--leading-relaxed);">
+                        顺原著顺序浏览诗词
+                    </p>
+                    <a href="#" class="font-body text-sm text-hlp-primary-600 hover:text-hlp-primary-700 transition-colors duration-200">探索 &rarr;</a>
+                </div>
+
+                <!-- 按类型 -->
+                <div class="rounded-lg p-8 bg-card transition-all duration-300 hover:-translate-y-1 cursor-pointer" style="border: var(--border-subtle); box-shadow: var(--shadow-card);" data-dom-id="entry-genre">
+                    <h3 class="font-display text-xl text-ink-dark mb-3">按类型</h3>
+                    <p class="font-body text-sm text-hlp-neutral-600 mb-6" style="line-height: var(--leading-relaxed);">
+                        诗 &middot; 词 &middot; 曲 &middot; 判词 &middot; 酒令 &middot; 灯谜
+                    </p>
+                    <p class="font-body text-sm text-hlp-neutral-500 mb-6" style="line-height: var(--leading-relaxed);">
+                        按体裁筛选分类
+                    </p>
+                    <a href="#" class="font-body text-sm text-hlp-primary-600 hover:text-hlp-primary-700 transition-colors duration-200">探索 &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 第三屏 精选诗词 ===== -->
+    <section class="py-28 px-6">
+        <div class="max-w-5xl mx-auto">
+            <!-- 标题 -->
+            <h2 class="font-display text-3xl text-ink-dark tracking-wider mb-16 text-center">精选诗词</h2>
+
+            <!-- 诗词卡片 2 列网格 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- 1. 葬花吟 -->
+                <div class="rounded-lg p-8 bg-card transition-all duration-300 hover:-translate-y-1" style="border: var(--border-subtle); box-shadow: var(--shadow-card);" data-dom-id="poem-card-1">
+                    <span class="inline-block text-xs font-body px-3 py-1 rounded-full bg-hlp-primary-100 text-hlp-primary-700 mb-4">歌行</span>
+                    <h3 class="font-display text-xl text-ink-dark mb-2">葬花吟</h3>
+                    <p class="font-body text-sm text-hlp-neutral-600 mb-4">黛玉 &middot; 第二十七回</p>
+                    <p class="font-accent text-base text-ink mb-6" style="line-height: var(--leading-loose); font-style: italic;">
+                        质本洁来还洁去，强于污淖陷渠沟。
+                    </p>
+                    <a href="poem.html" class="font-body text-sm text-hlp-primary-600 hover:text-hlp-primary-700 transition-colors duration-200" data-dom-id="poem-1">读全文 &rarr;</a>
+                </div>
+
+                <!-- 2. 芙蓉女儿诔 -->
+                <div class="rounded-lg p-8 bg-card transition-all duration-300 hover:-translate-y-1" style="border: var(--border-subtle); box-shadow: var(--shadow-card);" data-dom-id="poem-card-2">
+                    <span class="inline-block text-xs font-body px-3 py-1 rounded-full bg-hlp-primary-100 text-hlp-primary-700 mb-4">诔文</span>
+                    <h3 class="font-display text-xl text-ink-dark mb-2">芙蓉女儿诔</h3>
+                    <p class="font-body text-sm text-hlp-neutral-600 mb-4">宝玉 &middot; 第七十八回</p>
+                    <p class="font-accent text-base text-ink mb-6" style="line-height: var(--leading-loose); font-style: italic;">
+                        茜纱窗下，我本无缘；黄土垄中，卿何薄命。
+                    </p>
+                    <a href="poem.html" class="font-body text-sm text-hlp-primary-600 hover:text-hlp-primary-700 transition-colors duration-200" data-dom-id="poem-2">读全文 &rarr;</a>
+                </div>
+
+                <!-- 3. 临江仙·柳絮 -->
+                <div class="rounded-lg p-8 bg-card transition-all duration-300 hover:-translate-y-1" style="border: var(--border-subtle); box-shadow: var(--shadow-card);" data-dom-id="poem-card-3">
+                    <span class="inline-block text-xs font-body px-3 py-1 rounded-full bg-hlp-primary-100 text-hlp-primary-700 mb-4">词</span>
+                    <h3 class="font-display text-xl text-ink-dark mb-2">临江仙 &middot; 柳絮</h3>
+                    <p class="font-body text-sm text-hlp-neutral-600 mb-4">宝钗 &middot; 第七十回</p>
+                    <p class="font-accent text-base text-ink mb-6" style="line-height: var(--leading-loose); font-style: italic;">
+                        好风凭借力，送我上青云。
+                    </p>
+                    <a href="poem.html" class="font-body text-sm text-hlp-primary-600 hover:text-hlp-primary-700 transition-colors duration-200" data-dom-id="poem-3">读全文 &rarr;</a>
+                </div>
+
+                <!-- 4. 对菊 -->
+                <div class="rounded-lg p-8 bg-card transition-all duration-300 hover:-translate-y-1" style="border: var(--border-subtle); box-shadow: var(--shadow-card);" data-dom-id="poem-card-4">
+                    <span class="inline-block text-xs font-body px-3 py-1 rounded-full bg-hlp-primary-100 text-hlp-primary-700 mb-4">七律</span>
+                    <h3 class="font-display text-xl text-ink-dark mb-2">对菊</h3>
+                    <p class="font-body text-sm text-hlp-neutral-600 mb-4">湘云 &middot; 第三十八回</p>
+                    <p class="font-accent text-base text-ink mb-6" style="line-height: var(--leading-loose); font-style: italic;">
+                        别圃移来贵比金，一丛浅淡一丛深。
+                    </p>
+                    <a href="poem.html" class="font-body text-sm text-hlp-primary-600 hover:text-hlp-primary-700 transition-colors duration-200" data-dom-id="poem-4">读全文 &rarr;</a>
+                </div>
+
+                <!-- 5. 咏白海棠 -->
+                <div class="rounded-lg p-8 bg-card transition-all duration-300 hover:-translate-y-1" style="border: var(--border-subtle); box-shadow: var(--shadow-card);" data-dom-id="poem-card-5">
+                    <span class="inline-block text-xs font-body px-3 py-1 rounded-full bg-hlp-primary-100 text-hlp-primary-700 mb-4">七律</span>
+                    <h3 class="font-display text-xl text-ink-dark mb-2">咏白海棠</h3>
+                    <p class="font-body text-sm text-hlp-neutral-600 mb-4">探春 &middot; 第三十七回</p>
+                    <p class="font-accent text-base text-ink mb-6" style="line-height: var(--leading-loose); font-style: italic;">
+                        瑶池仙品应羞涩，且作人间白玉堂。
+                    </p>
+                    <a href="poem.html" class="font-body text-sm text-hlp-primary-600 hover:text-hlp-primary-700 transition-colors duration-200" data-dom-id="poem-5">读全文 &rarr;</a>
+                </div>
+
+                <!-- 6. 咏月·其三 -->
+                <div class="rounded-lg p-8 bg-card transition-all duration-300 hover:-translate-y-1" style="border: var(--border-subtle); box-shadow: var(--shadow-card);" data-dom-id="poem-card-6">
+                    <span class="inline-block text-xs font-body px-3 py-1 rounded-full bg-hlp-primary-100 text-hlp-primary-700 mb-4">七律</span>
+                    <h3 class="font-display text-xl text-ink-dark mb-2">咏月 &middot; 其三</h3>
+                    <p class="font-body text-sm text-hlp-neutral-600 mb-4">香菱 &middot; 第四十八回</p>
+                    <p class="font-accent text-base text-ink mb-6" style="line-height: var(--leading-loose); font-style: italic;">
+                        博得嫦娥应借问，缘何不使永团圆。
+                    </p>
+                    <a href="poem.html" class="font-body text-sm text-hlp-primary-600 hover:text-hlp-primary-700 transition-colors duration-200" data-dom-id="poem-6">读全文 &rarr;</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 页脚 ===== -->
+    <footer class="py-12 px-6">
+        <div class="max-w-5xl mx-auto">
+            <!-- 顶部装饰线 -->
+            <div class="mb-10" style="border-top: 1px solid var(--hlp-neutral-300);"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <!-- 收录范围 -->
+                <div>
+                    <h4 class="font-display text-sm text-ink-dark tracking-wider mb-2">收录范围</h4>
+                    <p class="font-body text-sm text-hlp-neutral-600" style="line-height: var(--leading-relaxed);">
+                        130 首
+                    </p>
+                </div>
+                <!-- 所依版本 -->
+                <div>
+                    <h4 class="font-display text-sm text-ink-dark tracking-wider mb-2">所依版本</h4>
+                    <p class="font-body text-sm text-hlp-neutral-600" style="line-height: var(--leading-relaxed);">
+                        庚辰本 &middot; 程高本
+                    </p>
+                </div>
+                <!-- 版权 -->
+                <div>
+                    <h4 class="font-display text-sm text-ink-dark tracking-wider mb-2">关于</h4>
+                    <p class="font-body text-sm text-hlp-neutral-600" style="line-height: var(--leading-relaxed);">
+                        &copy; 红楼梦诗词检索站
+                    </p>
+                </div>
+            </div>
+
+            <!-- 底部装饰线 -->
+            <div class="mt-10" style="border-top: 1px solid var(--hlp-neutral-200);"></div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+    <script>
+    (function() {
+      var container = document.getElementById('petals-container');
+      if (!container) return;
+      var PETAL_COUNT = 15;
+      var colors = [
+        'rgba(196, 92, 72, 0.35)',
+        'rgba(243, 164, 149, 0.4)',
+        'rgba(253, 229, 224, 0.5)',
+        'rgba(168, 67, 47, 0.25)',
+        'rgba(249, 202, 192, 0.35)'
+      ];
+      function createPetal(i) {
+        var el = document.createElement('div');
+        el.className = 'petal petal-anim';
+        var size = 8 + Math.random() * 14;
+        var left = Math.random() * 100;
+        var fallDur = 10 + Math.random() * 14;
+        var swayDur = 3 + Math.random() * 4;
+        var swayX = 10 + Math.random() * 25;
+        var drift = -30 + Math.random() * 60;
+        var delay = Math.random() * fallDur;
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        el.style.cssText = 'left:' + left + '%;top:-20px;';
+        el.style.setProperty('--fall-dur', fallDur + 's');
+        el.style.setProperty('--sway-dur', swayDur + 's');
+        el.style.setProperty('--sway-x', swayX + 'px');
+        el.style.setProperty('--drift', drift + 'px');
+        el.style.setProperty('--delay', '-' + delay + 's');
+        el.style.setProperty('--size', size + 'px');
+        el.style.setProperty('--petal-opacity', '1');
+        var inner = document.createElement('div');
+        inner.className = 'petal-inner';
+        inner.style.backgroundColor = color;
+        el.appendChild(inner);
+        return el;
+      }
+      for (var i = 0; i < PETAL_COUNT; i++) {
+        container.appendChild(createPetal(i));
+      }
+    })();
+    </script>
+</body>
+</html>

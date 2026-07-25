@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检索诗词 — 红楼梦诗词检索站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
+    <style id="theme-vars">
+/* ============================================
+   红楼梦诗词检索站 — Brand CSS
+   古典意境设计方向
+   ============================================ */
+
+/* --- Brand Prefix --- */
+:root {
+  --brand-prefix: hlp;
+}
+
+/* --- Brand Primary: 朱红 --- */
+:root {
+  --hlp-primary-50: #fef2f0;
+  --hlp-primary-100: #fde5e0;
+  --hlp-primary-200: #f9cac0;
+  --hlp-primary-300: #f3a495;
+  --hlp-primary-400: #e8765e;
+  --hlp-primary-500: #c45c48;
+  --hlp-primary-600: #a8432f;
+  --hlp-primary-700: #8a3525;
+  --hlp-primary-800: #6e2c1f;
+  --hlp-primary-900: #5a261c;
+  --hlp-primary-950: #321210;
+}
+
+/* --- Neutral: 墨色/宣纸 --- */
+:root {
+  --hlp-neutral-50: #faf7f0;
+  --hlp-neutral-100: #f5f0e6;
+  --hlp-neutral-200: #ebe2d0;
+  --hlp-neutral-300: #d9ccb5;
+  --hlp-neutral-400: #c2ae93;
+  --hlp-neutral-500: #a89079;
+  --hlp-neutral-600: #8d7562;
+  --hlp-neutral-700: #6e5b4e;
+  --hlp-neutral-800: #5a4b42;
+  --hlp-neutral-900: #3d322c;
+  --hlp-neutral-950: #1e1a16;
+}
+
+/* --- Ink: 墨色层次（用于标题/正文） --- */
+:root {
+  --hlp-ink-light: #5a4b42;
+  --hlp-ink: #3d322c;
+  --hlp-ink-dark: #1e1a16;
+}
+
+/* --- State Colors --- */
+:root {
+  --state-success: #5a7a52;
+  --state-warning: #b8860b;
+  --state-error: #a8432f;
+  --state-info: #4a6b8a;
+}
+
+/* --- Semantic Aliases (required by apply-html-head-contract.mjs) --- */
+:root {
+  --hlp-background: var(--hlp-neutral-100);
+  --hlp-foreground: var(--hlp-ink-dark);
+  --hlp-card: var(--hlp-neutral-50);
+  --hlp-card-foreground: var(--hlp-ink);
+  --hlp-popover: var(--hlp-neutral-50);
+  --hlp-popover-foreground: var(--hlp-ink);
+  --hlp-primary: var(--hlp-primary-500);
+  --hlp-primary-foreground: #ffffff;
+  --hlp-muted: var(--hlp-neutral-200);
+  --hlp-muted-foreground: var(--hlp-neutral-600);
+  --hlp-border: var(--hlp-neutral-300);
+  --hlp-input: var(--hlp-neutral-200);
+  --hlp-ring: var(--hlp-primary-400);
+}
+
+/* --- Radius Scale (restrained) --- */
+:root {
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+}
+
+/* --- Typography System --- */
+:root {
+  /* Display / Hero Title — CJK Serif */
+  --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
+  /* Body -- LXGW WenKai (Handwritten Classical Feel) */
+  --font-body: "LXGW WenKai", "LXGW WenKai TC", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+  /* Accent / Classical — for seal stamps, classical calligraphy feel */
+  --font-accent: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+
+  /* Type Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.625;
+  --leading-relaxed: 1.75;
+  --leading-loose: 2;
+
+  /* Letter Spacing for classical feel */
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.2em;
+}
+
+/* --- Surface & Depth Model --- */
+:root {
+  /* Static surfaces use border-first, no deep shadows */
+  --shadow-card: 0 1px 3px rgba(30, 26, 22, 0.04);
+  --shadow-elevated: 0 4px 12px rgba(30, 26, 22, 0.05);
+  --border-subtle: 1px solid var(--hlp-neutral-200);
+  --border-default: 1px solid var(--hlp-neutral-300);
+}
+
+/* --- Tailwind Theme Inline (@theme) --- */
+@theme inline {
+  --color-hlp-primary-50: var(--hlp-primary-50);
+  --color-hlp-primary-100: var(--hlp-primary-100);
+  --color-hlp-primary-200: var(--hlp-primary-200);
+  --color-hlp-primary-300: var(--hlp-primary-300);
+  --color-hlp-primary-400: var(--hlp-primary-400);
+  --color-hlp-primary-500: var(--hlp-primary-500);
+  --color-hlp-primary-600: var(--hlp-primary-600);
+  --color-hlp-primary-700: var(--hlp-primary-700);
+  --color-hlp-primary-800: var(--hlp-primary-800);
+  --color-hlp-primary-900: var(--hlp-primary-900);
+  --color-hlp-primary-950: var(--hlp-primary-950);
+  --color-hlp-neutral-50: var(--hlp-neutral-50);
+  --color-hlp-neutral-100: var(--hlp-neutral-100);
+  --color-hlp-neutral-200: var(--hlp-neutral-200);
+  --color-hlp-neutral-300: var(--hlp-neutral-300);
+  --color-hlp-neutral-400: var(--hlp-neutral-400);
+  --color-hlp-neutral-500: var(--hlp-neutral-500);
+  --color-hlp-neutral-600: var(--hlp-neutral-600);
+  --color-hlp-neutral-700: var(--hlp-neutral-700);
+  --color-hlp-neutral-800: var(--hlp-neutral-800);
+  --color-hlp-neutral-900: var(--hlp-neutral-900);
+  --color-hlp-neutral-950: var(--hlp-neutral-950);
+  --color-ink-light: var(--hlp-ink-light);
+  --color-ink: var(--hlp-ink);
+  --color-ink-dark: var(--hlp-ink-dark);
+  --color-state-success: var(--state-success);
+  --color-state-warning: var(--state-warning);
+  --color-state-error: var(--state-error);
+  --color-state-info: var(--state-info);
+  --color-background: var(--hlp-background);
+  --color-foreground: var(--hlp-foreground);
+  --color-card: var(--hlp-card);
+  --color-card-foreground: var(--hlp-card-foreground);
+  --color-popover: var(--hlp-popover);
+  --color-popover-foreground: var(--hlp-popover-foreground);
+  --color-primary: var(--hlp-primary);
+  --color-primary-foreground: var(--hlp-primary-foreground);
+  --color-muted: var(--hlp-muted);
+  --color-muted-foreground: var(--hlp-muted-foreground);
+  --color-border: var(--hlp-border);
+  --color-input: var(--hlp-input);
+  --color-ring: var(--hlp-ring);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-accent: var(--font-accent);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-hlp-primary-50: var(--hlp-primary-50);
+    --color-hlp-primary-100: var(--hlp-primary-100);
+    --color-hlp-primary-200: var(--hlp-primary-200);
+    --color-hlp-primary-300: var(--hlp-primary-300);
+    --color-hlp-primary-400: var(--hlp-primary-400);
+    --color-hlp-primary-500: var(--hlp-primary-500);
+    --color-hlp-primary-600: var(--hlp-primary-600);
+    --color-hlp-primary-700: var(--hlp-primary-700);
+    --color-hlp-primary-800: var(--hlp-primary-800);
+    --color-hlp-primary-900: var(--hlp-primary-900);
+    --color-hlp-primary-950: var(--hlp-primary-950);
+    --color-hlp-neutral-50: var(--hlp-neutral-50);
+    --color-hlp-neutral-100: var(--hlp-neutral-100);
+    --color-hlp-neutral-200: var(--hlp-neutral-200);
+    --color-hlp-neutral-300: var(--hlp-neutral-300);
+    --color-hlp-neutral-400: var(--hlp-neutral-400);
+    --color-hlp-neutral-500: var(--hlp-neutral-500);
+    --color-hlp-neutral-600: var(--hlp-neutral-600);
+    --color-hlp-neutral-700: var(--hlp-neutral-700);
+    --color-hlp-neutral-800: var(--hlp-neutral-800);
+    --color-hlp-neutral-900: var(--hlp-neutral-900);
+    --color-hlp-neutral-950: var(--hlp-neutral-950);
+    --color-ink-light: var(--hlp-ink-light);
+    --color-ink: var(--hlp-ink);
+    --color-ink-dark: var(--hlp-ink-dark);
+    --color-state-success: var(--state-success);
+    --color-state-warning: var(--state-warning);
+    --color-state-error: var(--state-error);
+    --color-state-info: var(--state-info);
+    --color-background: var(--hlp-background);
+    --color-foreground: var(--hlp-foreground);
+    --color-card: var(--hlp-card);
+    --color-card-foreground: var(--hlp-card-foreground);
+    --color-popover: var(--hlp-popover);
+    --color-popover-foreground: var(--hlp-popover-foreground);
+    --color-primary: var(--hlp-primary);
+    --color-primary-foreground: var(--hlp-primary-foreground);
+    --color-muted: var(--hlp-muted);
+    --color-muted-foreground: var(--hlp-muted-foreground);
+    --color-border: var(--hlp-border);
+    --color-input: var(--hlp-input);
+    --color-ring: var(--hlp-ring);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-full: var(--radius-full);
+  }
+  @layer base {
+    body { background: var(--hlp-background); color: var(--hlp-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-hlp-primary-50 { background-color: var(--hlp-primary-50); }
+      .text-hlp-primary-50 { color: var(--hlp-primary-50); }
+      .border-hlp-primary-50 { border-color: var(--hlp-primary-50); }
+      .ring-hlp-primary-50 { --tw-ring-color: var(--hlp-primary-50); }
+      .bg-hlp-primary-100 { background-color: var(--hlp-primary-100); }
+      .text-hlp-primary-100 { color: var(--hlp-primary-100); }
+      .border-hlp-primary-100 { border-color: var(--hlp-primary-100); }
+      .ring-hlp-primary-100 { --tw-ring-color: var(--hlp-primary-100); }
+      .bg-hlp-primary-200 { background-color: var(--hlp-primary-200); }
+      .text-hlp-primary-200 { color: var(--hlp-primary-200); }
+      .border-hlp-primary-200 { border-color: var(--hlp-primary-200); }
+      .ring-hlp-primary-200 { --tw-ring-color: var(--hlp-primary-200); }
+      .bg-hlp-primary-300 { background-color: var(--hlp-primary-300); }
+      .text-hlp-primary-300 { color: var(--hlp-primary-300); }
+      .border-hlp-primary-300 { border-color: var(--hlp-primary-300); }
+      .ring-hlp-primary-300 { --tw-ring-color: var(--hlp-primary-300); }
+      .bg-hlp-primary-400 { background-color: var(--hlp-primary-400); }
+      .text-hlp-primary-400 { color: var(--hlp-primary-400); }
+      .border-hlp-primary-400 { border-color: var(--hlp-primary-400); }
+      .ring-hlp-primary-400 { --tw-ring-color: var(--hlp-primary-400); }
+      .bg-hlp-primary-500 { background-color: var(--hlp-primary-500); }
+      .text-hlp-primary-500 { color: var(--hlp-primary-500); }
+      .border-hlp-primary-500 { border-color: var(--hlp-primary-500); }
+      .ring-hlp-primary-500 { --tw-ring-color: var(--hlp-primary-500); }
+      .bg-hlp-primary-600 { background-color: var(--hlp-primary-600); }
+      .text-hlp-primary-600 { color: var(--hlp-primary-600); }
+      .border-hlp-primary-600 { border-color: var(--hlp-primary-600); }
+      .ring-hlp-primary-600 { --tw-ring-color: var(--hlp-primary-600); }
+      .bg-hlp-primary-700 { background-color: var(--hlp-primary-700); }
+      .text-hlp-primary-700 { color: var(--hlp-primary-700); }
+      .border-hlp-primary-700 { border-color: var(--hlp-primary-700); }
+      .ring-hlp-primary-700 { --tw-ring-color: var(--hlp-primary-700); }
+      .bg-hlp-primary-800 { background-color: var(--hlp-primary-800); }
+      .text-hlp-primary-800 { color: var(--hlp-primary-800); }
+      .border-hlp-primary-800 { border-color: var(--hlp-primary-800); }
+      .ring-hlp-primary-800 { --tw-ring-color: var(--hlp-primary-800); }
+      .bg-hlp-primary-900 { background-color: var(--hlp-primary-900); }
+      .text-hlp-primary-900 { color: var(--hlp-primary-900); }
+      .border-hlp-primary-900 { border-color: var(--hlp-primary-900); }
+      .ring-hlp-primary-900 { --tw-ring-color: var(--hlp-primary-900); }
+      .bg-hlp-primary-950 { background-color: var(--hlp-primary-950); }
+      .text-hlp-primary-950 { color: var(--hlp-primary-950); }
+      .border-hlp-primary-950 { border-color: var(--hlp-primary-950); }
+      .ring-hlp-primary-950 { --tw-ring-color: var(--hlp-primary-950); }
+      .bg-hlp-neutral-50 { background-color: var(--hlp-neutral-50); }
+      .text-hlp-neutral-50 { color: var(--hlp-neutral-50); }
+      .border-hlp-neutral-50 { border-color: var(--hlp-neutral-50); }
+      .ring-hlp-neutral-50 { --tw-ring-color: var(--hlp-neutral-50); }
+      .bg-hlp-neutral-100 { background-color: var(--hlp-neutral-100); }
+      .text-hlp-neutral-100 { color: var(--hlp-neutral-100); }
+      .border-hlp-neutral-100 { border-color: var(--hlp-neutral-100); }
+      .ring-hlp-neutral-100 { --tw-ring-color: var(--hlp-neutral-100); }
+      .bg-hlp-neutral-200 { background-color: var(--hlp-neutral-200); }
+      .text-hlp-neutral-200 { color: var(--hlp-neutral-200); }
+      .border-hlp-neutral-200 { border-color: var(--hlp-neutral-200); }
+      .ring-hlp-neutral-200 { --tw-ring-color: var(--hlp-neutral-200); }
+      .bg-hlp-neutral-300 { background-color: var(--hlp-neutral-300); }
+      .text-hlp-neutral-300 { color: var(--hlp-neutral-300); }
+      .border-hlp-neutral-300 { border-color: var(--hlp-neutral-300); }
+      .ring-hlp-neutral-300 { --tw-ring-color: var(--hlp-neutral-300); }
+      .bg-hlp-neutral-400 { background-color: var(--hlp-neutral-400); }
+      .text-hlp-neutral-400 { color: var(--hlp-neutral-400); }
+      .border-hlp-neutral-400 { border-color: var(--hlp-neutral-400); }
+      .ring-hlp-neutral-400 { --tw-ring-color: var(--hlp-neutral-400); }
+      .bg-hlp-neutral-500 { background-color: var(--hlp-neutral-500); }
+      .text-hlp-neutral-500 { color: var(--hlp-neutral-500); }
+      .border-hlp-neutral-500 { border-color: var(--hlp-neutral-500); }
+      .ring-hlp-neutral-500 { --tw-ring-color: var(--hlp-neutral-500); }
+      .bg-hlp-neutral-600 { background-color: var(--hlp-neutral-600); }
+      .text-hlp-neutral-600 { color: var(--hlp-neutral-600); }
+      .border-hlp-neutral-600 { border-color: var(--hlp-neutral-600); }
+      .ring-hlp-neutral-600 { --tw-ring-color: var(--hlp-neutral-600); }
+      .bg-hlp-neutral-700 { background-color: var(--hlp-neutral-700); }
+      .text-hlp-neutral-700 { color: var(--hlp-neutral-700); }
+      .border-hlp-neutral-700 { border-color: var(--hlp-neutral-700); }
+      .ring-hlp-neutral-700 { --tw-ring-color: var(--hlp-neutral-700); }
+      .bg-hlp-neutral-800 { background-color: var(--hlp-neutral-800); }
+      .text-hlp-neutral-800 { color: var(--hlp-neutral-800); }
+      .border-hlp-neutral-800 { border-color: var(--hlp-neutral-800); }
+      .ring-hlp-neutral-800 { --tw-ring-color: var(--hlp-neutral-800); }
+      .bg-hlp-neutral-900 { background-color: var(--hlp-neutral-900); }
+      .text-hlp-neutral-900 { color: var(--hlp-neutral-900); }
+      .border-hlp-neutral-900 { border-color: var(--hlp-neutral-900); }
+      .ring-hlp-neutral-900 { --tw-ring-color: var(--hlp-neutral-900); }
+      .bg-hlp-neutral-950 { background-color: var(--hlp-neutral-950); }
+      .text-hlp-neutral-950 { color: var(--hlp-neutral-950); }
+      .border-hlp-neutral-950 { border-color: var(--hlp-neutral-950); }
+      .ring-hlp-neutral-950 { --tw-ring-color: var(--hlp-neutral-950); }
+      .bg-ink-light { background-color: var(--hlp-ink-light); }
+      .text-ink-light { color: var(--hlp-ink-light); }
+      .border-ink-light { border-color: var(--hlp-ink-light); }
+      .ring-ink-light { --tw-ring-color: var(--hlp-ink-light); }
+      .bg-ink { background-color: var(--hlp-ink); }
+      .text-ink { color: var(--hlp-ink); }
+      .border-ink { border-color: var(--hlp-ink); }
+      .ring-ink { --tw-ring-color: var(--hlp-ink); }
+      .bg-ink-dark { background-color: var(--hlp-ink-dark); }
+      .text-ink-dark { color: var(--hlp-ink-dark); }
+      .border-ink-dark { border-color: var(--hlp-ink-dark); }
+      .ring-ink-dark { --tw-ring-color: var(--hlp-ink-dark); }
+      .bg-state-success { background-color: var(--state-success); }
+      .text-state-success { color: var(--state-success); }
+      .border-state-success { border-color: var(--state-success); }
+      .ring-state-success { --tw-ring-color: var(--state-success); }
+      .bg-state-warning { background-color: var(--state-warning); }
+      .text-state-warning { color: var(--state-warning); }
+      .border-state-warning { border-color: var(--state-warning); }
+      .ring-state-warning { --tw-ring-color: var(--state-warning); }
+      .bg-state-error { background-color: var(--state-error); }
+      .text-state-error { color: var(--state-error); }
+      .border-state-error { border-color: var(--state-error); }
+      .ring-state-error { --tw-ring-color: var(--state-error); }
+      .bg-state-info { background-color: var(--state-info); }
+      .text-state-info { color: var(--state-info); }
+      .border-state-info { border-color: var(--state-info); }
+      .ring-state-info { --tw-ring-color: var(--state-info); }
+      .bg-background { background-color: var(--hlp-background); }
+      .text-background { color: var(--hlp-background); }
+      .border-background { border-color: var(--hlp-background); }
+      .ring-background { --tw-ring-color: var(--hlp-background); }
+      .bg-foreground { background-color: var(--hlp-foreground); }
+      .text-foreground { color: var(--hlp-foreground); }
+      .border-foreground { border-color: var(--hlp-foreground); }
+      .ring-foreground { --tw-ring-color: var(--hlp-foreground); }
+      .bg-card { background-color: var(--hlp-card); }
+      .text-card { color: var(--hlp-card); }
+      .border-card { border-color: var(--hlp-card); }
+      .ring-card { --tw-ring-color: var(--hlp-card); }
+      .bg-card-foreground { background-color: var(--hlp-card-foreground); }
+      .text-card-foreground { color: var(--hlp-card-foreground); }
+      .border-card-foreground { border-color: var(--hlp-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--hlp-card-foreground); }
+      .bg-popover { background-color: var(--hlp-popover); }
+      .text-popover { color: var(--hlp-popover); }
+      .border-popover { border-color: var(--hlp-popover); }
+      .ring-popover { --tw-ring-color: var(--hlp-popover); }
+      .bg-popover-foreground { background-color: var(--hlp-popover-foreground); }
+      .text-popover-foreground { color: var(--hlp-popover-foreground); }
+      .border-popover-foreground { border-color: var(--hlp-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--hlp-popover-foreground); }
+      .bg-primary { background-color: var(--hlp-primary); }
+      .text-primary { color: var(--hlp-primary); }
+      .border-primary { border-color: var(--hlp-primary); }
+      .ring-primary { --tw-ring-color: var(--hlp-primary); }
+      .bg-primary-foreground { background-color: var(--hlp-primary-foreground); }
+      .text-primary-foreground { color: var(--hlp-primary-foreground); }
+      .border-primary-foreground { border-color: var(--hlp-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--hlp-primary-foreground); }
+      .bg-muted { background-color: var(--hlp-muted); }
+      .text-muted { color: var(--hlp-muted); }
+      .border-muted { border-color: var(--hlp-muted); }
+      .ring-muted { --tw-ring-color: var(--hlp-muted); }
+      .bg-muted-foreground { background-color: var(--hlp-muted-foreground); }
+      .text-muted-foreground { color: var(--hlp-muted-foreground); }
+      .border-muted-foreground { border-color: var(--hlp-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--hlp-muted-foreground); }
+      .bg-border { background-color: var(--hlp-border); }
+      .text-border { color: var(--hlp-border); }
+      .border-border { border-color: var(--hlp-border); }
+      .ring-border { --tw-ring-color: var(--hlp-border); }
+      .bg-input { background-color: var(--hlp-input); }
+      .text-input { color: var(--hlp-input); }
+      .border-input { border-color: var(--hlp-input); }
+      .ring-input { --tw-ring-color: var(--hlp-input); }
+      .bg-ring { background-color: var(--hlp-ring); }
+      .text-ring { color: var(--hlp-ring); }
+      .border-ring { border-color: var(--hlp-ring); }
+      .ring-ring { --tw-ring-color: var(--hlp-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
+        <nav class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+            <a href="index.html" class="font-display text-lg text-ink-dark tracking-wider">红楼梦诗词检索站</a>
+            <div class="flex items-center gap-8">
+                <a href="index.html" data-dom-id="nav-home"
+                   class="text-sm text-hlp-neutral-500 hover:text-ink-dark transition-colors duration-200">首页</a>
+                <a href="search.html" data-dom-id="nav-search"
+                   class="text-sm text-ink-dark font-medium relative pb-0.5 after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-[2px] after:bg-hlp-primary-500">检索</a>
+                <a href="about.html" data-dom-id="nav-about"
+                   class="text-sm text-hlp-neutral-500 hover:text-ink-dark transition-colors duration-200">说明</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-14">
+        <!-- 搜索头部 -->
+        <section class="max-w-7xl mx-auto px-6 pt-10 pb-8">
+            <h1 class="font-display text-3xl text-ink-dark tracking-wider mb-2">检索诗词</h1>
+            <p class="text-sm text-hlp-neutral-600 tracking-wide mb-8">四维联动 · 诗词曲判词酒令灯谜</p>
+
+            <!-- 搜索框 -->
+            <div class="flex gap-3 max-w-2xl mb-6">
+                <input
+                    type="text"
+                    placeholder="输入诗名、词句、人物或回目..."
+                    class="flex-1 h-10 px-4 bg-card border border-border rounded-md text-sm text-ink placeholder:text-hlp-neutral-400 focus:outline-none focus:ring-1 focus:ring-hlp-primary-400 focus:border-hlp-primary-400 transition-colors duration-200 font-body"
+                >
+                <button data-dom-id="search-btn"
+                        class="h-10 px-6 bg-hlp-primary-500 text-primary-foreground text-sm font-medium rounded-md hover:bg-hlp-primary-600 active:bg-hlp-primary-700 transition-colors duration-200 flex items-center gap-2 font-body">
+                    <i data-icon="search" class="w-4 h-4"></i>
+                    搜索
+                </button>
+            </div>
+
+            <!-- 结果统计与排序 -->
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-hlp-neutral-600">共 130 首 · 当前显示 130 首</span>
+                <div class="flex items-center gap-1 text-sm">
+                    <button class="px-3 py-1 rounded-sm bg-hlp-primary-100 text-hlp-primary-700 font-medium transition-colors duration-200">按回目</button>
+                    <span class="text-hlp-neutral-400 mx-1">|</span>
+                    <button class="px-3 py-1 rounded-sm text-hlp-neutral-500 hover:text-ink-dark hover:bg-hlp-neutral-100 transition-colors duration-200">按类型</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主内容区：左筛选 + 右结果 -->
+        <div class="max-w-7xl mx-auto px-6 flex gap-8 pb-16">
+
+            <!-- 左侧筛选面板 -->
+            <aside class="hidden lg:block w-[260px] flex-shrink-0">
+                <div class="sticky top-20 space-y-8">
+
+                    <!-- 按人物筛选 -->
+                    <div>
+                        <h2 class="font-display text-sm text-ink-dark tracking-wider mb-3 pb-2 border-b border-border">按人物</h2>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <button class="px-3 py-1 text-sm rounded-sm bg-hlp-primary-500 text-white transition-colors duration-200">全部</button>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">黛玉</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">宝钗</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">宝玉</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">湘云</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">探春</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">元春</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">迎春</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">惜春</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">宝琴</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">香菱</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">李纨</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">邢岫烟</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">贾环</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">贾兰</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">警幻仙子</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">甄士隐</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">曹雪芹</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">癞头和尚</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">贾雨村</button>
+                        </div>
+                    </div>
+
+                    <!-- 按回目筛选 -->
+                    <div>
+                        <h2 class="font-display text-sm text-ink-dark tracking-wider mb-3 pb-2 border-b border-border">按回目</h2>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-3 py-1 text-sm rounded-sm bg-hlp-primary-500 text-white transition-colors duration-200">全部</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第一回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第三回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第四回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第五回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第八回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第十七回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第十八回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第二十二回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第二十五回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第三十七回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第三十八回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第四十八回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第七十回</button>
+                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第七十八回</button>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+            <!-- 右侧结果列表 -->
+            <section class="flex-1 min-w-0 space-y-4">
+
+                <!-- 诗词卡片 1：好了歌 -->
+                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
+                    <div class="flex items-start gap-4">
+                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">俗谚</span>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-display text-lg text-ink-dark mb-1">好了歌</h3>
+                            <p class="text-sm text-hlp-neutral-500 mb-2">跛足道人 · 第一回</p>
+                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">世人都晓神仙好，惟有功名忘不了。古今将相在何方？荒冢一堆草没了。</p>
+                            <a href="#" data-dom-id="result-poem-1"
+                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 诗词卡片 2：好了歌注 -->
+                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
+                    <div class="flex items-start gap-4">
+                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">俗谚</span>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-display text-lg text-ink-dark mb-1">好了歌注</h3>
+                            <p class="text-sm text-hlp-neutral-500 mb-2">甄士隐 · 第一回</p>
+                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">陋室空堂，当年笏满床；衰草枯杨，曾为歌舞场。</p>
+                            <a href="#" data-dom-id="result-poem-2"
+                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 诗词卡片 3：对月寓怀 -->
+                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
+                    <div class="flex items-start gap-4">
+                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">七绝</span>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-display text-lg text-ink-dark mb-1">对月寓怀</h3>
+                            <p class="text-sm text-hlp-neutral-500 mb-2">贾雨村 · 第一回</p>
+                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">未卜三生愿，频添一段愁。闷来时敛额，行去几回头。</p>
+                            <a href="#" data-dom-id="result-poem-3"
+                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 诗词卡片 4：咏白海棠 -->
+                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
+                    <div class="flex items-start gap-4">
+                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">七律</span>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-display text-lg text-ink-dark mb-1">咏白海棠</h3>
+                            <p class="text-sm text-hlp-neutral-500 mb-2">贾探春 · 第三十七回</p>
+                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">斜阳寒草带重门，苔翠盈铺雨后盆。玉是精神难比洁，雪为肌骨易销魂。</p>
+                            <a href="#" data-dom-id="result-poem-4"
+                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 诗词卡片 5：葬花吟 -->
+                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
+                    <div class="flex items-start gap-4">
+                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">歌行</span>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-display text-lg text-ink-dark mb-1">葬花吟</h3>
+                            <p class="text-sm text-hlp-neutral-500 mb-2">林黛玉 · 第二十七回</p>
+                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">花谢花飞花满天，红消香断有谁怜？游丝软系飘春榭，落絮轻沾扑绣帘。</p>
+                            <a href="#" data-dom-id="result-poem-5"
+                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 诗词卡片 6：临江仙·柳絮 -->
+                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
+                    <div class="flex items-start gap-4">
+                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">词</span>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-display text-lg text-ink-dark mb-1">临江仙 · 柳絮</h3>
+                            <p class="text-sm text-hlp-neutral-500 mb-2">薛宝钗 · 第七十回</p>
+                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">白玉堂前春解舞，东风卷得均匀。蜂团蝴蝶阵乱纷纷。</p>
+                            <a href="#" data-dom-id="result-poem-6"
+                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+        </div>
+    </main>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
