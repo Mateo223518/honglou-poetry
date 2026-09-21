@@ -1,635 +1,416 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="light">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>检索诗词 — 红楼梦诗词检索站</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
-    <style id="theme-vars">
-/* ============================================
-   红楼梦诗词检索站 — Brand CSS
-   古典意境设计方向
-   ============================================ */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="检索《红楼梦》诗词曲赋，可按词句、人物、回目与体裁组合筛选。">
+  <title>检索诗词 — 红楼梦诗词检索站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+  <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+  <script src="../assets/poems-data.js"></script>
 
-/* --- Brand Prefix --- */
-:root {
-  --brand-prefix: hlp;
-}
+  <style type="text/tailwindcss">
+    @theme inline {
+      --color-hlp-primary-50: var(--hlp-primary-50);
+      --color-hlp-primary-100: var(--hlp-primary-100);
+      --color-hlp-primary-300: var(--hlp-primary-300);
+      --color-hlp-primary-400: var(--hlp-primary-400);
+      --color-hlp-primary-500: var(--hlp-primary-500);
+      --color-hlp-primary-600: var(--hlp-primary-600);
+      --color-hlp-primary-700: var(--hlp-primary-700);
+      --color-hlp-neutral-50: var(--hlp-neutral-50);
+      --color-hlp-neutral-100: var(--hlp-neutral-100);
+      --color-hlp-neutral-200: var(--hlp-neutral-200);
+      --color-hlp-neutral-300: var(--hlp-neutral-300);
+      --color-ink: var(--hlp-ink);
+      --color-ink-dark: var(--hlp-ink-dark);
+      --font-display: var(--font-display);
+      --font-body: var(--font-body);
+    }
+  </style>
 
-/* --- Brand Primary: 朱红 --- */
-:root {
-  --hlp-primary-50: #fef2f0;
-  --hlp-primary-100: #fde5e0;
-  --hlp-primary-200: #f9cac0;
-  --hlp-primary-300: #f3a495;
-  --hlp-primary-400: #e8765e;
-  --hlp-primary-500: #c45c48;
-  --hlp-primary-600: #a8432f;
-  --hlp-primary-700: #8a3525;
-  --hlp-primary-800: #6e2c1f;
-  --hlp-primary-900: #5a261c;
-  --hlp-primary-950: #321210;
-}
-
-/* --- Neutral: 墨色/宣纸 --- */
-:root {
-  --hlp-neutral-50: #faf7f0;
-  --hlp-neutral-100: #f5f0e6;
-  --hlp-neutral-200: #ebe2d0;
-  --hlp-neutral-300: #d9ccb5;
-  --hlp-neutral-400: #c2ae93;
-  --hlp-neutral-500: #a89079;
-  --hlp-neutral-600: #8d7562;
-  --hlp-neutral-700: #6e5b4e;
-  --hlp-neutral-800: #5a4b42;
-  --hlp-neutral-900: #3d322c;
-  --hlp-neutral-950: #1e1a16;
-}
-
-/* --- Ink: 墨色层次（用于标题/正文） --- */
-:root {
-  --hlp-ink-light: #5a4b42;
-  --hlp-ink: #3d322c;
-  --hlp-ink-dark: #1e1a16;
-}
-
-/* --- State Colors --- */
-:root {
-  --state-success: #5a7a52;
-  --state-warning: #b8860b;
-  --state-error: #a8432f;
-  --state-info: #4a6b8a;
-}
-
-/* --- Semantic Aliases (required by apply-html-head-contract.mjs) --- */
-:root {
-  --hlp-background: var(--hlp-neutral-100);
-  --hlp-foreground: var(--hlp-ink-dark);
-  --hlp-card: var(--hlp-neutral-50);
-  --hlp-card-foreground: var(--hlp-ink);
-  --hlp-popover: var(--hlp-neutral-50);
-  --hlp-popover-foreground: var(--hlp-ink);
-  --hlp-primary: var(--hlp-primary-500);
-  --hlp-primary-foreground: #ffffff;
-  --hlp-muted: var(--hlp-neutral-200);
-  --hlp-muted-foreground: var(--hlp-neutral-600);
-  --hlp-border: var(--hlp-neutral-300);
-  --hlp-input: var(--hlp-neutral-200);
-  --hlp-ring: var(--hlp-primary-400);
-}
-
-/* --- Radius Scale (restrained) --- */
-:root {
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-full: 9999px;
-}
-
-/* --- Typography System --- */
-:root {
-  /* Display / Hero Title — CJK Serif */
-  --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
-  /* Body -- LXGW WenKai (Handwritten Classical Feel) */
-  --font-body: "LXGW WenKai", "LXGW WenKai TC", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
-  /* Accent / Classical — for seal stamps, classical calligraphy feel */
-  --font-accent: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
-
-  /* Type Scale */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
-  --text-5xl: 3rem;
-  --text-6xl: 3.75rem;
-
-  /* Line Heights */
-  --leading-tight: 1.25;
-  --leading-snug: 1.375;
-  --leading-normal: 1.625;
-  --leading-relaxed: 1.75;
-  --leading-loose: 2;
-
-  /* Letter Spacing for classical feel */
-  --tracking-wide: 0.05em;
-  --tracking-wider: 0.1em;
-  --tracking-widest: 0.2em;
-}
-
-/* --- Surface & Depth Model --- */
-:root {
-  /* Static surfaces use border-first, no deep shadows */
-  --shadow-card: 0 1px 3px rgba(30, 26, 22, 0.04);
-  --shadow-elevated: 0 4px 12px rgba(30, 26, 22, 0.05);
-  --border-subtle: 1px solid var(--hlp-neutral-200);
-  --border-default: 1px solid var(--hlp-neutral-300);
-}
-
-/* --- Tailwind Theme Inline (@theme) --- */
-@theme inline {
-  --color-hlp-primary-50: var(--hlp-primary-50);
-  --color-hlp-primary-100: var(--hlp-primary-100);
-  --color-hlp-primary-200: var(--hlp-primary-200);
-  --color-hlp-primary-300: var(--hlp-primary-300);
-  --color-hlp-primary-400: var(--hlp-primary-400);
-  --color-hlp-primary-500: var(--hlp-primary-500);
-  --color-hlp-primary-600: var(--hlp-primary-600);
-  --color-hlp-primary-700: var(--hlp-primary-700);
-  --color-hlp-primary-800: var(--hlp-primary-800);
-  --color-hlp-primary-900: var(--hlp-primary-900);
-  --color-hlp-primary-950: var(--hlp-primary-950);
-  --color-hlp-neutral-50: var(--hlp-neutral-50);
-  --color-hlp-neutral-100: var(--hlp-neutral-100);
-  --color-hlp-neutral-200: var(--hlp-neutral-200);
-  --color-hlp-neutral-300: var(--hlp-neutral-300);
-  --color-hlp-neutral-400: var(--hlp-neutral-400);
-  --color-hlp-neutral-500: var(--hlp-neutral-500);
-  --color-hlp-neutral-600: var(--hlp-neutral-600);
-  --color-hlp-neutral-700: var(--hlp-neutral-700);
-  --color-hlp-neutral-800: var(--hlp-neutral-800);
-  --color-hlp-neutral-900: var(--hlp-neutral-900);
-  --color-hlp-neutral-950: var(--hlp-neutral-950);
-  --color-ink-light: var(--hlp-ink-light);
-  --color-ink: var(--hlp-ink);
-  --color-ink-dark: var(--hlp-ink-dark);
-  --color-state-success: var(--state-success);
-  --color-state-warning: var(--state-warning);
-  --color-state-error: var(--state-error);
-  --color-state-info: var(--state-info);
-  --color-background: var(--hlp-background);
-  --color-foreground: var(--hlp-foreground);
-  --color-card: var(--hlp-card);
-  --color-card-foreground: var(--hlp-card-foreground);
-  --color-popover: var(--hlp-popover);
-  --color-popover-foreground: var(--hlp-popover-foreground);
-  --color-primary: var(--hlp-primary);
-  --color-primary-foreground: var(--hlp-primary-foreground);
-  --color-muted: var(--hlp-muted);
-  --color-muted-foreground: var(--hlp-muted-foreground);
-  --color-border: var(--hlp-border);
-  --color-input: var(--hlp-input);
-  --color-ring: var(--hlp-ring);
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  --radius-full: var(--radius-full);
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-accent: var(--font-accent);
-}
-
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
-    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
-    <style type="text/tailwindcss">
-  @theme inline {
-    --color-hlp-primary-50: var(--hlp-primary-50);
-    --color-hlp-primary-100: var(--hlp-primary-100);
-    --color-hlp-primary-200: var(--hlp-primary-200);
-    --color-hlp-primary-300: var(--hlp-primary-300);
-    --color-hlp-primary-400: var(--hlp-primary-400);
-    --color-hlp-primary-500: var(--hlp-primary-500);
-    --color-hlp-primary-600: var(--hlp-primary-600);
-    --color-hlp-primary-700: var(--hlp-primary-700);
-    --color-hlp-primary-800: var(--hlp-primary-800);
-    --color-hlp-primary-900: var(--hlp-primary-900);
-    --color-hlp-primary-950: var(--hlp-primary-950);
-    --color-hlp-neutral-50: var(--hlp-neutral-50);
-    --color-hlp-neutral-100: var(--hlp-neutral-100);
-    --color-hlp-neutral-200: var(--hlp-neutral-200);
-    --color-hlp-neutral-300: var(--hlp-neutral-300);
-    --color-hlp-neutral-400: var(--hlp-neutral-400);
-    --color-hlp-neutral-500: var(--hlp-neutral-500);
-    --color-hlp-neutral-600: var(--hlp-neutral-600);
-    --color-hlp-neutral-700: var(--hlp-neutral-700);
-    --color-hlp-neutral-800: var(--hlp-neutral-800);
-    --color-hlp-neutral-900: var(--hlp-neutral-900);
-    --color-hlp-neutral-950: var(--hlp-neutral-950);
-    --color-ink-light: var(--hlp-ink-light);
-    --color-ink: var(--hlp-ink);
-    --color-ink-dark: var(--hlp-ink-dark);
-    --color-state-success: var(--state-success);
-    --color-state-warning: var(--state-warning);
-    --color-state-error: var(--state-error);
-    --color-state-info: var(--state-info);
-    --color-background: var(--hlp-background);
-    --color-foreground: var(--hlp-foreground);
-    --color-card: var(--hlp-card);
-    --color-card-foreground: var(--hlp-card-foreground);
-    --color-popover: var(--hlp-popover);
-    --color-popover-foreground: var(--hlp-popover-foreground);
-    --color-primary: var(--hlp-primary);
-    --color-primary-foreground: var(--hlp-primary-foreground);
-    --color-muted: var(--hlp-muted);
-    --color-muted-foreground: var(--hlp-muted-foreground);
-    --color-border: var(--hlp-border);
-    --color-input: var(--hlp-input);
-    --color-ring: var(--hlp-ring);
-    --radius-sm: var(--radius-sm);
-    --radius-md: var(--radius-md);
-    --radius-lg: var(--radius-lg);
-    --radius-full: var(--radius-full);
-  }
-  @layer base {
-    body { background: var(--hlp-background); color: var(--hlp-foreground); }
-    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
-    th { @apply whitespace-nowrap; }
-  }
-    </style>
-    <style id="semantic-token-fallback">
-      .bg-hlp-primary-50 { background-color: var(--hlp-primary-50); }
-      .text-hlp-primary-50 { color: var(--hlp-primary-50); }
-      .border-hlp-primary-50 { border-color: var(--hlp-primary-50); }
-      .ring-hlp-primary-50 { --tw-ring-color: var(--hlp-primary-50); }
-      .bg-hlp-primary-100 { background-color: var(--hlp-primary-100); }
-      .text-hlp-primary-100 { color: var(--hlp-primary-100); }
-      .border-hlp-primary-100 { border-color: var(--hlp-primary-100); }
-      .ring-hlp-primary-100 { --tw-ring-color: var(--hlp-primary-100); }
-      .bg-hlp-primary-200 { background-color: var(--hlp-primary-200); }
-      .text-hlp-primary-200 { color: var(--hlp-primary-200); }
-      .border-hlp-primary-200 { border-color: var(--hlp-primary-200); }
-      .ring-hlp-primary-200 { --tw-ring-color: var(--hlp-primary-200); }
-      .bg-hlp-primary-300 { background-color: var(--hlp-primary-300); }
-      .text-hlp-primary-300 { color: var(--hlp-primary-300); }
-      .border-hlp-primary-300 { border-color: var(--hlp-primary-300); }
-      .ring-hlp-primary-300 { --tw-ring-color: var(--hlp-primary-300); }
-      .bg-hlp-primary-400 { background-color: var(--hlp-primary-400); }
-      .text-hlp-primary-400 { color: var(--hlp-primary-400); }
-      .border-hlp-primary-400 { border-color: var(--hlp-primary-400); }
-      .ring-hlp-primary-400 { --tw-ring-color: var(--hlp-primary-400); }
-      .bg-hlp-primary-500 { background-color: var(--hlp-primary-500); }
-      .text-hlp-primary-500 { color: var(--hlp-primary-500); }
-      .border-hlp-primary-500 { border-color: var(--hlp-primary-500); }
-      .ring-hlp-primary-500 { --tw-ring-color: var(--hlp-primary-500); }
-      .bg-hlp-primary-600 { background-color: var(--hlp-primary-600); }
-      .text-hlp-primary-600 { color: var(--hlp-primary-600); }
-      .border-hlp-primary-600 { border-color: var(--hlp-primary-600); }
-      .ring-hlp-primary-600 { --tw-ring-color: var(--hlp-primary-600); }
-      .bg-hlp-primary-700 { background-color: var(--hlp-primary-700); }
-      .text-hlp-primary-700 { color: var(--hlp-primary-700); }
-      .border-hlp-primary-700 { border-color: var(--hlp-primary-700); }
-      .ring-hlp-primary-700 { --tw-ring-color: var(--hlp-primary-700); }
-      .bg-hlp-primary-800 { background-color: var(--hlp-primary-800); }
-      .text-hlp-primary-800 { color: var(--hlp-primary-800); }
-      .border-hlp-primary-800 { border-color: var(--hlp-primary-800); }
-      .ring-hlp-primary-800 { --tw-ring-color: var(--hlp-primary-800); }
-      .bg-hlp-primary-900 { background-color: var(--hlp-primary-900); }
-      .text-hlp-primary-900 { color: var(--hlp-primary-900); }
-      .border-hlp-primary-900 { border-color: var(--hlp-primary-900); }
-      .ring-hlp-primary-900 { --tw-ring-color: var(--hlp-primary-900); }
-      .bg-hlp-primary-950 { background-color: var(--hlp-primary-950); }
-      .text-hlp-primary-950 { color: var(--hlp-primary-950); }
-      .border-hlp-primary-950 { border-color: var(--hlp-primary-950); }
-      .ring-hlp-primary-950 { --tw-ring-color: var(--hlp-primary-950); }
-      .bg-hlp-neutral-50 { background-color: var(--hlp-neutral-50); }
-      .text-hlp-neutral-50 { color: var(--hlp-neutral-50); }
-      .border-hlp-neutral-50 { border-color: var(--hlp-neutral-50); }
-      .ring-hlp-neutral-50 { --tw-ring-color: var(--hlp-neutral-50); }
-      .bg-hlp-neutral-100 { background-color: var(--hlp-neutral-100); }
-      .text-hlp-neutral-100 { color: var(--hlp-neutral-100); }
-      .border-hlp-neutral-100 { border-color: var(--hlp-neutral-100); }
-      .ring-hlp-neutral-100 { --tw-ring-color: var(--hlp-neutral-100); }
-      .bg-hlp-neutral-200 { background-color: var(--hlp-neutral-200); }
-      .text-hlp-neutral-200 { color: var(--hlp-neutral-200); }
-      .border-hlp-neutral-200 { border-color: var(--hlp-neutral-200); }
-      .ring-hlp-neutral-200 { --tw-ring-color: var(--hlp-neutral-200); }
-      .bg-hlp-neutral-300 { background-color: var(--hlp-neutral-300); }
-      .text-hlp-neutral-300 { color: var(--hlp-neutral-300); }
-      .border-hlp-neutral-300 { border-color: var(--hlp-neutral-300); }
-      .ring-hlp-neutral-300 { --tw-ring-color: var(--hlp-neutral-300); }
-      .bg-hlp-neutral-400 { background-color: var(--hlp-neutral-400); }
-      .text-hlp-neutral-400 { color: var(--hlp-neutral-400); }
-      .border-hlp-neutral-400 { border-color: var(--hlp-neutral-400); }
-      .ring-hlp-neutral-400 { --tw-ring-color: var(--hlp-neutral-400); }
-      .bg-hlp-neutral-500 { background-color: var(--hlp-neutral-500); }
-      .text-hlp-neutral-500 { color: var(--hlp-neutral-500); }
-      .border-hlp-neutral-500 { border-color: var(--hlp-neutral-500); }
-      .ring-hlp-neutral-500 { --tw-ring-color: var(--hlp-neutral-500); }
-      .bg-hlp-neutral-600 { background-color: var(--hlp-neutral-600); }
-      .text-hlp-neutral-600 { color: var(--hlp-neutral-600); }
-      .border-hlp-neutral-600 { border-color: var(--hlp-neutral-600); }
-      .ring-hlp-neutral-600 { --tw-ring-color: var(--hlp-neutral-600); }
-      .bg-hlp-neutral-700 { background-color: var(--hlp-neutral-700); }
-      .text-hlp-neutral-700 { color: var(--hlp-neutral-700); }
-      .border-hlp-neutral-700 { border-color: var(--hlp-neutral-700); }
-      .ring-hlp-neutral-700 { --tw-ring-color: var(--hlp-neutral-700); }
-      .bg-hlp-neutral-800 { background-color: var(--hlp-neutral-800); }
-      .text-hlp-neutral-800 { color: var(--hlp-neutral-800); }
-      .border-hlp-neutral-800 { border-color: var(--hlp-neutral-800); }
-      .ring-hlp-neutral-800 { --tw-ring-color: var(--hlp-neutral-800); }
-      .bg-hlp-neutral-900 { background-color: var(--hlp-neutral-900); }
-      .text-hlp-neutral-900 { color: var(--hlp-neutral-900); }
-      .border-hlp-neutral-900 { border-color: var(--hlp-neutral-900); }
-      .ring-hlp-neutral-900 { --tw-ring-color: var(--hlp-neutral-900); }
-      .bg-hlp-neutral-950 { background-color: var(--hlp-neutral-950); }
-      .text-hlp-neutral-950 { color: var(--hlp-neutral-950); }
-      .border-hlp-neutral-950 { border-color: var(--hlp-neutral-950); }
-      .ring-hlp-neutral-950 { --tw-ring-color: var(--hlp-neutral-950); }
-      .bg-ink-light { background-color: var(--hlp-ink-light); }
-      .text-ink-light { color: var(--hlp-ink-light); }
-      .border-ink-light { border-color: var(--hlp-ink-light); }
-      .ring-ink-light { --tw-ring-color: var(--hlp-ink-light); }
-      .bg-ink { background-color: var(--hlp-ink); }
-      .text-ink { color: var(--hlp-ink); }
-      .border-ink { border-color: var(--hlp-ink); }
-      .ring-ink { --tw-ring-color: var(--hlp-ink); }
-      .bg-ink-dark { background-color: var(--hlp-ink-dark); }
-      .text-ink-dark { color: var(--hlp-ink-dark); }
-      .border-ink-dark { border-color: var(--hlp-ink-dark); }
-      .ring-ink-dark { --tw-ring-color: var(--hlp-ink-dark); }
-      .bg-state-success { background-color: var(--state-success); }
-      .text-state-success { color: var(--state-success); }
-      .border-state-success { border-color: var(--state-success); }
-      .ring-state-success { --tw-ring-color: var(--state-success); }
-      .bg-state-warning { background-color: var(--state-warning); }
-      .text-state-warning { color: var(--state-warning); }
-      .border-state-warning { border-color: var(--state-warning); }
-      .ring-state-warning { --tw-ring-color: var(--state-warning); }
-      .bg-state-error { background-color: var(--state-error); }
-      .text-state-error { color: var(--state-error); }
-      .border-state-error { border-color: var(--state-error); }
-      .ring-state-error { --tw-ring-color: var(--state-error); }
-      .bg-state-info { background-color: var(--state-info); }
-      .text-state-info { color: var(--state-info); }
-      .border-state-info { border-color: var(--state-info); }
-      .ring-state-info { --tw-ring-color: var(--state-info); }
-      .bg-background { background-color: var(--hlp-background); }
-      .text-background { color: var(--hlp-background); }
-      .border-background { border-color: var(--hlp-background); }
-      .ring-background { --tw-ring-color: var(--hlp-background); }
-      .bg-foreground { background-color: var(--hlp-foreground); }
-      .text-foreground { color: var(--hlp-foreground); }
-      .border-foreground { border-color: var(--hlp-foreground); }
-      .ring-foreground { --tw-ring-color: var(--hlp-foreground); }
-      .bg-card { background-color: var(--hlp-card); }
-      .text-card { color: var(--hlp-card); }
-      .border-card { border-color: var(--hlp-card); }
-      .ring-card { --tw-ring-color: var(--hlp-card); }
-      .bg-card-foreground { background-color: var(--hlp-card-foreground); }
-      .text-card-foreground { color: var(--hlp-card-foreground); }
-      .border-card-foreground { border-color: var(--hlp-card-foreground); }
-      .ring-card-foreground { --tw-ring-color: var(--hlp-card-foreground); }
-      .bg-popover { background-color: var(--hlp-popover); }
-      .text-popover { color: var(--hlp-popover); }
-      .border-popover { border-color: var(--hlp-popover); }
-      .ring-popover { --tw-ring-color: var(--hlp-popover); }
-      .bg-popover-foreground { background-color: var(--hlp-popover-foreground); }
-      .text-popover-foreground { color: var(--hlp-popover-foreground); }
-      .border-popover-foreground { border-color: var(--hlp-popover-foreground); }
-      .ring-popover-foreground { --tw-ring-color: var(--hlp-popover-foreground); }
-      .bg-primary { background-color: var(--hlp-primary); }
-      .text-primary { color: var(--hlp-primary); }
-      .border-primary { border-color: var(--hlp-primary); }
-      .ring-primary { --tw-ring-color: var(--hlp-primary); }
-      .bg-primary-foreground { background-color: var(--hlp-primary-foreground); }
-      .text-primary-foreground { color: var(--hlp-primary-foreground); }
-      .border-primary-foreground { border-color: var(--hlp-primary-foreground); }
-      .ring-primary-foreground { --tw-ring-color: var(--hlp-primary-foreground); }
-      .bg-muted { background-color: var(--hlp-muted); }
-      .text-muted { color: var(--hlp-muted); }
-      .border-muted { border-color: var(--hlp-muted); }
-      .ring-muted { --tw-ring-color: var(--hlp-muted); }
-      .bg-muted-foreground { background-color: var(--hlp-muted-foreground); }
-      .text-muted-foreground { color: var(--hlp-muted-foreground); }
-      .border-muted-foreground { border-color: var(--hlp-muted-foreground); }
-      .ring-muted-foreground { --tw-ring-color: var(--hlp-muted-foreground); }
-      .bg-border { background-color: var(--hlp-border); }
-      .text-border { color: var(--hlp-border); }
-      .border-border { border-color: var(--hlp-border); }
-      .ring-border { --tw-ring-color: var(--hlp-border); }
-      .bg-input { background-color: var(--hlp-input); }
-      .text-input { color: var(--hlp-input); }
-      .border-input { border-color: var(--hlp-input); }
-      .ring-input { --tw-ring-color: var(--hlp-input); }
-      .bg-ring { background-color: var(--hlp-ring); }
-      .text-ring { color: var(--hlp-ring); }
-      .border-ring { border-color: var(--hlp-ring); }
-      .ring-ring { --tw-ring-color: var(--hlp-ring); }
-    </style>
-    <style>
-      .no-scrollbar::-webkit-scrollbar { display: none; }
-      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      [data-icon] {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        -webkit-mask-size: contain;
-        mask-size: contain;
-        -webkit-mask-repeat: no-repeat;
-        mask-repeat: no-repeat;
-        -webkit-mask-position: center;
-        mask-position: center;
-        background-color: currentColor;
-      }
-    </style>
+  <style>
+    :root {
+      --hlp-primary-50: #fdf1ef;
+      --hlp-primary-100: #f8dfda;
+      --hlp-primary-200: #edc1b9;
+      --hlp-primary-300: #dfa095;
+      --hlp-primary-400: #c96356;
+      --hlp-primary-500: #b0473a;
+      --hlp-primary-600: #92372f;
+      --hlp-primary-700: #772f29;
+      --hlp-primary-800: #612823;
+      --hlp-primary-900: #4f231f;
+      --hlp-neutral-50: #faf7f0;
+      --hlp-neutral-100: #f5f0e6;
+      --hlp-neutral-200: #ebe2d0;
+      --hlp-neutral-300: #d9ccb5;
+      --hlp-neutral-400: #c2ae93;
+      --hlp-neutral-500: #a89079;
+      --hlp-neutral-600: #8d7562;
+      --hlp-neutral-700: #6e5b4e;
+      --hlp-neutral-800: #5a4b42;
+      --hlp-neutral-900: #3d322c;
+      --hlp-neutral-950: #1e1a16;
+      --hlp-ink-light: #5a4b42;
+      --hlp-ink: #3d322c;
+      --hlp-ink-dark: #1e1a16;
+      --hlp-card: rgba(250,247,240,.88);
+      --hlp-border: var(--hlp-neutral-300);
+      --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+      --font-body: "LXGW WenKai", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      --font-calligraphy: "Ma Shan Zheng", "Noto Serif SC", serif;
+      --font-running: "Zhi Mang Xing", "LXGW WenKai", serif;
+      --hlp-page: min(1180px, calc(100% - 3rem));
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { margin: 0; min-width: 320px; overflow-x: hidden; color: var(--hlp-ink-dark); background: transparent; font-family: var(--font-body); font-size: .94rem; font-weight: 400; letter-spacing: .01em; position: relative; isolation: isolate; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    [hidden] { display: none !important; }
+    :where(a, button, input, [tabindex]):focus-visible { outline: 2px solid var(--hlp-primary-400) !important; outline-offset: 2px; }
+    .page-shell { width: var(--hlp-page); margin-inline: auto; }
+    .site-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: var(--hlp-neutral-100); }
+    .paper-grain { position: absolute; inset: 0; opacity: .05; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.72'/%3E%3C/svg%3E"); }
+    .ink-bloom { position: absolute; inset: -20%; background: radial-gradient(circle at 10% 20%, rgba(90,75,66,.08), transparent 30%), radial-gradient(circle at 90% 70%, rgba(176,71,58,.055), transparent 28%), linear-gradient(135deg, rgba(250,247,240,.2), rgba(235,226,208,.35)); }
+    .site-nav { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(217,204,181,.8); background: rgba(250,247,240,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .nav-inner { height: 68px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { font: 600 .9rem/1.5 var(--font-display); letter-spacing: .12em; }
+    .nav-links { display: flex; gap: clamp(1.1rem,3vw,2.4rem); color: var(--hlp-neutral-700); }
+    .nav-links a { position: relative; padding: .45rem 0; }
+    .nav-links a::after { content: ""; position: absolute; inset: auto 0 0; height: 1px; background: var(--hlp-primary-500); transform: scaleX(0); transform-origin: right; transition: transform .25s ease; }
+    .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+    .search-hero { padding: clamp(4rem,8vw,7rem) 0 2.2rem; }
+    .section-heading { text-align: center; }
+    .section-kicker { display: block; margin-bottom: .65rem; color: var(--hlp-primary-600); font: 600 .78rem/1.5 var(--font-display); letter-spacing: .28em; }
+    .section-title { margin: 0; color: var(--hlp-ink-dark); font: 400 clamp(2.2rem,5vw,3.6rem)/1.15 var(--font-calligraphy); letter-spacing: .08em; }
+    .title-rule { display: block; width: 48px; height: 2px; margin: 1rem auto; background: var(--hlp-primary-500); }
+    .section-note { margin: 0; color: var(--hlp-neutral-600); line-height: 1.8; }
+    .search-box { max-width: 820px; margin: 2.2rem auto 0; padding: 1.2rem; border: 1px solid var(--hlp-neutral-300); border-radius: 14px; background: rgba(250,247,240,.82); box-shadow: 0 10px 35px rgba(30,26,22,.055); }
+    .search-form { display: flex; gap: .75rem; }
+    .search-input { min-width: 0; flex: 1; padding: .95rem 1.1rem; border: 1px solid var(--hlp-neutral-300); border-radius: 8px; color: var(--hlp-ink-dark); background: rgba(255,255,255,.62); outline: none; }
+    .search-input:focus { border-color: var(--hlp-primary-400); box-shadow: 0 0 0 3px rgba(176,71,58,.12); }
+    .search-submit { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-width: 108px; border: 1px solid var(--hlp-primary-500); border-radius: 8px; color: #fff; background: var(--hlp-primary-500); }
+    .quick-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .5rem; margin-top: 1rem; }
+    .quick-label { color: var(--hlp-neutral-600); font-size: .82rem; }
+    .chip, .filter-button, .sort-button { min-height: 34px; padding: .38rem .75rem; border: 1px solid var(--hlp-neutral-300); border-radius: 8px; color: var(--hlp-ink-light); background: rgba(250,247,240,.75); transition: transform .25s ease, border-color .25s ease, color .25s ease, background-color .25s ease; }
+    .chip { border-color: var(--hlp-primary-300); color: var(--hlp-primary-700); }
+    .filter-button[aria-pressed="true"], .sort-button[aria-pressed="true"], .chip[aria-pressed="true"] { border-color: var(--hlp-primary-500); color: #fff; background: var(--hlp-primary-500); }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1.6rem 0 1rem; }
+    .result-count { color: var(--hlp-neutral-700); }
+    .sort-group { display: flex; gap: .45rem; }
+    .search-layout { display: grid; grid-template-columns: minmax(230px,280px) minmax(0,1fr); gap: 1.5rem; padding-bottom: 6rem; }
+    .filters { align-self: start; position: sticky; top: 88px; padding: 1.2rem; border: 1px solid var(--hlp-neutral-300); border-radius: 14px; background: rgba(250,247,240,.84); backdrop-filter: blur(3px) saturate(.95); }
+    .filter-group + .filter-group { margin-top: 1.35rem; }
+    .filter-group h2 { margin: 0 0 .75rem; padding-bottom: .55rem; border-bottom: 1px solid var(--hlp-neutral-300); font: 600 .9rem/1.5 var(--font-display); letter-spacing: .08em; }
+    .filter-options { display: flex; flex-wrap: wrap; gap: .45rem; max-height: 190px; overflow: auto; padding: 2px; scrollbar-width: thin; scrollbar-color: var(--hlp-neutral-300) transparent; }
+    .filter-group.mode-emphasis { animation: mode-pulse .9s ease; }
+    .results { min-width: 0; display: grid; gap: 1rem; }
+    .result-card { position: relative; display: block; padding: 1.45rem; border: 1px solid var(--hlp-neutral-300); border-radius: 14px; background: var(--hlp-card); box-shadow: 0 5px 20px rgba(30,26,22,.035); transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+    .result-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .genre-tag { flex: 0 0 auto; padding: .28rem .65rem; border-radius: 8px; color: var(--hlp-primary-700); background: var(--hlp-primary-100); font-size: .72rem; letter-spacing: .08em; }
+    .result-card h3 { margin: 0; font: 600 1.25rem/1.45 var(--font-display); letter-spacing: .06em; }
+    .result-meta { margin: .48rem 0 .8rem; color: var(--hlp-neutral-600); font-size: .82rem; }
+    .result-excerpt { margin: 0; color: var(--hlp-ink); font: 500 .94rem/2 var(--font-display); }
+    .result-more { display: inline-flex; align-items: center; gap: .35rem; margin-top: 1rem; color: var(--hlp-primary-600); font-size: .84rem; }
+    mark { padding: .04em .12em; color: inherit; background: rgba(176,71,58,.18); border-bottom: 1px solid rgba(176,71,58,.45); }
+    .empty-state { padding: 4rem 1.5rem; border: 1px dashed var(--hlp-neutral-300); border-radius: 14px; text-align: center; background: rgba(250,247,240,.65); }
+    .empty-state i { margin: 0 auto 1rem; color: var(--hlp-neutral-500); }
+    .empty-state h2 { margin: 0 0 .55rem; font: 600 1.25rem/1.5 var(--font-display); }
+    .empty-state p { margin: 0 0 1.2rem; color: var(--hlp-neutral-600); }
+    .clear-button { padding: .65rem 1rem; border: 1px solid var(--hlp-primary-400); border-radius: 8px; color: var(--hlp-primary-700); background: var(--hlp-primary-50); }
+    .footer { padding: 2.2rem 0 3rem; border-top: 1px solid var(--hlp-neutral-300); background: rgba(250,247,240,.82); text-align: center; }
+    .footer-verse { margin: 0 0 .6rem; color: var(--hlp-ink-light); font: 400 1.5rem/1.5 var(--font-running); }
+    .footer p:last-child { margin: 0; color: var(--hlp-neutral-500); font-size: .78rem; }
+    .back-to-top { position: fixed; z-index: 45; right: clamp(1rem,3vw,2rem); bottom: clamp(1rem,3vw,2rem); width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--hlp-primary-300); border-radius: 8px; color: var(--hlp-primary-700); background: rgba(250,247,240,.92); backdrop-filter: blur(8px); opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    @keyframes mode-pulse { 50% { transform: translateY(-3px); opacity: .72; } }
+    @media (hover:hover) {
+      .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+      .search-submit:hover { background: var(--hlp-primary-600); }
+      .chip:not([aria-pressed="true"]):hover, .filter-button:not([aria-pressed="true"]):hover, .sort-button:not([aria-pressed="true"]):hover { transform: translateY(-2px); border-color: var(--hlp-primary-300); color: var(--hlp-primary-700); }
+      .result-card:hover { transform: translateY(-3px); border-color: var(--hlp-primary-300); box-shadow: 0 13px 30px rgba(30,26,22,.065); }
+    }
+    @media (max-width: 800px) {
+      :root { --hlp-page: min(100% - 2rem,1180px); }
+      .search-layout { grid-template-columns: 1fr; }
+      .filters { position: static; }
+      .toolbar { align-items: flex-start; flex-direction: column; }
+      .filter-options { max-height: none; }
+    }
+    @media (max-width: 560px) {
+      .nav-inner { height: 62px; }
+      .brand { max-width: 8.5rem; font-size: .78rem; }
+      .nav-links { gap: .9rem; font-size: .82rem; }
+      .search-form { flex-direction: column; }
+      .search-submit { min-height: 48px; }
+      .sort-group { width: 100%; }
+      .sort-button { flex: 1; }
+      .result-card { padding: 1.2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
 </head>
-<body class="min-h-screen font-sans antialiased">
+<body>
+  <div class="site-bg" aria-hidden="true"><div class="ink-bloom"></div><div class="paper-grain"></div></div>
+  <nav class="site-nav" aria-label="主导航">
+    <div class="page-shell nav-inner">
+      <a class="brand" href="index.html">红楼梦诗词检索站</a>
+      <div class="nav-links"><a href="index.html">首页</a><a href="search.html" aria-current="page">检索</a><a href="about.html">说明</a></div>
+    </div>
+  </nav>
 
-    <!-- 导航栏 -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
-        <nav class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-            <a href="index.html" class="font-display text-lg text-ink-dark tracking-wider">红楼梦诗词检索站</a>
-            <div class="flex items-center gap-8">
-                <a href="index.html" data-dom-id="nav-home"
-                   class="text-sm text-hlp-neutral-500 hover:text-ink-dark transition-colors duration-200">首页</a>
-                <a href="search.html" data-dom-id="nav-search"
-                   class="text-sm text-ink-dark font-medium relative pb-0.5 after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-[2px] after:bg-hlp-primary-500">检索</a>
-                <a href="about.html" data-dom-id="nav-about"
-                   class="text-sm text-hlp-neutral-500 hover:text-ink-dark transition-colors duration-200">说明</a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="pt-14">
-        <!-- 搜索头部 -->
-        <section class="max-w-7xl mx-auto px-6 pt-10 pb-8">
-            <h1 class="font-display text-3xl text-ink-dark tracking-wider mb-2">检索诗词</h1>
-            <p class="text-sm text-hlp-neutral-600 tracking-wide mb-8">四维联动 · 诗词曲判词酒令灯谜</p>
-
-            <!-- 搜索框 -->
-            <div class="flex gap-3 max-w-2xl mb-6">
-                <input
-                    type="text"
-                    placeholder="输入诗名、词句、人物或回目..."
-                    class="flex-1 h-10 px-4 bg-card border border-border rounded-md text-sm text-ink placeholder:text-hlp-neutral-400 focus:outline-none focus:ring-1 focus:ring-hlp-primary-400 focus:border-hlp-primary-400 transition-colors duration-200 font-body"
-                >
-                <button data-dom-id="search-btn"
-                        class="h-10 px-6 bg-hlp-primary-500 text-primary-foreground text-sm font-medium rounded-md hover:bg-hlp-primary-600 active:bg-hlp-primary-700 transition-colors duration-200 flex items-center gap-2 font-body">
-                    <i data-icon="search" class="w-4 h-4"></i>
-                    搜索
-                </button>
-            </div>
-
-            <!-- 结果统计与排序 -->
-            <div class="flex items-center justify-between mb-2">
-                <span class="text-sm text-hlp-neutral-600">共 130 首 · 当前显示 130 首</span>
-                <div class="flex items-center gap-1 text-sm">
-                    <button class="px-3 py-1 rounded-sm bg-hlp-primary-100 text-hlp-primary-700 font-medium transition-colors duration-200">按回目</button>
-                    <span class="text-hlp-neutral-400 mx-1">|</span>
-                    <button class="px-3 py-1 rounded-sm text-hlp-neutral-500 hover:text-ink-dark hover:bg-hlp-neutral-100 transition-colors duration-200">按类型</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 主内容区：左筛选 + 右结果 -->
-        <div class="max-w-7xl mx-auto px-6 flex gap-8 pb-16">
-
-            <!-- 左侧筛选面板 -->
-            <aside class="hidden lg:block w-[260px] flex-shrink-0">
-                <div class="sticky top-20 space-y-8">
-
-                    <!-- 按人物筛选 -->
-                    <div>
-                        <h2 class="font-display text-sm text-ink-dark tracking-wider mb-3 pb-2 border-b border-border">按人物</h2>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <button class="px-3 py-1 text-sm rounded-sm bg-hlp-primary-500 text-white transition-colors duration-200">全部</button>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">黛玉</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">宝钗</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">宝玉</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">湘云</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">探春</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">元春</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">迎春</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">惜春</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">宝琴</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">香菱</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">李纨</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">邢岫烟</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">贾环</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">贾兰</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">警幻仙子</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">甄士隐</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">曹雪芹</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">癞头和尚</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">贾雨村</button>
-                        </div>
-                    </div>
-
-                    <!-- 按回目筛选 -->
-                    <div>
-                        <h2 class="font-display text-sm text-ink-dark tracking-wider mb-3 pb-2 border-b border-border">按回目</h2>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1 text-sm rounded-sm bg-hlp-primary-500 text-white transition-colors duration-200">全部</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第一回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第三回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第四回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第五回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第八回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第十七回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第十八回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第二十二回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第二十五回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第三十七回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第三十八回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第四十八回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第七十回</button>
-                            <button class="px-3 py-1 text-sm rounded-sm bg-card border border-border text-ink-light hover:border-hlp-primary-300 hover:text-hlp-primary-600 transition-colors duration-200">第七十八回</button>
-                        </div>
-                    </div>
-
-                </div>
-            </aside>
-
-            <!-- 右侧结果列表 -->
-            <section class="flex-1 min-w-0 space-y-4">
-
-                <!-- 诗词卡片 1：好了歌 -->
-                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
-                    <div class="flex items-start gap-4">
-                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">俗谚</span>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-display text-lg text-ink-dark mb-1">好了歌</h3>
-                            <p class="text-sm text-hlp-neutral-500 mb-2">跛足道人 · 第一回</p>
-                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">世人都晓神仙好，惟有功名忘不了。古今将相在何方？荒冢一堆草没了。</p>
-                            <a href="#" data-dom-id="result-poem-1"
-                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 诗词卡片 2：好了歌注 -->
-                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
-                    <div class="flex items-start gap-4">
-                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">俗谚</span>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-display text-lg text-ink-dark mb-1">好了歌注</h3>
-                            <p class="text-sm text-hlp-neutral-500 mb-2">甄士隐 · 第一回</p>
-                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">陋室空堂，当年笏满床；衰草枯杨，曾为歌舞场。</p>
-                            <a href="#" data-dom-id="result-poem-2"
-                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 诗词卡片 3：对月寓怀 -->
-                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
-                    <div class="flex items-start gap-4">
-                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">七绝</span>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-display text-lg text-ink-dark mb-1">对月寓怀</h3>
-                            <p class="text-sm text-hlp-neutral-500 mb-2">贾雨村 · 第一回</p>
-                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">未卜三生愿，频添一段愁。闷来时敛额，行去几回头。</p>
-                            <a href="#" data-dom-id="result-poem-3"
-                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 诗词卡片 4：咏白海棠 -->
-                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
-                    <div class="flex items-start gap-4">
-                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">七律</span>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-display text-lg text-ink-dark mb-1">咏白海棠</h3>
-                            <p class="text-sm text-hlp-neutral-500 mb-2">贾探春 · 第三十七回</p>
-                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">斜阳寒草带重门，苔翠盈铺雨后盆。玉是精神难比洁，雪为肌骨易销魂。</p>
-                            <a href="#" data-dom-id="result-poem-4"
-                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 诗词卡片 5：葬花吟 -->
-                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
-                    <div class="flex items-start gap-4">
-                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">歌行</span>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-display text-lg text-ink-dark mb-1">葬花吟</h3>
-                            <p class="text-sm text-hlp-neutral-500 mb-2">林黛玉 · 第二十七回</p>
-                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">花谢花飞花满天，红消香断有谁怜？游丝软系飘春榭，落絮轻沾扑绣帘。</p>
-                            <a href="#" data-dom-id="result-poem-5"
-                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 诗词卡片 6：临江仙·柳絮 -->
-                <article class="bg-card border border-border rounded-md p-5 shadow-card hover:border-hlp-neutral-400 transition-colors duration-200">
-                    <div class="flex items-start gap-4">
-                        <span class="inline-block px-2 py-0.5 text-xs rounded-sm bg-hlp-primary-100 text-hlp-primary-700 flex-shrink-0 mt-0.5 font-medium">词</span>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-display text-lg text-ink-dark mb-1">临江仙 · 柳絮</h3>
-                            <p class="text-sm text-hlp-neutral-500 mb-2">薛宝钗 · 第七十回</p>
-                            <p class="font-accent text-base text-ink-light mb-3 leading-relaxed">白玉堂前春解舞，东风卷得均匀。蜂团蝴蝶阵乱纷纷。</p>
-                            <a href="#" data-dom-id="result-poem-6"
-                               class="inline-block text-sm text-hlp-primary-500 hover:text-hlp-primary-700 transition-colors duration-200">读全文 &#8594;</a>
-                        </div>
-                    </div>
-                </article>
-
-            </section>
+  <main class="page-shell">
+    <section class="search-hero" aria-labelledby="page-title">
+      <header class="section-heading">
+        <span class="section-kicker">寻章摘句</span>
+        <h1 class="section-title" id="page-title">检索诗词</h1>
+        <span class="title-rule"></span>
+        <p class="section-note">诗题、词句、人物、回目，皆可循迹而寻</p>
+      </header>
+      <div class="search-box">
+        <form class="search-form" id="search-form" role="search" action="search.html" method="get">
+          <label class="sr-only" for="q" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">输入检索词</label>
+          <input class="search-input" id="q" name="q" type="search" placeholder="输入诗名、词句、人物或回目……" autocomplete="off">
+          <button class="search-submit" type="submit"><i data-lucide="search" aria-hidden="true"></i><span>检索</span></button>
+        </form>
+        <div class="quick-row" id="quick-people" aria-label="热门人物快捷检索">
+          <span class="quick-label">热门人物</span>
+          <button class="chip" type="button" data-quick-author="黛玉" aria-pressed="false">黛玉</button>
+          <button class="chip" type="button" data-quick-author="宝钗" aria-pressed="false">宝钗</button>
+          <button class="chip" type="button" data-quick-author="宝玉" aria-pressed="false">宝玉</button>
+          <button class="chip" type="button" data-quick-author="湘云" aria-pressed="false">湘云</button>
+          <button class="chip" type="button" data-quick-author="探春" aria-pressed="false">探春</button>
+          <button class="chip" type="button" data-quick-author="妙玉" aria-pressed="false">妙玉</button>
+          <button class="chip" type="button" data-quick-author="香菱" aria-pressed="false">香菱</button>
         </div>
-    </main>
+      </div>
+    </section>
 
-    <script>lucide.createIcons();</script>
+    <div class="toolbar">
+      <div class="result-count" id="result-count" role="status" aria-live="polite">正在载入诗词……</div>
+      <div class="sort-group" aria-label="结果排序">
+        <button class="sort-button" type="button" data-sort="relevance" aria-pressed="true">按相关度</button>
+        <button class="sort-button" type="button" data-sort="chapter" aria-pressed="false">按回目</button>
+      </div>
+    </div>
+
+    <div class="search-layout">
+      <aside class="filters" aria-label="筛选条件">
+        <section class="filter-group" id="filter-character"><h2>按人物</h2><div class="filter-options" id="author-filters"></div></section>
+        <section class="filter-group" id="filter-chapter"><h2>按回目</h2><div class="filter-options" id="chapter-filters"></div></section>
+        <section class="filter-group" id="filter-genre"><h2>按体裁</h2><div class="filter-options" id="genre-filters"></div></section>
+      </aside>
+      <section class="results" id="results" aria-label="检索结果"></section>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="page-shell"><p class="footer-verse">一卷红楼，万千诗心</p><p>© 红楼梦诗词检索站</p></div></footer>
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="回到顶部"><i data-lucide="arrow-up" aria-hidden="true"></i></button>
+
+  <script>
+    (function () {
+      'use strict';
+      var poemsObject = window.HL_POEMS || {};
+      var poems = Object.keys(poemsObject).map(function (id) {
+        var poem = poemsObject[id] || {};
+        return Object.assign({ id: id }, poem, { chapterNumber: chapterNumber(poem.chapter || '') });
+      });
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var form = document.getElementById('search-form');
+      var input = document.getElementById('q');
+      var results = document.getElementById('results');
+      var resultCount = document.getElementById('result-count');
+      var backToTop = document.getElementById('back-to-top');
+      var debounceTimer = 0;
+      var state = { q: '', author: '', chapter: '', genre: '', sort: 'relevance', mode: '' };
+      var people = ['黛玉','宝钗','宝玉','湘云','探春','元春','迎春','惜春','宝琴','香菱','李纨','邢岫烟','贾环','贾兰','妙玉','警幻仙子','甄士隐','曹雪芹','癞头和尚','贾雨村'];
+      var genres = ['诗','词','曲','判词','酒令','灯谜'];
+
+      function safeIcons() {
+        if (window.lucide) window.lucide.createIcons({ attrs: { width: 18, height: 18, 'stroke-width': 1.6 } });
+      }
+      function chapterNumber(value) {
+        var digit = String(value).match(/\d+/);
+        if (digit) return Number(digit[0]);
+        var source = String(value).replace(/[第回]/g, '');
+        var digits = { '零':0,'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9 };
+        var total = 0, current = 0;
+        for (var i = 0; i < source.length; i++) {
+          var ch = source[i];
+          if (Object.prototype.hasOwnProperty.call(digits, ch)) current = digits[ch];
+          else if (ch === '十') { total += (current || 1) * 10; current = 0; }
+          else if (ch === '百') { total += (current || 1) * 100; current = 0; }
+        }
+        return total + current;
+      }
+      function genreOf(type) {
+        type = String(type || '');
+        if (type.indexOf('判词') >= 0) return '判词';
+        if (type.indexOf('酒令') >= 0) return '酒令';
+        if (type.indexOf('灯谜') >= 0) return '灯谜';
+        if (type === '词' || /词$/.test(type)) return '词';
+        if (type.indexOf('曲') >= 0) return '曲';
+        if (/律|绝|诗|歌行|古风|联句/.test(type)) return '诗';
+        return type;
+      }
+      function escapeHtml(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, function (char) {
+          return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[char];
+        });
+      }
+      function escapeRegExp(value) { return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+      function highlight(value, query) {
+        var safe = escapeHtml(value);
+        var terms = String(query || '').trim().split(/\s+/).filter(Boolean).sort(function (a,b) { return b.length - a.length; });
+        if (!terms.length) return safe;
+        var pattern = terms.map(function (term) { return escapeRegExp(escapeHtml(term)); }).join('|');
+        if (!pattern) return safe;
+        return safe.replace(new RegExp('(' + pattern + ')', 'gi'), '<mark>$1</mark>');
+      }
+      function searchable(poem) {
+        return [poem.title, poem.author, poem.chapter, poem.chapterNumber, poem.type].concat(poem.original || []).join('\n').toLowerCase();
+      }
+      function relevance(poem, q) {
+        if (!q) return 0;
+        var query = q.toLowerCase();
+        var score = 0;
+        if (String(poem.title).toLowerCase() === query) score += 120;
+        else if (String(poem.title).toLowerCase().indexOf(query) >= 0) score += 70;
+        if (String(poem.author).toLowerCase().indexOf(query) >= 0) score += 45;
+        if (String(poem.chapter).toLowerCase().indexOf(query) >= 0 || String(poem.chapterNumber) === query) score += 40;
+        if (String(poem.type).toLowerCase().indexOf(query) >= 0) score += 30;
+        (poem.original || []).forEach(function (line) { if (String(line).toLowerCase().indexOf(query) >= 0) score += 12; });
+        return score;
+      }
+      function excerptFor(poem, q) {
+        var lines = poem.original || [];
+        if (q) {
+          var query = q.toLowerCase();
+          var match = lines.find(function (line) { return String(line).toLowerCase().indexOf(query) >= 0; });
+          if (match) return match;
+        }
+        return poem.pullquote || lines.slice(0, 2).join('');
+      }
+      function button(label, value, group, active) {
+        return '<button type="button" class="filter-button" data-filter="' + group + '" data-value="' + escapeHtml(value) + '" aria-pressed="' + (active ? 'true' : 'false') + '">' + escapeHtml(label) + '</button>';
+      }
+      function renderFilters() {
+        var authorHtml = button('全部', '', 'author', !state.author) + people.map(function (name) { return button(name, name, 'author', state.author === name); }).join('');
+        var chapters = Array.from(new Set(poems.map(function (poem) { return poem.chapter; }).filter(Boolean))).sort(function (a,b) { return chapterNumber(a)-chapterNumber(b); });
+        var chapterHtml = button('全部', '', 'chapter', !state.chapter) + chapters.map(function (name) { return button(name, name, 'chapter', state.chapter === name); }).join('');
+        var genreHtml = button('全部', '', 'genre', !state.genre) + genres.map(function (name) { return button(name, name, 'genre', state.genre === name); }).join('');
+        document.getElementById('author-filters').innerHTML = authorHtml;
+        document.getElementById('chapter-filters').innerHTML = chapterHtml;
+        document.getElementById('genre-filters').innerHTML = genreHtml;
+        document.querySelectorAll('[data-quick-author]').forEach(function (chip) { chip.setAttribute('aria-pressed', String(state.author === chip.dataset.quickAuthor)); });
+        document.querySelectorAll('[data-sort]').forEach(function (control) { control.setAttribute('aria-pressed', String(state.sort === control.dataset.sort)); });
+      }
+      function filteredPoems() {
+        var q = state.q.trim().toLowerCase();
+        var list = poems.filter(function (poem) {
+          if (q && searchable(poem).indexOf(q) < 0) return false;
+          if (state.author && String(poem.author).indexOf(state.author) < 0) return false;
+          if (state.chapter && poem.chapter !== state.chapter) return false;
+          if (state.genre && genreOf(poem.type) !== state.genre) return false;
+          return true;
+        });
+        list.sort(function (a,b) {
+          if (state.sort === 'chapter') return a.chapterNumber - b.chapterNumber || a.title.localeCompare(b.title, 'zh-CN');
+          return relevance(b, state.q) - relevance(a, state.q) || a.chapterNumber - b.chapterNumber;
+        });
+        return list;
+      }
+      function resultCard(poem) {
+        return '<a class="result-card" href="poem-detail.html?poem=' + encodeURIComponent(poem.id) + '">' +
+          '<div class="result-top"><h3>' + highlight(poem.title, state.q) + '</h3><span class="genre-tag">' + escapeHtml(poem.type) + '</span></div>' +
+          '<p class="result-meta">' + highlight(poem.author, state.q) + ' · ' + highlight(poem.chapter, state.q) + '</p>' +
+          '<p class="result-excerpt">' + highlight(excerptFor(poem, state.q), state.q) + '</p>' +
+          '<span class="result-more">读全文 <i data-lucide="arrow-right" aria-hidden="true"></i></span></a>';
+      }
+      function syncUrl() {
+        var params = new URLSearchParams();
+        if (state.q) params.set('q', state.q);
+        if (state.author) params.set('author', state.author);
+        if (state.chapter) params.set('chapter', state.chapter);
+        if (state.genre) params.set('genre', state.genre);
+        if (state.sort !== 'relevance') params.set('sort', state.sort);
+        if (state.mode) params.set('mode', state.mode);
+        history.replaceState(null, '', location.pathname + (params.toString() ? '?' + params.toString() : '') + location.hash);
+      }
+      function render(sync) {
+        var list = filteredPoems();
+        renderFilters();
+        resultCount.textContent = '共 ' + poems.length + ' 首 · 当前显示 ' + list.length + ' 首';
+        if (!poems.length) {
+          results.innerHTML = '<div class="empty-state"><i data-lucide="database-zap" aria-hidden="true"></i><h2>诗词数据未加载</h2><p>请确认 ../assets/poems-data.js 可访问。</p></div>';
+        } else if (!list.length) {
+          results.innerHTML = '<div class="empty-state"><i data-lucide="search-x" aria-hidden="true"></i><h2>未寻得相关诗词</h2><p>换一个词句，或清空当前筛选后再试。</p><button class="clear-button" id="clear-filters" type="button">清空筛选</button></div>';
+          document.getElementById('clear-filters').addEventListener('click', clearAll);
+        } else results.innerHTML = list.map(resultCard).join('');
+        if (sync !== false) syncUrl();
+        safeIcons();
+      }
+      function clearAll() {
+        state.q = ''; state.author = ''; state.chapter = ''; state.genre = ''; state.sort = 'relevance'; state.mode = '';
+        input.value = '';
+        render(true);
+        input.focus();
+      }
+      function readUrl() {
+        var params = new URLSearchParams(location.search);
+        state.q = params.get('q') || '';
+        state.author = params.get('author') || '';
+        state.chapter = params.get('chapter') || '';
+        state.genre = params.get('genre') || '';
+        state.sort = params.get('sort') === 'chapter' ? 'chapter' : 'relevance';
+        state.mode = ['character','chapter','genre'].indexOf(params.get('mode')) >= 0 ? params.get('mode') : '';
+        input.value = state.q;
+      }
+      form.addEventListener('submit', function (event) { event.preventDefault(); clearTimeout(debounceTimer); state.q = input.value.trim(); render(true); });
+      input.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () { state.q = input.value.trim(); render(true); }, 300);
+      });
+      document.querySelector('.filters').addEventListener('click', function (event) {
+        var control = event.target.closest('[data-filter]');
+        if (!control) return;
+        state[control.dataset.filter] = control.dataset.value;
+        state.mode = '';
+        render(true);
+      });
+      document.querySelector('.sort-group').addEventListener('click', function (event) {
+        var control = event.target.closest('[data-sort]');
+        if (!control) return;
+        state.sort = control.dataset.sort;
+        render(true);
+      });
+      document.getElementById('quick-people').addEventListener('click', function (event) {
+        var control = event.target.closest('[data-quick-author]');
+        if (!control) return;
+        state.author = state.author === control.dataset.quickAuthor ? '' : control.dataset.quickAuthor;
+        state.mode = '';
+        render(true);
+      });
+      window.addEventListener('popstate', function () { readUrl(); render(false); });
+      window.addEventListener('scroll', function () { backToTop.classList.toggle('visible', window.scrollY > 600); }, { passive: true });
+      backToTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }); });
+      readUrl();
+      render(false);
+      if (state.mode) {
+        var group = document.getElementById('filter-' + state.mode);
+        if (group) { group.classList.add('mode-emphasis'); setTimeout(function () { group.classList.remove('mode-emphasis'); }, 1000); }
+      }
+    })();
+  </script>
 </body>
 </html>
