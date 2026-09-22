@@ -1,554 +1,352 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>凡例说明 - 红楼梦诗词检索站</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
-    <style id="theme-vars">
-/* ============================================
-   红楼梦诗词检索站 — Brand CSS
-   古典意境设计方向
-   ============================================ */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="红楼梦诗词检索站凡例说明：收录范围、版本依据与免责声明。">
+  <title>凡例说明 - 红楼梦诗词检索站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+  <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
 
-/* --- Brand Prefix --- */
-:root {
-  --brand-prefix: hlp;
-}
+  <style type="text/tailwindcss">
+    @theme inline {
+      --color-hlp-primary-50: var(--hlp-primary-50);
+      --color-hlp-primary-100: var(--hlp-primary-100);
+      --color-hlp-primary-200: var(--hlp-primary-200);
+      --color-hlp-primary-300: var(--hlp-primary-300);
+      --color-hlp-primary-400: var(--hlp-primary-400);
+      --color-hlp-primary-500: var(--hlp-primary-500);
+      --color-hlp-primary-600: var(--hlp-primary-600);
+      --color-hlp-primary-700: var(--hlp-primary-700);
+      --color-hlp-primary-800: var(--hlp-primary-800);
+      --color-hlp-primary-900: var(--hlp-primary-900);
+      --color-hlp-primary-950: var(--hlp-primary-950);
+      --color-hlp-neutral-50: var(--hlp-neutral-50);
+      --color-hlp-neutral-100: var(--hlp-neutral-100);
+      --color-hlp-neutral-200: var(--hlp-neutral-200);
+      --color-hlp-neutral-300: var(--hlp-neutral-300);
+      --color-hlp-neutral-400: var(--hlp-neutral-400);
+      --color-hlp-neutral-500: var(--hlp-neutral-500);
+      --color-hlp-neutral-600: var(--hlp-neutral-600);
+      --color-hlp-neutral-700: var(--hlp-neutral-700);
+      --color-hlp-neutral-800: var(--hlp-neutral-800);
+      --color-hlp-neutral-900: var(--hlp-neutral-900);
+      --color-hlp-neutral-950: var(--hlp-neutral-950);
+      --color-ink-light: var(--hlp-ink-light);
+      --color-ink: var(--hlp-ink);
+      --color-ink-dark: var(--hlp-ink-dark);
+      --font-display: var(--font-display);
+      --font-body: var(--font-body);
+      --font-accent: var(--font-accent);
+    }
+  </style>
 
-/* --- Brand Primary: 朱红 --- */
-:root {
-  --hlp-primary-50: #fef2f0;
-  --hlp-primary-100: #fde5e0;
-  --hlp-primary-200: #f9cac0;
-  --hlp-primary-300: #f3a495;
-  --hlp-primary-400: #e8765e;
-  --hlp-primary-500: #c45c48;
-  --hlp-primary-600: #a8432f;
-  --hlp-primary-700: #8a3525;
-  --hlp-primary-800: #6e2c1f;
-  --hlp-primary-900: #5a261c;
-  --hlp-primary-950: #321210;
-}
+  <style>
+    /* Brand tokens retained from the original about page. */
+    :root {
+      --brand-prefix: hlp;
+      --hlp-primary-50: #fef2f0;
+      --hlp-primary-100: #fde5e0;
+      --hlp-primary-200: #f9cac0;
+      --hlp-primary-300: #f3a495;
+      --hlp-primary-400: #e8765e;
+      --hlp-primary-500: #c45c48;
+      --hlp-primary-600: #a8432f;
+      --hlp-primary-700: #8a3525;
+      --hlp-primary-800: #6e2c1f;
+      --hlp-primary-900: #5a261c;
+      --hlp-primary-950: #321210;
+      --hlp-neutral-50: #faf7f0;
+      --hlp-neutral-100: #f5f0e6;
+      --hlp-neutral-200: #ebe2d0;
+      --hlp-neutral-300: #d9ccb5;
+      --hlp-neutral-400: #c2ae93;
+      --hlp-neutral-500: #a89079;
+      --hlp-neutral-600: #8d7562;
+      --hlp-neutral-700: #6e5b4e;
+      --hlp-neutral-800: #5a4b42;
+      --hlp-neutral-900: #3d322c;
+      --hlp-neutral-950: #1e1a16;
+      --hlp-ink-light: #5a4b42;
+      --hlp-ink: #3d322c;
+      --hlp-ink-dark: #1e1a16;
+      --state-success: #5a7a52;
+      --state-warning: #b8860b;
+      --state-error: #a8432f;
+      --state-info: #4a6b8a;
+      --hlp-background: var(--hlp-neutral-100);
+      --hlp-foreground: var(--hlp-ink-dark);
+      --hlp-card: var(--hlp-neutral-50);
+      --hlp-card-foreground: var(--hlp-ink);
+      --hlp-popover: var(--hlp-neutral-50);
+      --hlp-popover-foreground: var(--hlp-ink);
+      --hlp-primary: var(--hlp-primary-500);
+      --hlp-primary-foreground: #ffffff;
+      --hlp-muted: var(--hlp-neutral-200);
+      --hlp-muted-foreground: var(--hlp-neutral-600);
+      --hlp-border: var(--hlp-neutral-300);
+      --hlp-input: var(--hlp-neutral-200);
+      --hlp-ring: var(--hlp-primary-400);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+      --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
+      --font-body: "LXGW WenKai", "LXGW WenKai TC", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      --font-accent: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+      --leading-loose: 2;
+      --tracking-wider: .1em;
+      --tracking-widest: .2em;
+    }
 
-/* --- Neutral: 墨色/宣纸 --- */
-:root {
-  --hlp-neutral-50: #faf7f0;
-  --hlp-neutral-100: #f5f0e6;
-  --hlp-neutral-200: #ebe2d0;
-  --hlp-neutral-300: #d9ccb5;
-  --hlp-neutral-400: #c2ae93;
-  --hlp-neutral-500: #a89079;
-  --hlp-neutral-600: #8d7562;
-  --hlp-neutral-700: #6e5b4e;
-  --hlp-neutral-800: #5a4b42;
-  --hlp-neutral-900: #3d322c;
-  --hlp-neutral-950: #1e1a16;
-}
-
-/* --- Ink: 墨色层次（用于标题/正文） --- */
-:root {
-  --hlp-ink-light: #5a4b42;
-  --hlp-ink: #3d322c;
-  --hlp-ink-dark: #1e1a16;
-}
-
-/* --- State Colors --- */
-:root {
-  --state-success: #5a7a52;
-  --state-warning: #b8860b;
-  --state-error: #a8432f;
-  --state-info: #4a6b8a;
-}
-
-/* --- Semantic Aliases (required by apply-html-head-contract.mjs) --- */
-:root {
-  --hlp-background: var(--hlp-neutral-100);
-  --hlp-foreground: var(--hlp-ink-dark);
-  --hlp-card: var(--hlp-neutral-50);
-  --hlp-card-foreground: var(--hlp-ink);
-  --hlp-popover: var(--hlp-neutral-50);
-  --hlp-popover-foreground: var(--hlp-ink);
-  --hlp-primary: var(--hlp-primary-500);
-  --hlp-primary-foreground: #ffffff;
-  --hlp-muted: var(--hlp-neutral-200);
-  --hlp-muted-foreground: var(--hlp-neutral-600);
-  --hlp-border: var(--hlp-neutral-300);
-  --hlp-input: var(--hlp-neutral-200);
-  --hlp-ring: var(--hlp-primary-400);
-}
-
-/* --- Radius Scale (restrained) --- */
-:root {
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-full: 9999px;
-}
-
-/* --- Typography System --- */
-:root {
-  /* Display / Hero Title — CJK Serif */
-  --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
-  /* Body -- LXGW WenKai (Handwritten Classical Feel) */
-  --font-body: "LXGW WenKai", "LXGW WenKai TC", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
-  /* Accent / Classical — for seal stamps, classical calligraphy feel */
-  --font-accent: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
-
-  /* Type Scale */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
-  --text-5xl: 3rem;
-  --text-6xl: 3.75rem;
-
-  /* Line Heights */
-  --leading-tight: 1.25;
-  --leading-snug: 1.375;
-  --leading-normal: 1.625;
-  --leading-relaxed: 1.75;
-  --leading-loose: 2;
-
-  /* Letter Spacing for classical feel */
-  --tracking-wide: 0.05em;
-  --tracking-wider: 0.1em;
-  --tracking-widest: 0.2em;
-}
-
-/* --- Surface & Depth Model --- */
-:root {
-  /* Static surfaces use border-first, no deep shadows */
-  --shadow-card: 0 1px 3px rgba(30, 26, 22, 0.04);
-  --shadow-elevated: 0 4px 12px rgba(30, 26, 22, 0.05);
-  --border-subtle: 1px solid var(--hlp-neutral-200);
-  --border-default: 1px solid var(--hlp-neutral-300);
-}
-
-/* --- Tailwind Theme Inline (@theme) --- */
-@theme inline {
-  --color-hlp-primary-50: var(--hlp-primary-50);
-  --color-hlp-primary-100: var(--hlp-primary-100);
-  --color-hlp-primary-200: var(--hlp-primary-200);
-  --color-hlp-primary-300: var(--hlp-primary-300);
-  --color-hlp-primary-400: var(--hlp-primary-400);
-  --color-hlp-primary-500: var(--hlp-primary-500);
-  --color-hlp-primary-600: var(--hlp-primary-600);
-  --color-hlp-primary-700: var(--hlp-primary-700);
-  --color-hlp-primary-800: var(--hlp-primary-800);
-  --color-hlp-primary-900: var(--hlp-primary-900);
-  --color-hlp-primary-950: var(--hlp-primary-950);
-  --color-hlp-neutral-50: var(--hlp-neutral-50);
-  --color-hlp-neutral-100: var(--hlp-neutral-100);
-  --color-hlp-neutral-200: var(--hlp-neutral-200);
-  --color-hlp-neutral-300: var(--hlp-neutral-300);
-  --color-hlp-neutral-400: var(--hlp-neutral-400);
-  --color-hlp-neutral-500: var(--hlp-neutral-500);
-  --color-hlp-neutral-600: var(--hlp-neutral-600);
-  --color-hlp-neutral-700: var(--hlp-neutral-700);
-  --color-hlp-neutral-800: var(--hlp-neutral-800);
-  --color-hlp-neutral-900: var(--hlp-neutral-900);
-  --color-hlp-neutral-950: var(--hlp-neutral-950);
-  --color-ink-light: var(--hlp-ink-light);
-  --color-ink: var(--hlp-ink);
-  --color-ink-dark: var(--hlp-ink-dark);
-  --color-state-success: var(--state-success);
-  --color-state-warning: var(--state-warning);
-  --color-state-error: var(--state-error);
-  --color-state-info: var(--state-info);
-  --color-background: var(--hlp-background);
-  --color-foreground: var(--hlp-foreground);
-  --color-card: var(--hlp-card);
-  --color-card-foreground: var(--hlp-card-foreground);
-  --color-popover: var(--hlp-popover);
-  --color-popover-foreground: var(--hlp-popover-foreground);
-  --color-primary: var(--hlp-primary);
-  --color-primary-foreground: var(--hlp-primary-foreground);
-  --color-muted: var(--hlp-muted);
-  --color-muted-foreground: var(--hlp-muted-foreground);
-  --color-border: var(--hlp-border);
-  --color-input: var(--hlp-input);
-  --color-ring: var(--hlp-ring);
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  --radius-full: var(--radius-full);
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-accent: var(--font-accent);
-}
-
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
-    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
-    <style type="text/tailwindcss">
-  @theme inline {
-    --color-hlp-primary-50: var(--hlp-primary-50);
-    --color-hlp-primary-100: var(--hlp-primary-100);
-    --color-hlp-primary-200: var(--hlp-primary-200);
-    --color-hlp-primary-300: var(--hlp-primary-300);
-    --color-hlp-primary-400: var(--hlp-primary-400);
-    --color-hlp-primary-500: var(--hlp-primary-500);
-    --color-hlp-primary-600: var(--hlp-primary-600);
-    --color-hlp-primary-700: var(--hlp-primary-700);
-    --color-hlp-primary-800: var(--hlp-primary-800);
-    --color-hlp-primary-900: var(--hlp-primary-900);
-    --color-hlp-primary-950: var(--hlp-primary-950);
-    --color-hlp-neutral-50: var(--hlp-neutral-50);
-    --color-hlp-neutral-100: var(--hlp-neutral-100);
-    --color-hlp-neutral-200: var(--hlp-neutral-200);
-    --color-hlp-neutral-300: var(--hlp-neutral-300);
-    --color-hlp-neutral-400: var(--hlp-neutral-400);
-    --color-hlp-neutral-500: var(--hlp-neutral-500);
-    --color-hlp-neutral-600: var(--hlp-neutral-600);
-    --color-hlp-neutral-700: var(--hlp-neutral-700);
-    --color-hlp-neutral-800: var(--hlp-neutral-800);
-    --color-hlp-neutral-900: var(--hlp-neutral-900);
-    --color-hlp-neutral-950: var(--hlp-neutral-950);
-    --color-ink-light: var(--hlp-ink-light);
-    --color-ink: var(--hlp-ink);
-    --color-ink-dark: var(--hlp-ink-dark);
-    --color-state-success: var(--state-success);
-    --color-state-warning: var(--state-warning);
-    --color-state-error: var(--state-error);
-    --color-state-info: var(--state-info);
-    --color-background: var(--hlp-background);
-    --color-foreground: var(--hlp-foreground);
-    --color-card: var(--hlp-card);
-    --color-card-foreground: var(--hlp-card-foreground);
-    --color-popover: var(--hlp-popover);
-    --color-popover-foreground: var(--hlp-popover-foreground);
-    --color-primary: var(--hlp-primary);
-    --color-primary-foreground: var(--hlp-primary-foreground);
-    --color-muted: var(--hlp-muted);
-    --color-muted-foreground: var(--hlp-muted-foreground);
-    --color-border: var(--hlp-border);
-    --color-input: var(--hlp-input);
-    --color-ring: var(--hlp-ring);
-    --radius-sm: var(--radius-sm);
-    --radius-md: var(--radius-md);
-    --radius-lg: var(--radius-lg);
-    --radius-full: var(--radius-full);
-  }
-  @layer base {
-    body { background: var(--hlp-background); color: var(--hlp-foreground); }
-    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
-    th { @apply whitespace-nowrap; }
-  }
-    </style>
-    <style id="semantic-token-fallback">
-      .bg-hlp-primary-50 { background-color: var(--hlp-primary-50); }
-      .text-hlp-primary-50 { color: var(--hlp-primary-50); }
-      .border-hlp-primary-50 { border-color: var(--hlp-primary-50); }
-      .ring-hlp-primary-50 { --tw-ring-color: var(--hlp-primary-50); }
-      .bg-hlp-primary-100 { background-color: var(--hlp-primary-100); }
-      .text-hlp-primary-100 { color: var(--hlp-primary-100); }
-      .border-hlp-primary-100 { border-color: var(--hlp-primary-100); }
-      .ring-hlp-primary-100 { --tw-ring-color: var(--hlp-primary-100); }
-      .bg-hlp-primary-200 { background-color: var(--hlp-primary-200); }
-      .text-hlp-primary-200 { color: var(--hlp-primary-200); }
-      .border-hlp-primary-200 { border-color: var(--hlp-primary-200); }
-      .ring-hlp-primary-200 { --tw-ring-color: var(--hlp-primary-200); }
-      .bg-hlp-primary-300 { background-color: var(--hlp-primary-300); }
-      .text-hlp-primary-300 { color: var(--hlp-primary-300); }
-      .border-hlp-primary-300 { border-color: var(--hlp-primary-300); }
-      .ring-hlp-primary-300 { --tw-ring-color: var(--hlp-primary-300); }
-      .bg-hlp-primary-400 { background-color: var(--hlp-primary-400); }
-      .text-hlp-primary-400 { color: var(--hlp-primary-400); }
-      .border-hlp-primary-400 { border-color: var(--hlp-primary-400); }
-      .ring-hlp-primary-400 { --tw-ring-color: var(--hlp-primary-400); }
-      .bg-hlp-primary-500 { background-color: var(--hlp-primary-500); }
-      .text-hlp-primary-500 { color: var(--hlp-primary-500); }
-      .border-hlp-primary-500 { border-color: var(--hlp-primary-500); }
-      .ring-hlp-primary-500 { --tw-ring-color: var(--hlp-primary-500); }
-      .bg-hlp-primary-600 { background-color: var(--hlp-primary-600); }
-      .text-hlp-primary-600 { color: var(--hlp-primary-600); }
-      .border-hlp-primary-600 { border-color: var(--hlp-primary-600); }
-      .ring-hlp-primary-600 { --tw-ring-color: var(--hlp-primary-600); }
-      .bg-hlp-primary-700 { background-color: var(--hlp-primary-700); }
-      .text-hlp-primary-700 { color: var(--hlp-primary-700); }
-      .border-hlp-primary-700 { border-color: var(--hlp-primary-700); }
-      .ring-hlp-primary-700 { --tw-ring-color: var(--hlp-primary-700); }
-      .bg-hlp-primary-800 { background-color: var(--hlp-primary-800); }
-      .text-hlp-primary-800 { color: var(--hlp-primary-800); }
-      .border-hlp-primary-800 { border-color: var(--hlp-primary-800); }
-      .ring-hlp-primary-800 { --tw-ring-color: var(--hlp-primary-800); }
-      .bg-hlp-primary-900 { background-color: var(--hlp-primary-900); }
-      .text-hlp-primary-900 { color: var(--hlp-primary-900); }
-      .border-hlp-primary-900 { border-color: var(--hlp-primary-900); }
-      .ring-hlp-primary-900 { --tw-ring-color: var(--hlp-primary-900); }
-      .bg-hlp-primary-950 { background-color: var(--hlp-primary-950); }
-      .text-hlp-primary-950 { color: var(--hlp-primary-950); }
-      .border-hlp-primary-950 { border-color: var(--hlp-primary-950); }
-      .ring-hlp-primary-950 { --tw-ring-color: var(--hlp-primary-950); }
-      .bg-hlp-neutral-50 { background-color: var(--hlp-neutral-50); }
-      .text-hlp-neutral-50 { color: var(--hlp-neutral-50); }
-      .border-hlp-neutral-50 { border-color: var(--hlp-neutral-50); }
-      .ring-hlp-neutral-50 { --tw-ring-color: var(--hlp-neutral-50); }
-      .bg-hlp-neutral-100 { background-color: var(--hlp-neutral-100); }
-      .text-hlp-neutral-100 { color: var(--hlp-neutral-100); }
-      .border-hlp-neutral-100 { border-color: var(--hlp-neutral-100); }
-      .ring-hlp-neutral-100 { --tw-ring-color: var(--hlp-neutral-100); }
-      .bg-hlp-neutral-200 { background-color: var(--hlp-neutral-200); }
-      .text-hlp-neutral-200 { color: var(--hlp-neutral-200); }
-      .border-hlp-neutral-200 { border-color: var(--hlp-neutral-200); }
-      .ring-hlp-neutral-200 { --tw-ring-color: var(--hlp-neutral-200); }
-      .bg-hlp-neutral-300 { background-color: var(--hlp-neutral-300); }
-      .text-hlp-neutral-300 { color: var(--hlp-neutral-300); }
-      .border-hlp-neutral-300 { border-color: var(--hlp-neutral-300); }
-      .ring-hlp-neutral-300 { --tw-ring-color: var(--hlp-neutral-300); }
-      .bg-hlp-neutral-400 { background-color: var(--hlp-neutral-400); }
-      .text-hlp-neutral-400 { color: var(--hlp-neutral-400); }
-      .border-hlp-neutral-400 { border-color: var(--hlp-neutral-400); }
-      .ring-hlp-neutral-400 { --tw-ring-color: var(--hlp-neutral-400); }
-      .bg-hlp-neutral-500 { background-color: var(--hlp-neutral-500); }
-      .text-hlp-neutral-500 { color: var(--hlp-neutral-500); }
-      .border-hlp-neutral-500 { border-color: var(--hlp-neutral-500); }
-      .ring-hlp-neutral-500 { --tw-ring-color: var(--hlp-neutral-500); }
-      .bg-hlp-neutral-600 { background-color: var(--hlp-neutral-600); }
-      .text-hlp-neutral-600 { color: var(--hlp-neutral-600); }
-      .border-hlp-neutral-600 { border-color: var(--hlp-neutral-600); }
-      .ring-hlp-neutral-600 { --tw-ring-color: var(--hlp-neutral-600); }
-      .bg-hlp-neutral-700 { background-color: var(--hlp-neutral-700); }
-      .text-hlp-neutral-700 { color: var(--hlp-neutral-700); }
-      .border-hlp-neutral-700 { border-color: var(--hlp-neutral-700); }
-      .ring-hlp-neutral-700 { --tw-ring-color: var(--hlp-neutral-700); }
-      .bg-hlp-neutral-800 { background-color: var(--hlp-neutral-800); }
-      .text-hlp-neutral-800 { color: var(--hlp-neutral-800); }
-      .border-hlp-neutral-800 { border-color: var(--hlp-neutral-800); }
-      .ring-hlp-neutral-800 { --tw-ring-color: var(--hlp-neutral-800); }
-      .bg-hlp-neutral-900 { background-color: var(--hlp-neutral-900); }
-      .text-hlp-neutral-900 { color: var(--hlp-neutral-900); }
-      .border-hlp-neutral-900 { border-color: var(--hlp-neutral-900); }
-      .ring-hlp-neutral-900 { --tw-ring-color: var(--hlp-neutral-900); }
-      .bg-hlp-neutral-950 { background-color: var(--hlp-neutral-950); }
-      .text-hlp-neutral-950 { color: var(--hlp-neutral-950); }
-      .border-hlp-neutral-950 { border-color: var(--hlp-neutral-950); }
-      .ring-hlp-neutral-950 { --tw-ring-color: var(--hlp-neutral-950); }
-      .bg-ink-light { background-color: var(--hlp-ink-light); }
-      .text-ink-light { color: var(--hlp-ink-light); }
-      .border-ink-light { border-color: var(--hlp-ink-light); }
-      .ring-ink-light { --tw-ring-color: var(--hlp-ink-light); }
-      .bg-ink { background-color: var(--hlp-ink); }
-      .text-ink { color: var(--hlp-ink); }
-      .border-ink { border-color: var(--hlp-ink); }
-      .ring-ink { --tw-ring-color: var(--hlp-ink); }
-      .bg-ink-dark { background-color: var(--hlp-ink-dark); }
-      .text-ink-dark { color: var(--hlp-ink-dark); }
-      .border-ink-dark { border-color: var(--hlp-ink-dark); }
-      .ring-ink-dark { --tw-ring-color: var(--hlp-ink-dark); }
-      .bg-state-success { background-color: var(--state-success); }
-      .text-state-success { color: var(--state-success); }
-      .border-state-success { border-color: var(--state-success); }
-      .ring-state-success { --tw-ring-color: var(--state-success); }
-      .bg-state-warning { background-color: var(--state-warning); }
-      .text-state-warning { color: var(--state-warning); }
-      .border-state-warning { border-color: var(--state-warning); }
-      .ring-state-warning { --tw-ring-color: var(--state-warning); }
-      .bg-state-error { background-color: var(--state-error); }
-      .text-state-error { color: var(--state-error); }
-      .border-state-error { border-color: var(--state-error); }
-      .ring-state-error { --tw-ring-color: var(--state-error); }
-      .bg-state-info { background-color: var(--state-info); }
-      .text-state-info { color: var(--state-info); }
-      .border-state-info { border-color: var(--state-info); }
-      .ring-state-info { --tw-ring-color: var(--state-info); }
-      .bg-background { background-color: var(--hlp-background); }
-      .text-background { color: var(--hlp-background); }
-      .border-background { border-color: var(--hlp-background); }
-      .ring-background { --tw-ring-color: var(--hlp-background); }
-      .bg-foreground { background-color: var(--hlp-foreground); }
-      .text-foreground { color: var(--hlp-foreground); }
-      .border-foreground { border-color: var(--hlp-foreground); }
-      .ring-foreground { --tw-ring-color: var(--hlp-foreground); }
-      .bg-card { background-color: var(--hlp-card); }
-      .text-card { color: var(--hlp-card); }
-      .border-card { border-color: var(--hlp-card); }
-      .ring-card { --tw-ring-color: var(--hlp-card); }
-      .bg-card-foreground { background-color: var(--hlp-card-foreground); }
-      .text-card-foreground { color: var(--hlp-card-foreground); }
-      .border-card-foreground { border-color: var(--hlp-card-foreground); }
-      .ring-card-foreground { --tw-ring-color: var(--hlp-card-foreground); }
-      .bg-popover { background-color: var(--hlp-popover); }
-      .text-popover { color: var(--hlp-popover); }
-      .border-popover { border-color: var(--hlp-popover); }
-      .ring-popover { --tw-ring-color: var(--hlp-popover); }
-      .bg-popover-foreground { background-color: var(--hlp-popover-foreground); }
-      .text-popover-foreground { color: var(--hlp-popover-foreground); }
-      .border-popover-foreground { border-color: var(--hlp-popover-foreground); }
-      .ring-popover-foreground { --tw-ring-color: var(--hlp-popover-foreground); }
-      .bg-primary { background-color: var(--hlp-primary); }
-      .text-primary { color: var(--hlp-primary); }
-      .border-primary { border-color: var(--hlp-primary); }
-      .ring-primary { --tw-ring-color: var(--hlp-primary); }
-      .bg-primary-foreground { background-color: var(--hlp-primary-foreground); }
-      .text-primary-foreground { color: var(--hlp-primary-foreground); }
-      .border-primary-foreground { border-color: var(--hlp-primary-foreground); }
-      .ring-primary-foreground { --tw-ring-color: var(--hlp-primary-foreground); }
-      .bg-muted { background-color: var(--hlp-muted); }
-      .text-muted { color: var(--hlp-muted); }
-      .border-muted { border-color: var(--hlp-muted); }
-      .ring-muted { --tw-ring-color: var(--hlp-muted); }
-      .bg-muted-foreground { background-color: var(--hlp-muted-foreground); }
-      .text-muted-foreground { color: var(--hlp-muted-foreground); }
-      .border-muted-foreground { border-color: var(--hlp-muted-foreground); }
-      .ring-muted-foreground { --tw-ring-color: var(--hlp-muted-foreground); }
-      .bg-border { background-color: var(--hlp-border); }
-      .text-border { color: var(--hlp-border); }
-      .border-border { border-color: var(--hlp-border); }
-      .ring-border { --tw-ring-color: var(--hlp-border); }
-      .bg-input { background-color: var(--hlp-input); }
-      .text-input { color: var(--hlp-input); }
-      .border-input { border-color: var(--hlp-input); }
-      .ring-input { --tw-ring-color: var(--hlp-input); }
-      .bg-ring { background-color: var(--hlp-ring); }
-      .text-ring { color: var(--hlp-ring); }
-      .border-ring { border-color: var(--hlp-ring); }
-      .ring-ring { --tw-ring-color: var(--hlp-ring); }
-    </style>
-    <style>
-      .no-scrollbar::-webkit-scrollbar { display: none; }
-      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      [data-icon] {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        -webkit-mask-size: contain;
-        mask-size: contain;
-        -webkit-mask-repeat: no-repeat;
-        mask-repeat: no-repeat;
-        -webkit-mask-position: center;
-        mask-position: center;
-        background-color: currentColor;
-      }
-    </style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--hlp-foreground);
+      background: var(--hlp-background);
+      font-family: var(--font-display);
+      font-weight: 400;
+      letter-spacing: .015em;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    :where(a, button, [tabindex]):focus-visible { outline: 2px solid var(--hlp-primary-400); outline-offset: 3px; }
+    .about-page {
+      --about-width: min(680px, calc(100% - 3rem));
+      --about-paper: rgba(250,247,240,.78);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(168,144,121,.08), transparent 25%),
+        radial-gradient(circle at 88% 76%, rgba(196,92,72,.045), transparent 30%),
+        linear-gradient(115deg, rgba(250,247,240,.65), rgba(245,240,230,.9));
+      position: relative;
+      isolation: isolate;
+    }
+    .about-page::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+      opacity: .035;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='.75'/%3E%3C/svg%3E");
+    }
+    .about-nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      border-bottom: 1px solid rgba(217,204,181,.86);
+      background: rgba(250,247,240,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .about-nav-inner {
+      width: min(960px, calc(100% - 3rem));
+      min-height: 64px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .about-brand { font: 600 .94rem/1.5 var(--font-display); letter-spacing: .12em; color: var(--hlp-ink-dark); }
+    .about-nav-links { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2rem); color: var(--hlp-neutral-600); font: 400 .86rem/1.5 var(--font-display); }
+    .about-nav-links a { position: relative; padding: .55rem 0; transition: color .2s ease; }
+    .about-nav-links a::after { position: absolute; right: 0; bottom: .22rem; left: 0; height: 1px; background: var(--hlp-primary-500); content: ""; transform: scaleX(0); transform-origin: right; transition: transform .25s ease; }
+    .about-nav-links a[aria-current="page"] { color: var(--hlp-ink-dark); }
+    .about-nav-links a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+    .about-nav-links a:hover { color: var(--hlp-primary-600); }
+    .about-main { width: var(--about-width); margin-inline: auto; padding: 9rem 0 5rem; }
+    .about-hero { margin-bottom: 4.4rem; text-align: center; }
+    .about-kicker { margin: 0 0 1.2rem; color: var(--hlp-primary-600); font: 500 .78rem/1.6 var(--font-body); letter-spacing: .24em; }
+    .about-title { margin: 0; color: var(--hlp-ink-dark); font: 600 clamp(2.25rem, 6vw, 3rem)/1.25 var(--font-display); letter-spacing: .2em; }
+    .about-toc { display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem 1.2rem; margin: 1.35rem 0 0; color: var(--hlp-neutral-500); font: 400 .92rem/1.8 var(--font-body); }
+    .about-toc a { position: relative; padding: .2rem .15rem; transition: color .2s ease; }
+    .about-toc a::after { position: absolute; right: .15rem; bottom: 0; left: .15rem; height: 1px; background: var(--hlp-primary-500); content: ""; transform: scaleX(0); transform-origin: center; transition: transform .25s ease; }
+    .about-toc a.is-active, .about-toc a:hover { color: var(--hlp-primary-600); }
+    .about-toc a.is-active::after { transform: scaleX(1); }
+    .about-section { scroll-margin-top: 88px; opacity: 0; transform: translateY(12px); transition: opacity .5s ease-out, transform .5s ease-out; }
+    .about-section.is-revealed { opacity: 1; transform: translateY(0); }
+    .about-section-heading { display: flex; align-items: center; gap: .85rem; margin-bottom: 1.5rem; }
+    .about-index { flex: 0 0 auto; color: var(--hlp-primary-500); font: 600 1.875rem/1 var(--font-display); }
+    .about-heading-rule { width: 1px; height: 1.65rem; background: var(--hlp-primary-300); }
+    .about-section-title { margin: 0; color: var(--hlp-ink-dark); font: 600 1.5rem/1.4 var(--font-display); letter-spacing: .1em; }
+    .about-prose, .about-list { color: var(--hlp-ink); font: 400 1.0625rem/2 var(--font-display); }
+    .about-prose { margin: 0; }
+    .about-prose + .about-list, .about-list + .about-prose { margin-top: 1rem; }
+    .about-list { display: grid; gap: .45rem; margin: 1rem 0; padding: 0; list-style: none; }
+    .about-list li { position: relative; padding-left: 1.65rem; }
+    .about-list li::before { position: absolute; top: .04em; left: 0; color: var(--hlp-primary-500); content: "❖"; font-size: .82em; }
+    .about-rule { width: 48px; height: 1px; margin: 4rem auto; background: var(--hlp-primary-300); }
+    .about-footer { padding: 3rem 1.5rem 3.5rem; border-top: 1px solid var(--hlp-neutral-200); text-align: center; }
+    .about-seal { display: block; width: 56px; height: 56px; margin: 0 auto .85rem; color: var(--hlp-primary-600); }
+    .about-signature { margin: 0 0 1.5rem; color: var(--hlp-neutral-600); font: 400 .9rem/1.7 var(--font-body); letter-spacing: .08em; }
+    .about-version { margin: 0 0 .55rem; color: var(--hlp-neutral-400); font: 400 .75rem/1.6 var(--font-display); }
+    .about-footer-note { margin: 0 0 1.35rem; color: var(--hlp-neutral-500); font: 400 .75rem/1.7 var(--font-display); }
+    .about-footer-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: .55rem 1rem; color: var(--hlp-neutral-500); font: 400 .75rem/1.7 var(--font-display); }
+    .about-footer-meta span { display: inline-flex; align-items: center; gap: .45rem; }
+    .about-footer-meta span::before { width: 4px; height: 4px; border-radius: 50%; background: var(--hlp-primary-400); content: ""; }
+    .about-footer-meta .about-separator { color: var(--hlp-neutral-300); }
+    .about-footer-meta .about-separator::before { display: none; }
+    .about-top { position: fixed; right: clamp(1rem, 4vw, 2.2rem); bottom: clamp(1rem, 4vw, 2.2rem); z-index: 60; display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid var(--hlp-neutral-300); border-radius: 50%; color: var(--hlp-primary-600); background: rgba(250,247,240,.88); opacity: 0; visibility: hidden; transform: translateY(10px); pointer-events: none; transition: opacity .25s ease, transform .25s ease, border-color .2s ease, visibility .25s ease; }
+    .about-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+    .about-top:hover { border-color: var(--hlp-primary-400); }
+    @media (max-width: 640px) {
+      .about-page { --about-width: min(100% - 2rem, 680px); }
+      .about-nav-inner { width: min(100% - 2rem, 960px); min-height: 60px; }
+      .about-brand { max-width: 8.4rem; font-size: .78rem; }
+      .about-nav-links { gap: .85rem; font-size: .78rem; }
+      .about-main { padding-top: 8rem; }
+      .about-hero { margin-bottom: 3.5rem; }
+      .about-section-title { font-size: 1.35rem; }
+      .about-prose, .about-list { font-size: 1rem; }
+      .about-rule { margin-block: 3.2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .about-section { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
-<body class="min-h-screen font-body antialiased">
-
-    <!-- 导航栏 -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-sm" style="box-shadow: var(--border-subtle); border-bottom: var(--border-subtle);">
-        <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-            <a href="index.html" class="font-display text-lg text-ink-dark tracking-wider hover:text-hlp-primary-500 transition-colors duration-200">红楼梦诗词检索站</a>
-            <div class="flex items-center gap-6">
-                <a href="index.html" data-dom-id="nav-home" class="text-sm text-hlp-neutral-600 hover:text-ink-dark transition-colors duration-200">首页</a>
-                <a href="search.html" data-dom-id="nav-search" class="text-sm text-hlp-neutral-600 hover:text-ink-dark transition-colors duration-200">检索</a>
-                <a href="about.html" data-dom-id="nav-about" class="text-sm text-ink-dark font-medium border-b-2 border-hlp-primary-500 pb-0.5 transition-colors duration-200">说明</a>
-            </div>
+<body>
+  <div class="about-page">
+    <nav class="about-nav" aria-label="主导航">
+      <div class="about-nav-inner">
+        <a href="index.html" class="about-brand">红楼梦诗词检索站</a>
+        <div class="about-nav-links">
+          <a href="index.html">首页</a>
+          <a href="search.html">检索</a>
+          <a href="about.html" aria-current="page">说明</a>
         </div>
+      </div>
     </nav>
 
-    <!-- 主内容 -->
-    <main class="pt-14">
-        <div class="max-w-3xl mx-auto px-6 py-12 md:py-16">
+    <main class="about-main">
+      <header class="about-hero">
+        <p class="about-kicker">凡例 · 书页小引</p>
+        <h1 class="about-title">凡例说明</h1>
+        <nav class="about-toc" aria-label="说明页目录">
+          <a href="#scope" data-about-toc="scope">收录范围</a>
+          <span aria-hidden="true">·</span>
+          <a href="#version" data-about-toc="version">版本依据</a>
+          <span aria-hidden="true">·</span>
+          <a href="#disclaimer" data-about-toc="disclaimer">免责声明</a>
+        </nav>
+      </header>
 
-            <!-- 主标题区域 -->
-            <header class="text-center mb-12 md:mb-14">
-                <h1 class="font-display text-4xl text-ink-dark tracking-wider mb-3">凡例说明</h1>
-                <p class="text-base text-hlp-neutral-600 font-body">收录范围 · 版本依据 · 免责声明</p>
-            </header>
-
-            <!-- 卡片区域 -->
-            <div class="space-y-8">
-
-                <!-- 卡片壹：收录范围 -->
-                <section class="bg-card rounded-lg border border-hlp-neutral-200 p-6 md:p-8 transition-shadow duration-300 hover:shadow-[var(--shadow-elevated)]" style="box-shadow: var(--shadow-card);">
-                    <div class="flex items-start gap-4 mb-5">
-                        <span class="inline-flex items-center justify-center w-9 h-9 rounded-sm bg-hlp-primary-500 text-white font-display text-base shrink-0 mt-0.5">壹</span>
-                        <h2 class="font-display text-2xl text-ink-dark">收录范围</h2>
-                    </div>
-                    <p class="font-body text-base text-ink-light leading-relaxed mb-5">
-                        本站首期收录《红楼梦》中 130 首全书诗词韵文，涵盖诗、词、曲、判词、酒令、灯谜六大体裁。范围包括：
-                    </p>
-                    <ul class="space-y-3 mb-5">
-                        <li class="flex items-start gap-3 font-body text-base text-ink-light leading-relaxed">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-hlp-primary-400 shrink-0 mt-2.5"></span>
-                            太虚幻境谶语（金陵十二钗判词、红楼梦十二支、好了歌等）
-                        </li>
-                        <li class="flex items-start gap-3 font-body text-base text-ink-light leading-relaxed">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-hlp-primary-400 shrink-0 mt-2.5"></span>
-                            黛玉核心（葬花吟、秋窗风雨夕、桃花行、题帕三绝、五美吟）
-                        </li>
-                        <li class="flex items-start gap-3 font-body text-base text-ink-light leading-relaxed">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-hlp-primary-400 shrink-0 mt-2.5"></span>
-                            诗社唱和（海棠诗、菊花诗、柳絮词等）
-                        </li>
-                        <li class="flex items-start gap-3 font-body text-base text-ink-light leading-relaxed">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-hlp-primary-400 shrink-0 mt-2.5"></span>
-                            宝玉之作（四季即事、大观园题咏、红豆曲、芙蓉女儿诔等）
-                        </li>
-                        <li class="flex items-start gap-3 font-body text-base text-ink-light leading-relaxed">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-hlp-primary-400 shrink-0 mt-2.5"></span>
-                            联句（芦雪广联句、中秋凹晶馆联句）
-                        </li>
-                        <li class="flex items-start gap-3 font-body text-base text-ink-light leading-relaxed">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-hlp-primary-400 shrink-0 mt-2.5"></span>
-                            酒令灯谜怀古，以及其他重要韵文
-                        </li>
-                    </ul>
-                    <p class="font-body text-base text-ink-light leading-relaxed">
-                        不增删，逐首撰写注音、译文、注释、赏析与延伸。
-                    </p>
-                </section>
-
-                <!-- 卡片贰：所依版本 -->
-                <section class="bg-card rounded-lg border border-hlp-neutral-200 p-6 md:p-8 transition-shadow duration-300 hover:shadow-[var(--shadow-elevated)]" style="box-shadow: var(--shadow-card);">
-                    <div class="flex items-start gap-4 mb-5">
-                        <span class="inline-flex items-center justify-center w-9 h-9 rounded-sm bg-hlp-primary-500 text-white font-display text-base shrink-0 mt-0.5">贰</span>
-                        <h2 class="font-display text-2xl text-ink-dark">所依版本</h2>
-                    </div>
-                    <p class="font-body text-base text-ink-light leading-relaxed">
-                        本站以庚辰本为主要底本，程高本作参校。庚辰本（《脂砚斋重评石头记》庚辰秋月定本）为现存最早之完整脂评本，保留大量脂砚斋批语；程高本（程甲本/程乙本，清乾隆五十六年刊行）为通行百二十回本。个别字句两本有异，逐首标注所依版本，异文于注释中说明。
-                    </p>
-                </section>
-
-                <!-- 卡片叁：免责声明 -->
-                <section class="bg-card rounded-lg border border-hlp-neutral-200 p-6 md:p-8 transition-shadow duration-300 hover:shadow-[var(--shadow-elevated)]" style="box-shadow: var(--shadow-card);">
-                    <div class="flex items-start gap-4 mb-5">
-                        <span class="inline-flex items-center justify-center w-9 h-9 rounded-sm bg-hlp-primary-500 text-white font-display text-base shrink-0 mt-0.5">叁</span>
-                        <h2 class="font-display text-2xl text-ink-dark">免责声明</h2>
-                    </div>
-                    <p class="font-body text-base text-ink-light leading-relaxed">
-                        《红楼梦》原文属公有领域。本站注释、译文、赏析为原创撰写，仅供学习研究之用，不得用于商业用途。延伸资料统一采用站内互链，不引用外部链接，以规避外链版权与死链风险。如有错漏，欢迎指正。
-                    </p>
-                </section>
-
-            </div>
-
+      <section class="about-section" id="scope" aria-labelledby="scope-title">
+        <div class="about-section-heading">
+          <span class="about-index" aria-hidden="true">壹</span>
+          <span class="about-heading-rule" aria-hidden="true"></span>
+          <h2 class="about-section-title" id="scope-title">收录范围</h2>
         </div>
+        <p class="about-prose">本站首期收录《红楼梦》中 130 首全书诗词韵文，涵盖诗、词、曲、判词、酒令、灯谜六大体裁。范围包括：</p>
+        <ul class="about-list">
+          <li>太虚幻境谶语（金陵十二钗判词、红楼梦十二支、好了歌等）</li>
+          <li>黛玉核心（葬花吟、秋窗风雨夕、桃花行、题帕三绝、五美吟）</li>
+          <li>诗社唱和（海棠诗、菊花诗、柳絮词等）</li>
+          <li>宝玉之作（四季即事、大观园题咏、红豆曲、芙蓉女儿诔等）</li>
+          <li>联句（芦雪广联句、中秋凹晶馆联句）</li>
+          <li>酒令灯谜怀古，以及其他重要韵文</li>
+        </ul>
+        <p class="about-prose">不增删，逐首撰写注音、译文、注释、赏析与延伸。</p>
+      </section>
+
+      <div class="about-rule" aria-hidden="true"></div>
+
+      <section class="about-section" id="version" aria-labelledby="version-title">
+        <div class="about-section-heading">
+          <span class="about-index" aria-hidden="true">贰</span>
+          <span class="about-heading-rule" aria-hidden="true"></span>
+          <h2 class="about-section-title" id="version-title">所依版本</h2>
+        </div>
+        <p class="about-prose">本站以庚辰本为主要底本，程高本作参校。庚辰本（《脂砚斋重评石头记》庚辰秋月定本）为现存最早之完整脂评本，保留大量脂砚斋批语；程高本（程甲本/程乙本，清乾隆五十六年刊行）为通行百二十回本。个别字句两本有异，逐首标注所依版本，异文于注释中说明。</p>
+      </section>
+
+      <div class="about-rule" aria-hidden="true"></div>
+
+      <section class="about-section" id="disclaimer" aria-labelledby="disclaimer-title">
+        <div class="about-section-heading">
+          <span class="about-index" aria-hidden="true">叁</span>
+          <span class="about-heading-rule" aria-hidden="true"></span>
+          <h2 class="about-section-title" id="disclaimer-title">免责声明</h2>
+        </div>
+        <p class="about-prose">《红楼梦》原文属公有领域。本站注释、译文、赏析为原创撰写，仅供学习研究之用，不得用于商业用途。延伸资料统一采用站内互链，不引用外部链接，以规避外链版权与死链风险。如有错漏，欢迎指正。</p>
+      </section>
     </main>
 
-    <!-- 页脚 -->
-    <footer class="border-t border-hlp-neutral-200 mt-8">
-        <div class="max-w-3xl mx-auto px-6 py-10 text-center">
-            <img src="../assets/seal-stamp.jpg" alt="印章" class="w-12 h-12 mx-auto mb-4 opacity-60" style="filter: grayscale(30%);">
-            <p class="font-body text-sm text-hlp-neutral-600 mb-1">方案版本 V1 · 2026-07-23</p>
-            <p class="font-body text-xs text-hlp-neutral-500 mb-6">红楼梦诗词检索站 · 仅供学习研究之用</p>
-            <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-hlp-neutral-500 font-body">
-                <span class="inline-flex items-center gap-1.5">
-                    <span class="w-1 h-1 rounded-full bg-hlp-primary-400 inline-block"></span>
-                    收录范围 130 首
-                </span>
-                <span class="text-hlp-neutral-300">|</span>
-                <span class="inline-flex items-center gap-1.5">
-                    <span class="w-1 h-1 rounded-full bg-hlp-primary-400 inline-block"></span>
-                    所依版本 庚辰本 · 程高本
-                </span>
-                <span class="text-hlp-neutral-300">|</span>
-                <span class="inline-flex items-center gap-1.5">
-                    <span class="w-1 h-1 rounded-full bg-hlp-primary-400 inline-block"></span>
-                    免责声明 原文公有领域，注释赏析原创
-                </span>
-            </div>
-        </div>
+    <footer class="about-footer">
+      <svg class="about-seal" viewBox="0 0 56 56" role="img" aria-label="红楼印章" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 7.5 48 8.7 47.2 48 8.3 47.1Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+        <path d="M13 13.2 43 13.8 42.7 42.5 13.1 42Z" fill="currentColor" opacity=".96"/>
+        <path d="M20 20h6.2c4 0 6.4 1.7 6.4 4.6 0 1.7-.9 3.1-2.5 3.8 2 .7 3 2.1 3 4.2 0 3.4-2.5 5.4-6.7 5.4H20Zm4.2 3.2v3.9h2c1.5 0 2.2-.7 2.2-2s-.7-1.9-2.2-1.9Zm0 6.8v4.8h2.3c1.7 0 2.6-.8 2.6-2.4s-.9-2.4-2.6-2.4Z" fill="var(--hlp-neutral-50)"/>
+        <path d="M35.6 20.4h3.8v17.2h-3.8z" fill="var(--hlp-neutral-50)"/>
+      </svg>
+      <p class="about-signature">红楼梦诗词检索站谨识</p>
+      <p class="about-version">方案版本 V1 · 2026-07-23</p>
+      <p class="about-footer-note">红楼梦诗词检索站 · 仅供学习研究之用</p>
+      <div class="about-footer-meta">
+        <span>收录范围 130 首</span>
+        <span class="about-separator" aria-hidden="true">|</span>
+        <span>所依版本 庚辰本 · 程高本</span>
+        <span class="about-separator" aria-hidden="true">|</span>
+        <span>免责声明 原文公有领域，注释赏析原创</span>
+      </div>
     </footer>
+    <button class="about-top" id="about-top" type="button" aria-label="返回顶部" aria-hidden="true" tabindex="-1"><i data-lucide="arrow-up" aria-hidden="true"></i></button>
+  </div>
 
-    <script>lucide.createIcons();</script>
+  <script>
+    (function () {
+      'use strict';
+      if (window.lucide) window.lucide.createIcons({ attrs: { width: 18, height: 18, 'stroke-width': 1.6 } });
+
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.about-section'));
+      var tocLinks = Array.prototype.slice.call(document.querySelectorAll('[data-about-toc]'));
+      var topButton = document.getElementById('about-top');
+
+      function setActive(id) {
+        tocLinks.forEach(function (link) {
+          var active = link.getAttribute('data-about-toc') === id;
+          link.classList.toggle('is-active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }
+
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        sections.forEach(function (section) { section.classList.add('is-revealed'); });
+        setActive(location.hash ? location.hash.slice(1) : 'scope');
+      } else {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-revealed');
+            setActive(entry.target.id);
+          });
+        }, { rootMargin: '-15% 0px -45% 0px', threshold: [0, .15] });
+        sections.forEach(function (section) { observer.observe(section); });
+      }
+
+      window.addEventListener('scroll', function () {
+        var showTop = window.scrollY > 600;
+        topButton.classList.toggle('is-visible', showTop);
+        topButton.setAttribute('aria-hidden', String(!showTop));
+        topButton.tabIndex = showTop ? 0 : -1;
+      }, { passive: true });
+      topButton.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      });
+    }());
+  </script>
 </body>
 </html>
