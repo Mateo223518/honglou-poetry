@@ -229,12 +229,53 @@
     .gathering-quote { max-width: 88%; margin: 2rem 0 0; color: var(--hlp-ink); font: 500 1.02rem/2 var(--font-display); }
 
     .scroll-wrap { position: relative; }
-    .scroll-hint { position: absolute; z-index: 3; left: 0; top: 50%; transform: translate(-35%,-50%); color: var(--hlp-primary-600); font: 600 1rem/1 var(--font-display); white-space: nowrap; }
-    .scroll-cards { display: flex; gap: 1.1rem; overflow-x: auto; padding: .7rem 2.6rem 1.35rem; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--hlp-primary-300) transparent; overscroll-behavior-inline: contain; cursor: grab; mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); }
+    .scroll-hint { display: block; margin: 0 0 .6rem .5rem; color: var(--hlp-primary-600); font: 600 .86rem/1.5 var(--font-display); white-space: nowrap; transition: opacity .35s ease; pointer-events: none; }
+    .scroll-wrap.has-opened .scroll-hint { opacity: 0; }
+    .scroll-cards { display: flex; align-items: center; gap: 1.1rem; overflow-x: auto; padding: .7rem 2.6rem 1.35rem; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--hlp-primary-300) transparent; overscroll-behavior-inline: contain; cursor: grab; mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); }
     .scroll-cards.dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
-    .judgment-card { position: relative; flex: 0 0 clamp(190px, 23vw, 235px); height: 340px; scroll-snap-align: start; overflow: hidden; border: 1px solid var(--hlp-neutral-300); border-radius: 8px; background: linear-gradient(105deg, rgba(217,204,181,.25), transparent 8%), var(--hlp-neutral-50); box-shadow: 3px 4px 0 rgba(217,204,181,.35); }
-    .judgment-text { height: 100%; margin: 0 auto; padding: 2.2rem 0 1.5rem; color: var(--hlp-ink-dark); font: 500 1.18rem/2.1 var(--font-display); }
-    .judgment-name { position: absolute; left: .7rem; bottom: 1.2rem; padding: .45rem .25rem; border: 1px solid var(--hlp-primary-400); border-radius: 2px; color: var(--hlp-primary-700); background: rgba(176,71,58,.06); font: .73rem/1.55 var(--font-display); letter-spacing: .12em; }
+    .judgment-card { position: relative; flex: 0 0 74px; width: 74px; height: 340px; scroll-snap-align: center; transition: flex-basis 1.8s cubic-bezier(.22,.61,.21,1), width 1.8s cubic-bezier(.22,.61,.21,1); }
+    .judgment-card.is-open { flex-basis: min(560px, calc(100vw - 6rem)); width: min(560px, calc(100vw - 6rem)); }
+    .judgment-toggle { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; color: var(--hlp-ink-dark); background: transparent; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .scroll-roll { position: absolute; z-index: 3; inset: 17px 5px; border: 1px solid var(--hlp-neutral-600); border-radius: 20px; background: repeating-linear-gradient(35deg, transparent 0 10px, rgba(110,91,78,.09) 10px 11px, transparent 11px 21px), linear-gradient(90deg, var(--hlp-neutral-500), var(--hlp-neutral-200) 25%, var(--hlp-neutral-100) 51%, var(--hlp-neutral-300) 78%, var(--hlp-neutral-600)); box-shadow: inset 5px 0 8px rgba(30,26,22,.18), inset -4px 0 7px rgba(30,26,22,.14), 4px 9px 15px rgba(30,26,22,.17); transition: opacity .45s ease, transform .45s ease; }
+    .scroll-roll::before, .scroll-roll::after { content: ''; position: absolute; left: -7px; right: -7px; height: 13px; border-radius: 9px; background: linear-gradient(90deg, #6b4a32, #3d2a1c 17%, #8a6544 47%, #3d2a1c 82%, #6b4a32); box-shadow: 0 2px 4px rgba(30,26,22,.25); }
+    .scroll-roll::before { top: -9px; }
+    .scroll-roll::after { bottom: -9px; }
+    .scroll-finial { position: absolute; z-index: 4; left: 50%; width: 28px; height: 9px; border-radius: 50%; transform: translateX(-50%); background: radial-gradient(circle at 38% 30%, #a57c55, #4d3322 75%); box-shadow: 0 1px 3px rgba(30,26,22,.3); transition: opacity .4s ease; }
+    .scroll-finial.top { top: 1px; }
+    .scroll-finial.bottom { bottom: 1px; }
+    .scroll-label { position: absolute; z-index: 4; top: 49px; right: 10px; min-height: 100px; padding: 9px 3px; border: 1px solid var(--hlp-neutral-400); border-radius: 2px; background: var(--hlp-neutral-50); box-shadow: 2px 3px 5px rgba(30,26,22,.15); font: 1rem/1.4 var(--font-calligraphy); letter-spacing: .13em; transition: opacity .35s ease, transform .45s ease; }
+    .scroll-paper { position: absolute; z-index: 1; inset: 13px 11px; overflow: hidden; clip-path: inset(0 49.5% 0 49.5%); border: 1px solid var(--hlp-neutral-300); background: repeating-linear-gradient(0deg, transparent 0 4px, rgba(110,91,78,.025) 4px 5px), var(--hlp-neutral-50); box-shadow: inset 0 0 22px rgba(110,91,78,.13), 0 9px 22px rgba(30,26,22,.13); transition: clip-path 1.8s cubic-bezier(.22,.61,.21,1); }
+    .scroll-paper::before, .scroll-paper::after { content: ''; position: absolute; z-index: 2; top: 0; bottom: 0; width: 18px; background: linear-gradient(90deg, rgba(30,26,22,.18), transparent); opacity: 0; transition: transform 1.8s cubic-bezier(.22,.61,.21,1), opacity .3s; pointer-events: none; }
+    .scroll-paper::before { left: 0; transform: translateX(230px); }
+    .scroll-paper::after { right: 0; transform: translateX(-230px) scaleX(-1); }
+    .scroll-rod { position: absolute; z-index: 2; top: 9px; bottom: 9px; width: 15px; border-radius: 9px; background: linear-gradient(90deg, #3d2a1c, #8a6544 42%, #3d2a1c); box-shadow: 2px 3px 5px rgba(30,26,22,.25); opacity: 0; transition: left 1.8s cubic-bezier(.22,.61,.21,1), right 1.8s cubic-bezier(.22,.61,.21,1), opacity .3s; }
+    .scroll-rod::before, .scroll-rod::after { content: ''; position: absolute; left: -5px; right: -5px; height: 10px; border-radius: 50%; background: radial-gradient(circle at 40% 30%, #ad8964, #4d3322 75%); }
+    .scroll-rod::before { top: -5px; }
+    .scroll-rod::after { bottom: -5px; }
+    .scroll-rod.left { left: calc(50% - 8px); }
+    .scroll-rod.right { right: calc(50% - 8px); }
+    .scroll-content { position: relative; display: block; width: 100%; height: 100%; opacity: 0; transform: translateY(6px); transition: opacity .55s ease, transform .55s ease; pointer-events: none; }
+    .judgment-portrait { position: absolute; inset: 0; display: block; }
+    .portrait-frame { position: relative; display: block; width: 100%; height: 100%; background: var(--hlp-neutral-50); }
+    .portrait-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: left center; }
+    .portrait-fallback { display: none; width: 100%; height: 100%; place-items: center; background: var(--hlp-neutral-200); color: var(--hlp-ink); font: 1rem var(--font-display); }
+    .portrait-frame.failed img { display: none; }
+    .portrait-frame.failed .portrait-fallback { display: grid; }
+    .portrait-seal { position: absolute; left: 19px; bottom: 18px; display: grid; place-items: center; width: 29px; min-height: 29px; padding: 2px; border-radius: 2px; background: var(--hlp-primary-500); color: var(--hlp-neutral-50); font: 10px/1.1 var(--font-display); text-align: center; }
+    .judgment-copy { position: absolute; inset: 0 0 0 auto; display: flex; align-items: center; justify-content: center; gap: .75rem; width: 54%; min-width: 0; height: 100%; padding: 18px 22px 18px 30px; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--hlp-neutral-50) 94%, transparent) 24%, var(--hlp-neutral-50) 66%); }
+    .judgment-text { max-height: 240px; margin: 0; color: var(--hlp-ink-dark); font: 500 clamp(.85rem, 1.65vw, 1.18rem)/1.8 var(--font-display); letter-spacing: .13em; text-align: start; }
+    .judgment-name { align-self: end; margin-bottom: 11px; color: var(--hlp-primary-700); font: .72rem/1.45 var(--font-display); letter-spacing: .12em; }
+    .judgment-card.is-open .scroll-paper { clip-path: inset(0 0 0 0); }
+    .judgment-card.is-open .scroll-roll { opacity: 0; transform: scaleX(.25); }
+    .judgment-card.is-open .scroll-finial, .judgment-card.is-open .scroll-label { opacity: 0; }
+    .judgment-card.is-open .scroll-rod { opacity: 1; }
+    .judgment-card.is-open .scroll-rod.left { left: 0; }
+    .judgment-card.is-open .scroll-rod.right { right: 0; }
+    .judgment-card.is-open .scroll-paper::before, .judgment-card.is-open .scroll-paper::after { transform: translateX(0); opacity: 1; }
+    .judgment-card.is-open .scroll-paper::after { transform: translateX(0) scaleX(-1); }
+    .judgment-card.is-open .scroll-content { opacity: 1; transform: none; transition-delay: 1.05s; }
+    .judgment-card:not(.is-open) .scroll-content { transition-delay: 0s; }
+    @media (hover: hover) { .judgment-toggle:hover .scroll-roll { transform: translateY(-3px); background-position: 0 0, 8px 0; } .judgment-toggle:hover .scroll-label { transform: rotate(3deg); } }
 
     .poem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.35rem; }
     .poem-card { position: relative; padding: clamp(1.5rem, 4vw, 2.1rem); border: 1px solid var(--hlp-neutral-300); border-radius: 14px; background: var(--hlp-card); box-shadow: 0 5px 20px rgba(30,26,22,.035); transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
@@ -310,7 +351,20 @@
       .poem-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; text-align: center; }
       .gathering-card { min-height: 230px; }
-      .judgment-card { flex-basis: 185px; height: 315px; }
+      .judgment-card { height: 300px; }
+      .judgment-card.is-open { height: 530px; }
+    }
+    @media (max-width: 767px) {
+      .judgment-card { height: 300px; }
+      .judgment-card.is-open { flex-basis: calc(100vw - 4rem); width: calc(100vw - 4rem); height: 530px; }
+      .portrait-frame img { object-position: 22% center; }
+      .portrait-seal { left: 12px; bottom: auto; top: 12px; }
+      .portrait-seal { width: 24px; min-height: 24px; font-size: 8px; }
+      .judgment-copy { inset: auto 0 0; width: 100%; height: 58%; padding: 18px 12px 12px; gap: .35rem; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--hlp-neutral-50) 96%, transparent) 18%, var(--hlp-neutral-50) 52%); }
+      .judgment-text { max-height: 280px; font-size: clamp(.78rem, 3.4vw, 1rem); line-height: 1.6; letter-spacing: .06em; }
+      .judgment-name { font-size: .61rem; }
+      .scroll-paper::before { transform: translateX(120px); }
+      .scroll-paper::after { transform: translateX(-120px) scaleX(-1); }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -443,19 +497,129 @@
           <p class="section-note">册页徐展，句句伏写薄命司中未竟之缘</p>
         </header>
         <div class="scroll-wrap reveal">
-          <span class="scroll-hint" aria-hidden="true">展卷 →</span>
+          <span class="scroll-hint" aria-hidden="true">点卷展轴 →</span>
           <div class="scroll-cards" id="judgment-scroll" tabindex="0" aria-label="横向滚动浏览金陵十二钗判词">
-            <article class="judgment-card"><p class="judgment-text vertical-text">可叹停机德，堪怜咏絮才</p><span class="judgment-name vertical-text">黛玉宝钗</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">二十年来辨是非，榴花开处照宫闱</p><span class="judgment-name vertical-text">元春</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">才自精明志自高，生于末世运偏消</p><span class="judgment-name vertical-text">探春</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">富贵又何为，襁褓之间父母违</p><span class="judgment-name vertical-text">湘云</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">欲洁何曾洁，云空未必空</p><span class="judgment-name vertical-text">妙玉</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">子系中山狼，得志便猖狂</p><span class="judgment-name vertical-text">迎春</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">勘破三春景不长，缁衣顿改昔年妆</p><span class="judgment-name vertical-text">惜春</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">凡鸟偏从末世来，都知爱慕此生才</p><span class="judgment-name vertical-text">凤姐</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">势败休云贵，家亡莫论亲</p><span class="judgment-name vertical-text">巧姐</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">桃李春风结子完，到头谁似一盆兰</p><span class="judgment-name vertical-text">李纨</span></article>
-            <article class="judgment-card"><p class="judgment-text vertical-text">情天情海幻情身，情既相逢必主淫</p><span class="judgment-name vertical-text">秦可卿</span></article>
+            <article class="judgment-card" data-person="daiyu-baochai">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开黛玉宝钗判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">黛玉宝钗</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/daiyu-baochai.webp" alt="黛玉宝钗 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">黛玉宝钗</span><span class="portrait-seal" aria-hidden="true">黛钗</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">可叹停机德，堪怜咏絮才。玉带林中挂，金簪雪里埋。</span><span class="judgment-name vertical-text">黛玉宝钗</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="yuanchun">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开元春判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">元春</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/yuanchun.webp" alt="元春 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">元春</span><span class="portrait-seal" aria-hidden="true">元春</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">二十年来辨是非，榴花开处照宫闱。三春争及初春景，虎兕相逢大梦归。</span><span class="judgment-name vertical-text">元春</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="tanchun">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开探春判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">探春</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/tanchun.webp" alt="探春 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">探春</span><span class="portrait-seal" aria-hidden="true">探春</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">才自精明志自高，生于末世运偏消。清明涕送江边望，千里东风一梦遥。</span><span class="judgment-name vertical-text">探春</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="xiangyun">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开湘云判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">湘云</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/xiangyun.webp" alt="湘云 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">湘云</span><span class="portrait-seal" aria-hidden="true">湘云</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">富贵又何为，襁褓之间父母违。展眼吊斜晖，湘江水逝楚云飞。</span><span class="judgment-name vertical-text">湘云</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="miaoyu">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开妙玉判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">妙玉</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/miaoyu.webp" alt="妙玉 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">妙玉</span><span class="portrait-seal" aria-hidden="true">妙玉</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">欲洁何曾洁，云空未必空。可怜金玉质，终陷淖泥中。</span><span class="judgment-name vertical-text">妙玉</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="yingchun">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开迎春判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">迎春</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/yingchun.webp" alt="迎春 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">迎春</span><span class="portrait-seal" aria-hidden="true">迎春</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">子系中山狼，得志便猖狂。金闺花柳质，一载赴黄粱。</span><span class="judgment-name vertical-text">迎春</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="xichun">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开惜春判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">惜春</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/xichun.webp" alt="惜春 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">惜春</span><span class="portrait-seal" aria-hidden="true">惜春</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">勘破三春景不长，缁衣顿改昔年妆。可怜绣户侯门女，独卧青灯古佛旁。</span><span class="judgment-name vertical-text">惜春</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="xifeng">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开凤姐判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">凤姐</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/xifeng.webp" alt="凤姐 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">凤姐</span><span class="portrait-seal" aria-hidden="true">凤姐</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">凡鸟偏从末世来，都知爱慕此生才。一从二令三人木，哭向金陵事更哀。</span><span class="judgment-name vertical-text">凤姐</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="qiaojie">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开巧姐判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">巧姐</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/qiaojie.webp" alt="巧姐 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">巧姐</span><span class="portrait-seal" aria-hidden="true">巧姐</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">势败休云贵，家亡莫论亲。偶因济刘氏，巧得遇恩人。</span><span class="judgment-name vertical-text">巧姐</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="liwan">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开李纨判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">李纨</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/liwan.webp" alt="李纨 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">李纨</span><span class="portrait-seal" aria-hidden="true">李纨</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">桃李春风结子完，到头谁似一盆兰。如冰水好空相妒，枉与他人作笑谈。</span><span class="judgment-name vertical-text">李纨</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
+            <article class="judgment-card" data-person="qinkeqing">
+              <button class="judgment-toggle" type="button" aria-expanded="false" aria-label="展开秦可卿判词卷轴">
+                <span class="scroll-roll" aria-hidden="true"></span><span class="scroll-finial top" aria-hidden="true"></span><span class="scroll-finial bottom" aria-hidden="true"></span>
+                <span class="scroll-label vertical-text" aria-hidden="true">秦可卿</span>
+                <span class="scroll-paper"><span class="scroll-content">
+                  <span class="judgment-portrait"><span class="portrait-frame"><img src="../assets/portraits/qinkeqing.webp" alt="秦可卿 判词画像" loading="lazy" onerror="this.parentElement.classList.add('failed')"><span class="portrait-fallback" aria-hidden="true">秦可卿</span><span class="portrait-seal" aria-hidden="true">可卿</span></span></span>
+                  <span class="judgment-copy"><span class="judgment-text vertical-text">情天情海幻情身，情既相逢必主淫。漫言不肖皆荣出，造衅开端实在宁。</span><span class="judgment-name vertical-text">秦可卿</span></span>
+                </span></span>
+                <span class="scroll-rod left" aria-hidden="true"></span><span class="scroll-rod right" aria-hidden="true"></span>
+              </button>
+            </article>
           </div>
         </div>
       </div>
@@ -563,45 +727,60 @@
       }
 
       var scrollBox = document.getElementById('judgment-scroll');
-      var judgmentCards = scrollBox ? scrollBox.querySelectorAll('.judgment-card') : [];
-      var horizontalTicking = false;
-      if (scrollBox && !reduceMotion) {
+      var judgmentCards = scrollBox ? Array.from(scrollBox.querySelectorAll('.judgment-card')) : [];
+      if (scrollBox) {
+        var pointerStart = null;
+        var dragged = false;
         var dragging = false;
-        var dragStartX = 0;
-        var dragStartScroll = 0;
         scrollBox.addEventListener('pointerdown', function (event) {
           if (event.pointerType !== 'mouse' || event.button !== 0) return;
-          dragging = true;
-          dragStartX = event.clientX;
-          dragStartScroll = scrollBox.scrollLeft;
-          scrollBox.classList.add('dragging');
-          scrollBox.setPointerCapture(event.pointerId);
+          pointerStart = { x: event.clientX, scroll: scrollBox.scrollLeft, id: event.pointerId };
+          dragged = false;
         });
         scrollBox.addEventListener('pointermove', function (event) {
-          if (!dragging) return;
-          scrollBox.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+          if (!pointerStart || event.pointerId !== pointerStart.id) return;
+          var distance = event.clientX - pointerStart.x;
+          if (!dragging && Math.abs(distance) > 6) {
+            dragging = true;
+            dragged = true;
+            scrollBox.classList.add('dragging');
+            scrollBox.setPointerCapture(event.pointerId);
+          }
+          if (dragging) scrollBox.scrollLeft = pointerStart.scroll - distance;
         });
         function stopDragging(event) {
-          if (!dragging) return;
+          if (!pointerStart || event.pointerId !== pointerStart.id) return;
+          if (dragging && scrollBox.hasPointerCapture(event.pointerId)) scrollBox.releasePointerCapture(event.pointerId);
           dragging = false;
+          pointerStart = null;
           scrollBox.classList.remove('dragging');
-          if (scrollBox.hasPointerCapture(event.pointerId)) scrollBox.releasePointerCapture(event.pointerId);
         }
         scrollBox.addEventListener('pointerup', stopDragging);
         scrollBox.addEventListener('pointercancel', stopDragging);
-        scrollBox.addEventListener('scroll', function () {
-          if (horizontalTicking) return;
-          horizontalTicking = true;
-          requestAnimationFrame(function () {
-            var center = scrollBox.scrollLeft + scrollBox.clientWidth / 2;
-            judgmentCards.forEach(function (card) {
-              var cardCenter = card.offsetLeft + card.offsetWidth / 2;
-              var shift = Math.max(-8, Math.min(8, (center - cardCenter) * .018));
-              card.firstElementChild.style.transform = 'translate3d(' + shift + 'px,0,0)';
-            });
-            horizontalTicking = false;
+        scrollBox.addEventListener('click', function (event) {
+          if (dragged) { event.preventDefault(); event.stopPropagation(); dragged = false; }
+        }, true);
+        function setOpen(card, open) {
+          card.classList.toggle('is-open', open);
+          var button = card.querySelector('.judgment-toggle');
+          button.setAttribute('aria-expanded', String(open));
+          button.setAttribute('aria-label', (open ? '收起' : '展开') + card.querySelector('.scroll-label').textContent + '判词卷轴');
+        }
+        judgmentCards.forEach(function (card) {
+          card.querySelector('.judgment-toggle').addEventListener('click', function () {
+            var open = !card.classList.contains('is-open');
+            judgmentCards.forEach(function (other) { if (other !== card) setOpen(other, false); });
+            setOpen(card, open);
+            if (open) {
+              scrollBox.closest('.scroll-wrap').classList.add('has-opened');
+              requestAnimationFrame(function () { card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' }); });
+            }
           });
-        }, { passive: true });
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape') return;
+          judgmentCards.forEach(function (card) { if (card.classList.contains('is-open')) setOpen(card, false); });
+        });
       }
 
       if (reduceMotion) return;
